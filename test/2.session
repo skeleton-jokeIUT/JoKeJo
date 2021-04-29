@@ -1,0 +1,18 @@
+window_sizes 1920 1009 450 1464 792 152
+cleanlooks_style
+diagrams
+  active  classdiagram_ref 134658 // IUT_class_diagram
+    1171 633 100 A4 72 0
+end
+show_stereotypes
+selected operation_ref 142466 // setFonction
+open
+  class_ref 134530 // Personne
+  class_ref 134658 // Etudiant
+  class_ref 134786 // EtudiantBoursier
+  class_ref 141314 // PersonnelEnseignantVacataire
+  class_ref 141442 // PersonnelEnseignant
+  class_ref 141698 // PersonnelAdministratif
+  class_ref 141826 // Fonctionnaire
+end
+end

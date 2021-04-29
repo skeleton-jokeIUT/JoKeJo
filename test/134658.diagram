@@ -1,0 +1,74 @@
+format 224
+
+classcanvas 128002 class_ref 134530 // Personne
+  classdiagramsettings member_max_width 0 end
+  xyz 298 23 2000
+end
+classcanvas 128130 class_ref 134658 // Etudiant
+  classdiagramsettings member_max_width 0 end
+  xyz 63 297 2000
+end
+classcanvas 128514 class_ref 134786 // EtudiantBoursier
+  classdiagramsettings member_max_width 0 end
+  xyz 31 525 2000
+end
+classcanvas 128770 class_ref 141314 // PersonnelEnseignantVacataire
+  classdiagramsettings member_max_width 0 end
+  xyz 389 490 2000
+end
+classcanvas 128898 class_ref 141442 // PersonnelEnseignant
+  classdiagramsettings member_max_width 0 end
+  xyz 652 360 2000
+end
+classcanvas 129154 class_ref 141570 // PersonnelEnseignantTitulaire
+  classdiagramsettings member_max_width 0 end
+  xyz 571 604 2000
+end
+classcanvas 129794 class_ref 141698 // PersonnelAdministratif
+  classdiagramsettings member_max_width 0 end
+  xyz 258 389 2006
+end
+classcanvas 130050 class_ref 141826 // Fonctionnaire
+  classdiagramsettings member_max_width 0 end
+  xyz 486 179 2000
+end
+relationcanvas 128258 relation_ref 134530 // <generalisation>
+  from ref 128130 z 2001 to ref 128002
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128642 relation_ref 141058 // <generalisation>
+  from ref 128514 z 2001 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129410 relation_ref 141314 // <generalisation>
+  decenter_begin 468
+  decenter_end 79
+  from ref 128770 z 2001 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129538 relation_ref 141442 // <generalisation>
+  decenter_begin 428
+  decenter_end 550
+  from ref 129154 z 2001 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130434 relation_ref 141698 // <generalisation>
+  from ref 130050 z 2001 to ref 128002
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 141826 // <generalisation>
+  from ref 129794 z 2007 to ref 130050
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130690 relation_ref 141954 // <generalisation>
+  from ref 128898 z 2001 to ref 130050
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end
