@@ -42,4 +42,12 @@ class Client_DAO extends Personne_DAO {
         $req -> closeCursor();
         return $resultat;
     }
+
+    public function updInscription($email, $password)
+    {
+        $requete = 'update Client set password=:password where email=:email';
+        $req = $this -> bdd -> prepare($requete);
+        $req -> execute(array('password' => $password, 'email' => $email));
+        $req -> closeCursor();
+    }
 }
