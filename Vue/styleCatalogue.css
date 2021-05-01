@@ -1,12 +1,14 @@
 .miniature{
 
-	display: inline-block;
 
+	border-style: solid;
 }
 
-.miniature img{
+.miniature a{
 
-	display: inline-block;
-	width: 100px;
-	height: 100px;
+	display: inline;
+	border-style: solid;
+	width: 320px;
+	height: 180px;
+	margin-left: 5%
 }

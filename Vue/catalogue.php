@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="styleCatalogue.css">
+<link rel="stylesheet" type="text/css" href="../Vue/styleCatalogue.css">
 <meta charset="utf-8">
 
 <body>

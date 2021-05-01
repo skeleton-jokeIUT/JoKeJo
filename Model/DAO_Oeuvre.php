@@ -27,7 +27,7 @@ class DAOOeuvre{
 
 		$data=$req->fetch();
 
-		echo $data['idOeuvre']." ".$data['titre'];
+		echo $data['miniature']." ".$data['titre'];
 
 		
 	}

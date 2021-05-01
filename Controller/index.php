@@ -13,12 +13,14 @@ $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
 $catalogue = new DAOCatalogue();
 
+
+
 $module="catalogue";
 
 if ($module=="catalogue"){
 
 	include('../Vue/catalogue.php');
-	
+
 }
 
 
