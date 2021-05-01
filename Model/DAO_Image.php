@@ -1,6 +1,5 @@
 <?php
 
-
 require_once('../Model/DTO_Image.php');
 
 class DAOImage extends DAOOeuvre{
@@ -10,7 +9,7 @@ class DAOImage extends DAOOeuvre{
 	public function __construct(){
 		try{
    			$this->bdd= new PDO(
-   				"mysql:host=localhost;dbname=surv'easy;charset=utf8",
+   				"mysql:host=localhost;dbname=jokejo;charset=utf8",
    				'Johan',
    				'1234');
 		}
@@ -20,17 +19,18 @@ class DAOImage extends DAOOeuvre{
 		}
 	}
 
-	public function getByName($titre){
+	public function getByTitre($titre){
 
-		$sql ="SELECT * from oeuvre, image where titre=?";
+		$sql ='SELECT * from oeuvre, image where titre=? and oeuvre.idOeuvre = image.idOeuvre';
+		var_dump($sql);
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$titre]);
 
 		$data=$req->fetch();
 
-		echo "Bite".$data['idOeuvre'].$data['titre'].$data['type'].$data['format'];
+		echo $data['idOeuvre'].$data['titre'].$data['format'];
 
-
-
+		
 	}
+
 }

@@ -9,7 +9,7 @@ class DAOCatalogue{
 	public function __construct(){
 		try{
    			$this->bdd= new PDO(
-   				"mysql:host=localhost;dbname=surv'easy;charset=utf8",
+   				"mysql:host=localhost;dbname=jokejo;charset=utf8",
    				'Johan',
    				'1234');
 		}
@@ -24,10 +24,7 @@ class DAOCatalogue{
 		$sql ="SELECT * from catalogue where nom=?";
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$nom]);
-
 		$data=$req->fetch($req);
-
-		echo $data['idOeuvre'].$data['titre'].$data['type'].$data['format'];
 
 	}
 }
