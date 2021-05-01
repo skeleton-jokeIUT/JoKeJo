@@ -24,7 +24,26 @@ class DAOCatalogue{
 		$sql ="SELECT * from catalogue where nom=?";
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$nom]);
-		$data=$req->fetch($req);
+		
+		$listeOeuvre = array();
+
+
+		while($data=$req->fetch()){
+			$nom=$data['nom'];
+			$id=$data['idCatalogue'];
+			$listeOeuvre[]=$data['idOeuvre'];
+		}
+
+		$catalogue=new DTOCatalogue($nom,$id,$listeOeuvre);
+
+		return $catalogue;
+
+	}
+
+	public function afficherContenu($nom){
+
+		$this->getByName($nom);
+
 
 	}
 }
