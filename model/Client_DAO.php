@@ -17,22 +17,29 @@ class Client_DAO extends Personne_DAO {
         }
     }
 
-    public function getByLogin($u)
+    public function getByEmail($e)
     {
-        $requete = 'select * from Client where login = ?';
+        $requete = 'select * from Client where email = ?';
         $req = $this -> bdd -> prepare($requete);
+        $req -> execute([$l]);
         $resultat = $req -> fetch();
-        $client = new Client_DTO( ,  , ,$resultat[] ,$resultat[] ,$resultat[]);        //attention aux noms de variables
+        $client = new Client_DTO($resultat['id_personn'], $resultat['id_client'], $resultat['id_subscription'], $e, $resultat['password'], $resultat['age'], $resultat['profil']);        //attention aux noms de variables
         return $client;
     }
 
-    public function inscription($login, $password)
+    public function inscription($email, $password, $age, $profil)
     {
-
+        $requete = 'insert into Client (email, password, age, profil) values (:t_email, :t_password, :t_age, :t_profil)';
+        $req -> $this -> bdd -> prepare ($requete);
+        $req -> execute(array($email, $password, $age, $profil));
     }
 
-    public function connection()
+    public function connection($email)
     {
-
+        $requete = 'select * from Client  where email =: email';
+        $req = $this -> bdd -> prepare ($requete);
+        $resultat = $req -> fetch();
+        $req -> closeCursor();
+        return $resultat;
     }
 }

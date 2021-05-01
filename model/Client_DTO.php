@@ -7,18 +7,20 @@ class Client_DTO extends Personne_DTO {
     private $id_client;
     private $id_subscription;
     private $email;
-    private $login;
     private $password;
+    private $age;
+    private $profil;
 
     //constructeur
-    public function __construct($ip, $ic, $is, $e, $l, $p)
+    public function __construct($ip, $ic, $is, $e, $p, $a, $p)
     {
-        $this -> id_personn = ip;
-        $this -> id_client = c;
-        $this -> id_subscription = is;
+        $this -> id_personn = $ip;
+        $this -> id_client = $ic;
+        $this -> id_subscription= $is;
         $this -> email = $e;
-        $this -> login = $l;
         $this -> password = $p;
+        $this -> age = $a;
+        $this -> profil = $p;
     }
 
     //getters
@@ -38,13 +40,17 @@ class Client_DTO extends Personne_DTO {
     {
         return $this -> email;
     }
-    public function getLogin()
-    {
-        return $this -> login;
-    }
     public getPassword()
     {
         return $this -> password;
+    }
+    public getAge()
+    {
+        return $this -> age;
+    }
+    public getProfil()
+    {
+        return $this -> profil;
     }
 
     //setters
