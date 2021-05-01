@@ -13,7 +13,15 @@ $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
 $catalogue = new DAOCatalogue();
 
-include('../Vue/catalogue.php');
+$module="catalogue";
+
+if ($module=="catalogue"){
+
+	include('../Vue/catalogue.php');
+	
+}
+
+
 
 
 

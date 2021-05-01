@@ -7,11 +7,7 @@
 	<div>
 		<h2>Image</h2>
 		<div class="miniature">
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
+			<?php $oeuvre->afficherMiniatureReduit("Image") ?>
 		</div>
 
 	</div>
@@ -19,11 +15,7 @@
 	<div>
 		<h2>Ecrit</h2>
 		<div class="miniature">
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
+			<?php $oeuvre->afficherMiniatureReduit("Ecrit") ?>
 		</div>
 
 	</div>
@@ -31,11 +23,7 @@
 	<div>
 		<h2>Musique</h2>
 		<div class="miniature">
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
+			<?php $oeuvre->afficherMiniatureReduit("Musique") ?>
 		</div>
 
 	</div>
@@ -43,11 +31,7 @@
 	<div>
 		<h2>Vidéo</h2>
 		<div class="miniature">
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
+			<?php $oeuvre->afficherMiniatureReduit("Vidéo") ?>
 		</div>
 
 	</div>
@@ -56,11 +40,7 @@
 		<h2>Jeux</h2>
 
 		<div class="miniature">
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
-			<a href=""><img src=""></a>
+			<?php $oeuvre->afficherMiniatureReduit("Jeux-Vidéo") ?>
 		</div>
 	</div>
 

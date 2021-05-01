@@ -1,7 +1,12 @@
 .miniature{
 
 	display: inline-block;
-	border-style: solid;
+
+}
+
+.miniature img{
+
+	display: inline-block;
 	width: 100px;
 	height: 100px;
 }

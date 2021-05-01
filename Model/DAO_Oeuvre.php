@@ -22,7 +22,6 @@ class DAOOeuvre{
 	public function getByTitre($titre){
 
 		$sql ='SELECT * from oeuvre where titre=?';
-		var_dump($sql);
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$titre]);
 
@@ -31,5 +30,34 @@ class DAOOeuvre{
 		echo $data['idOeuvre']." ".$data['titre'];
 
 		
+	}
+
+	public function afficherMiniatureReduit($type){
+
+		$sql ='SELECT miniature from oeuvre where type=?';
+		$req = $this->bdd->prepare($sql);
+		$req->execute([$type]);
+
+		
+		for($i=0;$i<3;$i++){
+
+			$data=$req->fetch();
+			echo '<a href""><img src="'.$data['miniature'].'.jpg"></a>';
+		}
+		
+	}
+
+
+	public function afficherMiniatureComplet($type){
+
+		$sql ='SELECT miniature from oeuvre where type=?';
+		$req = $this->bdd->prepare($sql);
+		$req->execute([$type]);
+
+		$data=$req->fetch();
+
+		echo '"'.$data['miniature'].'.jpg"';
+
+
 	}
 }

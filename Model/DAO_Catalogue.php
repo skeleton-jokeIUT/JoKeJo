@@ -42,14 +42,20 @@ class DAOCatalogue{
 
 	public function afficherContenuComplet($nom){
 
-		$this->getByName($nom);
+		$catalogue=$this->getByName($nom);
+		$liste=$catalogue->__get("idOeuvre");
 
+		foreach ($liste as $value) {
+			
+			echo $value;
+		}
 
 	}
 
 	public function afficherContenuReduit($nom){
 
 		$this->getByName($nom);
+
 
 
 	}
