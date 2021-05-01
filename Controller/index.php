@@ -13,11 +13,11 @@ $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
 $catalogue = new DAOCatalogue();
 
-$oeuvre->getByTitre("Guernica");
+include('../Vue/catalogue.php');
 
-$catalogueIMG=$catalogue->getByName("Image");
 
-echo $catalogueIMG->__get("nom");
+
+
 
 
 

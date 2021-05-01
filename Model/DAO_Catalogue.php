@@ -40,7 +40,14 @@ class DAOCatalogue{
 
 	}
 
-	public function afficherContenu($nom){
+	public function afficherContenuComplet($nom){
+
+		$this->getByName($nom);
+
+
+	}
+
+	public function afficherContenuReduit($nom){
 
 		$this->getByName($nom);
 

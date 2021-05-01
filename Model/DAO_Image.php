@@ -33,4 +33,10 @@ class DAOImage extends DAOOeuvre{
 		
 	}
 
+	public function afficherMiniature($titre, $idOeuvre){
+
+		$catalogue=$this->getByTitre($tire);
+
+	}
+
 }
