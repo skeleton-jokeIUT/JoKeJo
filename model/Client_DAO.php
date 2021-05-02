@@ -20,9 +20,9 @@ class Client_DAO extends Personne_DAO {
     public function getByEmail($e)
     {
         $requete = 'select * from Client where email = ?';
-        $req = $this -> bdd -> prepare($requete);
-        $req -> execute([$l]);
-        $resultat = $req -> fetch();
+        $req = $this->bdd->prepare($requete);
+        $req ->execute([$l]);
+        $resultat = $req->fetch();
         $client = new Client_DTO($resultat['id_personn'], $resultat['id_client'], $resultat['id_subscription'], $e, $resultat['password'], $resultat['age'], $resultat['profil']);        //attention aux noms de variables
         return $client;
     }
@@ -30,24 +30,24 @@ class Client_DAO extends Personne_DAO {
     public function inscription($email, $password, $age, $profil)
     {
         $requete = 'insert into Client (email, password, age, profil) values (:t_email, :t_password, :t_age, :t_profil)';
-        $req -> $this -> bdd -> prepare ($requete);
+        $req->$this->bdd->prepare($requete);
         $req -> execute(array($email, $password, $age, $profil));
     }
 
     public function connection($email)
     {
         $requete = 'select * from Client  where email =: email';
-        $req = $this -> bdd -> prepare ($requete);
+        $req = $this->bdd->prepare ($requete);
         $resultat = $req -> fetch();
-        $req -> closeCursor();
+        $req->closeCursor();
         return $resultat;
     }
 
     public function updPassword($email, $password)
     {
         $requete = 'update Client set password=:password where email=:email';
-        $req = $this -> bdd -> prepare($requete);
-        $req -> execute(array('password' => $password, 'email' => $email));
-        $req -> closeCursor();
+        $req = $this->bdd->prepare($requete);
+        $req->execute(array('password'=>$password, 'email'=>$email));
+        $req->closeCursor();
     }
 }
