@@ -5,6 +5,10 @@ font-family:American Typewriter, serif;
 color:white;
 }
 
+input{
+	color:black;
+}
+
 header
 {
 	border:solid black;

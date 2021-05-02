@@ -19,21 +19,39 @@ class Client_DAO extends Personne {
             die('Erreur'.$e->getMessage());
         }
     }
+
     public function getByEmail($e)
     {
-        $requete = 'select * from Client where email = ?';
-        $req = $this -> bdd -> prepare($requete);
-        $req -> execute([$l]);
-        $resultat = $req -> fetch();
-        $client = new Client_DTO($resultat['id_personn'], $resultat['id_client'], $resultat['id_subscription'], $e, $resultat['password'], $resultat['age'], $resultat['profil']);        //attention aux noms de variables
+        $requete = 'SELECT * from clients where email = ?';
+        $req = $this->bdd->prepare($requete);
+        $req -> execute([$e]);
+        $resultat = $req->fetch();
+        $client = new Client_DTO($resultat['idClients'], $resultat['adresseMail'], $resultat['motDePasse'], $e, $resultat['abonnement']);        
+        //attention aux noms de variables
         return $client;
     }
 
-    public function inscription($email, $password, $age, $profil)
+    public function inscription($email, $password, $abonnement, $nomprofil, $ageProfil)
     {
-        $requete = 'insert into Client (email, password, age, profil) values (:t_email, :t_password, :t_age, :t_profil)';
-        $req -> $this -> bdd -> prepare ($requete);
-        $req -> execute(array($email, $password, $age, $profil));
+        
+        $requete = 'INSERT INTO clients (adresseMail, motDePasse, abonnement) values (:t_email, :t_password, :t_abonnement)';
+        $req= $this->bdd->prepare($requete);
+        $req->execute(array('t_email'=>$email, 't_password'=>$password, 't_abonnement'=>$abonnement));
+
+        $client = $this->getByEmail($email);
+        $id=$client->getIdC();
+
+
+        echo "test".$id;
+
+        if($nomprofil=="") $nomprofil="default";
+        if($ageProfil=="") $ageProfil=100;
+
+        $requete = 'INSERT INTO profil (idClient, nom, age) values(?,?,?)';
+        $req= $this->bdd->prepare($requete);
+        $req->execute([$id,$nomprofil,$ageProfil]);
+
+
     }
 
     public function connection($email)

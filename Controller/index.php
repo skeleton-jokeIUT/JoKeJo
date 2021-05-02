@@ -25,6 +25,7 @@ $profil = new Profil('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
 
 
 $module="accueil";
+$message="";
 
 $titre="NetPrimePlus";
 
@@ -32,7 +33,7 @@ if(isset($_GET['deco'])){
 	unset($_SESSION['connexion']);
 }
 
-if(isset($_SESSION['connexion'])){
+if(isset($_SESSION['email'])){
 	$module="profil";
 }
 
@@ -48,26 +49,53 @@ if(isset($_GET['connexion'])){
 
 if (isset($_GET['creation'])) {
 
-	if (isset($_POST['btnValider']))           //manque un bouton 'submit' ds le formulaire
+	if (isset($_POST['btnValider']))
     {
-        $reponse = $dao_client->getEmail($_POST['email']);
+    	
+        $reponse = $client->getByEmail($_POST['email']);
         if (isset($_POST['email']) && $_POST['email'] != '')
         {
-            if (isset($_POST['password']) && $_POST['password'] != '')
+            if (isset($_POST['mdp']) && $_POST['mdp'] != '')
             {
-                if ((strcmp($_POST['email'], $reponse['email'])==0) || (strcmp($_SESSION['email'], $reponse['email'])==0))
-                {
-                    $dao_client->updInscription($_POST['email'], $_POST['password']);
-                    $_SESSION['email'] = $_POST['email'];
-                } else 
-                    {
-                        $dao_p -> inscription($_POST['email'], $_POST['password']);												//...sinon => nouveau compte
-                        $_SESSION['email'] = $_POST['email'];
-                    }
-                    $message = 'Compte enregistré ou mis à jour';
-    			    $module = '';                                //changer la vue
-            } else $message = 'Erreur, champ(s) mot de passe vide(s)';
-        } else $message ='Saisir un login (une adresse mail)';
+            	if(isset($_POST['abo']))
+            	{
+            		echo $_POST['email']." ".$reponse->getEmail();
+
+                	if ($reponse!=NULL)
+	                {
+	                    $message="cette adresse mail est déjà associée un à compte";
+	                    $module="creation";
+	                } 
+	                else 
+	                {
+	                    $client->inscription($_POST['email'], $_POST['mdp'],$_POST['abo'],$_POST['nom_prof'],$_POST['age_prof']);
+	                    $_SESSION['email'] = $_POST['email'];
+	                    $module="profil";//changer la vue 
+	                    $message = 'Compte enregistré';
+	    
+	                }
+	                
+	    		}     
+	    		else 
+	    		{
+	    			$message="Merci de choisir un type de compte";    
+	    			$module="creation"; 
+	    			
+	    		}               
+            } 
+            else 
+            {
+            	$message = "Erreur, champ(s) mot de passe vide(s)";
+            	$module="creation"; 
+            	
+            }
+        } 
+        else 
+        {
+        	$message ="Saisir un login (une adresse mail)";
+        	$module="creation"; 
+        	
+        }
     }
 	else $module="creation";
 
@@ -205,6 +233,7 @@ if ($module=="accueil"){
 }
 
 var_dump($module);
+var_dump($message);
 
 
 
