@@ -1,0 +1,1 @@
+<audio controls src=<?php $oeuvre->recupCheminAcces($_GET['titre']) ?> ></audio>

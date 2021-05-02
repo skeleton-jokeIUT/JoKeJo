@@ -1,0 +1,134 @@
+/*Header*/
+*
+{
+font-family:American Typewriter, serif;
+color:white;
+}
+
+header
+{
+	border:solid black;
+	display:flex;
+	flex-direction:row;
+	justify-content: space-between;
+}
+
+body 
+{
+	background-color: black;
+}
+
+footer ul{
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: 10px;
+	list-style: none;
+}
+
+.img_logo
+{
+	display:block;
+	width:10em;
+	height:5em;
+}
+
+.lien_co
+{
+	margin-top: 2em;
+	margin-left:55em;
+}
+
+.lien_com
+{
+	margin-top: 2em;
+}
+
+.contenu
+{
+	background-color: red;
+	padding:20em;
+}
+
+.form_inscrip
+{
+	background-color: red;
+	padding:20em;
+}
+
+.reset
+{
+	color:black;
+}
+
+.valider
+{
+	color:black;
+}
+
+.abon
+{
+	margin-bottom:1.5em;
+	margin-top:1.5em;
+}
+
+.ins_contenu
+{
+	padding:0.5em;
+}
+
+.age_prof
+{
+	margin-right:4em;
+}
+
+.contenu_profil
+{
+	margin-bottom:0.7em;
+}
+
+
+.profils
+{
+	background-color:red;
+	padding:15em;
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+}
+
+
+.avatar_img
+{
+	display:block;
+	width:10em;
+	height:10em;
+}
+
+.plus_img
+{
+	display:block;
+	width:10em;
+	height:10em;
+}
+
+.miniature{
+
+
+	border-style: solid;
+}
+
+.miniature a{
+
+	display: inline;
+	border-style: solid;
+	width: 320px;
+	height: 180px;
+	margin-left: 5%
+}
+
+
+
+
+
+
+
