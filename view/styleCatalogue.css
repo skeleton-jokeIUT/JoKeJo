@@ -1,0 +1,14 @@
+.miniature{
+
+
+	border-style: solid;
+}
+
+.miniature a{
+
+	display: inline;
+	border-style: solid;
+	width: 320px;
+	height: 180px;
+	margin-left: 5%
+}

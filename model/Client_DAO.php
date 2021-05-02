@@ -34,7 +34,7 @@ class Client_DAO extends Personne_DAO {
         $req -> execute(array($email, $password, $age, $profil));
     }
 
-    public function connection($email)
+    public function connexion($email)
     {
         $requete = 'select * from Client  where email =: email';
         $req = $this->bdd->prepare ($requete);
