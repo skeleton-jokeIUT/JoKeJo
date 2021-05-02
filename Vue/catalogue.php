@@ -1,6 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../Vue/style.css">
-<meta charset="utf-8">
-
 <body>
 	
 

@@ -114,13 +114,13 @@ footer ul{
 .miniature{
 
 
-	border-style: solid;
+	
 }
 
 .miniature a{
 
-	display: inline;
-	border-style: solid;
+	display: inline-block;
+	
 	width: 320px;
 	height: 180px;
 	margin-left: 5%
