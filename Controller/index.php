@@ -9,19 +9,28 @@ var_dump($_SESSION);
 include_once('../Model/DAO_Oeuvre.php');
 include_once('../Model/DAO_Catalogue.php');
 include_once('../Model/DAO_Image.php');
-include_once('../Model/DTO_Oeuvre.php');
-include_once('../Model/DTO_Catalogue.php');
-include_once('../Model/DTO_Image.php');
+require_once('../Model/Client_DAO.php');
+require_once('../Model/Profil_DAO.php');
+require_once('../Model/Personne_DAO.php');
+
 
 $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
 $catalogue = new DAOCatalogue();
+$personne = new Personne('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
+$client = new Client_DAO('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
+$profil = new Profil('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
+
 
 
 
 $module="accueil";
 
 $titre="NetPrimePlus";
+
+if(isset($_GET['deco'])){
+	unset($_SESSION['connexion']);
+}
 
 if(isset($_SESSION['connexion'])){
 	$module="profil";
@@ -37,14 +46,29 @@ if(isset($_GET['connexion'])){
 
 }
 
-echo $module;
-
 if (isset($_GET['creation'])) {
 
-	if(isset($_POST['btnValider'])){
-
-		$_SESSION['connexion']=true;
-	}
+	if (isset($_POST['btnValider']))           //manque un bouton 'submit' ds le formulaire
+    {
+        $reponse = $dao_client->getEmail($_POST['email']);
+        if (isset($_POST['email']) && $_POST['email'] != '')
+        {
+            if (isset($_POST['password']) && $_POST['password'] != '')
+            {
+                if ((strcmp($_POST['email'], $reponse['email'])==0) || (strcmp($_SESSION['email'], $reponse['email'])==0))
+                {
+                    $dao_client->updInscription($_POST['email'], $_POST['password']);
+                    $_SESSION['email'] = $_POST['email'];
+                } else 
+                    {
+                        $dao_p -> inscription($_POST['email'], $_POST['password']);												//...sinon => nouveau compte
+                        $_SESSION['email'] = $_POST['email'];
+                    }
+                    $message = 'Compte enregistré ou mis à jour';
+    			    $module = '';                                //changer la vue
+            } else $message = 'Erreur, champ(s) mot de passe vide(s)';
+        } else $message ='Saisir un login (une adresse mail)';
+    }
 	else $module="creation";
 
 }

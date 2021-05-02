@@ -32,6 +32,14 @@ footer ul{
 	height:5em;
 }
 
+.lien_head{
+
+	display: inline-block;
+	margin-top: 2em;
+	float: left;
+
+}
+
 .lien_co
 {
 	margin-top: 2em;
