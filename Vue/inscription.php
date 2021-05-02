@@ -20,9 +20,7 @@
                     <label>Age maximum* :</label><input type="text" name="age_prof" class="age_prof">
                     </div>
                     <button name="btnValider">Valide r</button>
-                    <form action="http://localhost/service" method="POST" enctype="multipart/form-data">
-                    <label>Avatar:</label><input type="file" name="avatarf">
-                    </form>
+          
                     </div>
                 </fieldset>
                     <h4>*champs obligatoires</h4>

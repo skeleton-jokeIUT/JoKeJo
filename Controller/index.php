@@ -17,9 +17,9 @@ require_once('../Model/Personne_DAO.php');
 $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
 $catalogue = new DAOCatalogue();
-$personne = new Personne('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
-$client = new Client_DAO('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
-$profil = new Profil('127.0.0.1', 'bdd_roulette', 'p0401831', 'mdp');
+$personne = new Personne();
+$client = new Client_DAO();
+$profil = new Profil();
 
 
 
@@ -29,27 +29,48 @@ $message="";
 
 $titre="NetPrimePlus";
 
+//permet de se déconnecter
 if(isset($_GET['deco'])){
+	unset($_SESSION['email']);
+	unset($_SESSION['abonnement']);
 	unset($_SESSION['connexion']);
 }
 
+
+//Verification de la connexion
 if(isset($_SESSION['email'])){
 	$module="profil";
 }
 
+//Traitement de la connexion
 if(isset($_GET['connexion'])){
 
-	if(isset($_POST['btnValider'])){
+	if (isset($_POST['btnValider']))
+	{
 
-		$_SESSION['connexion']=true;
+		if (isset($_POST['login']) && $_POST['login'] !="" &&($_POST['mdp']) && $_POST['mdp']!="")
+    	{
+       		$client->connection($_POST['login'],$_POST['mdp'],$message,$module);
+    	}
+    	else 
+    	{
+    	$message="Pas de saisie";
+    	$module="connexion";
+    	}
+
 	}
 	else $module="connexion";
 
 }
 
+
+//traitement de l'inscription
 if (isset($_GET['creation'])) {
 
-	if (isset($_POST['btnValider']))
+	if(isset($_SESSION['email'])){
+		$module="profil";
+	}
+	else if (isset($_POST['btnValider']))
     {
     	
         $reponse = $client->getByEmail($_POST['email']);
@@ -59,9 +80,9 @@ if (isset($_GET['creation'])) {
             {
             	if(isset($_POST['abo']))
             	{
-            		echo $_POST['email']." ".$reponse->getEmail();
-
-                	if ($reponse!=NULL)
+            		$email=$reponse->getEmail();
+            		var_dump($email);
+                	if ($email!=null)
 	                {
 	                    $message="cette adresse mail est déjà associée un à compte";
 	                    $module="creation";
@@ -69,10 +90,10 @@ if (isset($_GET['creation'])) {
 	                else 
 	                {
 	                    $client->inscription($_POST['email'], $_POST['mdp'],$_POST['abo'],$_POST['nom_prof'],$_POST['age_prof']);
-	                    $_SESSION['email'] = $_POST['email'];
+
 	                    $module="profil";//changer la vue 
 	                    $message = 'Compte enregistré';
-	    
+	 
 	                }
 	                
 	    		}     
@@ -171,36 +192,42 @@ if($module=="profil"){
 //affichage du catalogue vedette
 if ($module=="catalogue"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogue.php');
 	include '../Vue/footerNonCo.php';
 }
 //Affichage des catalogues par type d'oeuvre
 else if($module=="catalogueIMG"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueIMG.php');
 	include '../Vue/footerNonCo.php';
 
 }
 else if($module=="catalogueEcrit"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueEcrit.php');
 	include '../Vue/footerNonCo.php';
 	
 }
 else if($module=="catalogueJeux"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueJeux.php');
 	include '../Vue/footerNonCo.php';
 	
 }
 else if($module=="catalogueVOD"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueVideo.php');
 	include '../Vue/footerNonCo.php';
 	
 }
 else if($module=="catalogueMus"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueMusique.php');
 	include '../Vue/footerNonCo.php';
 	
@@ -210,18 +237,21 @@ else if($module=="catalogueMus"){
 
 if ($module=="visioAutre"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageAutre.php');
 	include '../Vue/footerNonCo.php';
 }
 
 if ($module=="visioMusique"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageMusique.php');
 	include '../Vue/footerNonCo.php';
 }
 
 if ($module=="visioVideo"){
 	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
 	include '../Vue/footerNonCo.php';
 }

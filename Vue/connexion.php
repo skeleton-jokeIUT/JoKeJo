@@ -2,7 +2,9 @@
 
 
 <div class="contenu">
+
             <form class="connexion" action="index.php?connexion" method="POST">
+                <?php echo $message ?>
                 <h3>Connexion</h3>
                 <label> Login (votre email) : </label>
                 <input type="text"  name="login">
