@@ -262,10 +262,6 @@ if ($module=="accueil"){
 	include '../Vue/footerNonCo.php';
 }
 
-var_dump($module);
-var_dump($message);
-
-
 
 
 
