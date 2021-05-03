@@ -1,1 +1,1 @@
-<img src=<?php $oeuvre->recupCheminAcces($_GET['titre']) ?> >
+<img src="<?php $oeuvre->recupCheminAcces($_GET['titre']) ?>" >
