@@ -15,11 +15,12 @@
                     <label>Compte standard (10€/mois)<input type="radio" name="abo" value="compte_standard"></label>
                     <label>Compte premium (20€/mois)<input type="radio" name="abo" value="compte_premium"></label>
                     </div>
-                    <div class="contenu_profil"
+                    <div class="ins_avatar">
                     <label>Nom de votre profil* : </label><input type="text" name="nom_prof">
                     <label>Age maximum* :</label><input type="text" name="age_prof" class="age_prof">
                     </div>
-                    <button name="btnValider">Valide r</button>
+                    <button type="reset" name="btnReset_inscr" class="reset">Effacer</button>
+                    <button name="btnValider_inscr" class="valider">Valider</button>
           
                     </div>
                 </fieldset>
