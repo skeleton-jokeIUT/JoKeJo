@@ -36,23 +36,26 @@ footer ul{
 	height:5em;
 }
 
-.lien_head{
-
-	display: inline-block;
-	margin-top: 2em;
-	float: left;
-
-}
-
 .lien_co
 {
-	margin-top: 2em;
-	margin-left:55em;
+	margin-top: 1em;
 }
 
-.lien_com
+.lien_deco
 {
-	margin-top: 2em;
+	margin-top: 1em;
+	margin-left:50em;
+}
+
+.lien_compte
+{
+	margin-top: 1em;
+}
+
+.ins_avatar
+{
+	display:block;
+	margin-bottom:1em;
 }
 
 .contenu
