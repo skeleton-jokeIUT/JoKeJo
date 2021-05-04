@@ -20,7 +20,7 @@
                     <label>Age maximum* :</label><input type="text" name="age_prof" class="age_prof">
                     </div>
                     <button type="reset" name="btnReset_inscr" class="reset">Effacer</button>
-                    <button name="btnValider_inscr" class="valider">Valider</button>
+                    <button name="btnValider" class="valider">Valider</button>
           
                     </div>
                 </fieldset>
