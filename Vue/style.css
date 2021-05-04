@@ -160,10 +160,13 @@ h2 {
 	color: black;
 }
 
-.recherche{
+.bouton_recherche{
 	color: red;
+	width:50em;
+	margin-left:2em;
+	border-radius : 15px;
+	margin-top: 2em;
 }
-
 
 
 
