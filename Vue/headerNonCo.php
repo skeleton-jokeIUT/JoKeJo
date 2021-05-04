@@ -10,13 +10,13 @@
 		<div>
 			<a href="index.php"><img src="../Vue/image/logo.png" alt="image logo" class="img_logo"></a>
 		</div>
-		<div class="lien_head">
+		<div class="lien_deco">
 			<a href="index.php?deco">Se déconnecter</a>
 		</div>
-		<div class ="lien_head">
+		<div class ="lien_co">
 			<a href="index.php?connexion">Se connecter</a>
 		</div>
-		<div class ="lien_head">
+		<div class ="lien_compte">
 			<a href="index.php?creation">Créer un compte</a>
 		</div>
 </header>
