@@ -134,12 +134,30 @@ footer ul{
 	height:10em;
 }
 
+.miniature {
+	
+	width: 10em;
+	border-style: solid;
+	border: 0.15em black groove;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .miniature a{
 
-	display: inline-block;
+	display: inline;
+	border-style: solid;
 	width: 320px;
 	height: 180px;
-	margin-left: 5%;
+	margin-left: 5%
+}
+
+
+h2 {
+	text-align: center;
+	border: 0.25em black groove;
+	background-color: darkgrey;
+	color: black;
 }
 
 .recherche{
