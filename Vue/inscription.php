@@ -11,9 +11,9 @@
                     <label>Mot de passe* :</label><input type="password" name="mdp">
                     <div class="abon">
                     <p>Choisissez un abonnement* (sans engagement)</p>
-                    <label>Compte gratuit<input type="radio" name="abo" value="compte_gratuit"></label>
-                    <label>Compte standard (10€/mois)<input type="radio" name="abo" value="compte_standard"></label>
-                    <label>Compte premium (20€/mois)<input type="radio" name="abo" value="compte_premium"></label>
+                    <label>Compte gratuit<input type="radio" name="abo" value=1></label>
+                    <label>Compte standard (10€/mois)<input type="radio" name="abo" value=2></label>
+                    <label>Compte premium (20€/mois)<input type="radio" name="abo" value=3></label>
                     </div>
                     <div class="ins_avatar">
                     <label>Nom de votre profil* : </label><input type="text" name="nom_prof">

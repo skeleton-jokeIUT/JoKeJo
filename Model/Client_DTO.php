@@ -8,7 +8,7 @@ class Client_DTO extends Personne_DTO {
     private $idClients;
     private $adresseMail;
     private $motDePasse;
-    private $abonnement;
+    private $idAbonnement;
 
     //constructeur
     public function __construct($idp, $mail, $mdp, $abonnement)
@@ -16,7 +16,7 @@ class Client_DTO extends Personne_DTO {
         $this->idClients = $idp;
         $this->adresseMail = $mail;
         $this->motDePasse = $mdp;
-        $this->abonnement = $abonnement;
+        $this->idAbonnement = $abonnement;
     }
 
     //getters
@@ -34,7 +34,7 @@ class Client_DTO extends Personne_DTO {
     }
     public function getAbonnement()
     {
-        return $this->abonnement;
+        return $this->idAbonnement;
     }
     
     //setters

@@ -52,7 +52,7 @@ footer ul{
 .lien_deco
 {
 	margin-top: 1em;
-	margin-left:50em;
+	margin-left:40em;
 }
 
 .lien_compte
@@ -136,17 +136,16 @@ footer ul{
 
 .miniature {
 	
-	width: 10em;
-	border-style: solid;
+	display: inline;
+	width: 20em;
+	
 	border: 0.15em black groove;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .miniature a{
 
 	display: inline;
-	border-style: solid;
+	
 	width: 320px;
 	height: 180px;
 	margin-left: 5%

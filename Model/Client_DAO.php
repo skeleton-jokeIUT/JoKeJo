@@ -26,15 +26,15 @@ class Client_DAO extends Personne {
         $req = $this->bdd->prepare($requete);
         $req->execute([$e]);
         $resultat = $req->fetch();
-        $client = new Client_DTO($resultat['idClients'], $resultat['adresseMail'], $resultat['motDePasse'], $resultat['abonnement']);        
+        $client = new Client_DTO($resultat['idClients'], $resultat['adresseMail'], $resultat['motDePasse'], $resultat['idAbonnement']);        
         //attention aux noms de variables
         return $client;
     }
 
     public function inscription($email, $motDePasse, $abonnement, $nomprofil, $ageProfil)
     {
-        
-        $requete = 'INSERT INTO clients (adresseMail, motDePasse, abonnement) values (:t_email, :t_motDePasse, :t_abonnement)';
+        echo $email.$motDePasse.$abonnement.$nomprofil.$ageProfil;
+        $requete = 'INSERT INTO clients (adresseMail, motDePasse, idAbonnement) values (:t_email, :t_motDePasse, :t_abonnement)';
         $req= $this->bdd->prepare($requete);
         $req->execute(array('t_email'=>$email, 't_motDePasse'=>$motDePasse, 't_abonnement'=>$abonnement));
 
@@ -43,10 +43,8 @@ class Client_DAO extends Personne {
 
         echo $client->getEmail();
 
-        $_SESSION['email'] = $client->getEmail();
+        $_SESSION['email']=$client->getEmail();
         $_SESSION['abonnement']=$client->getAbonnement();
-
-        echo "test".$id;
 
         if($nomprofil=="") $nomprofil="default";
         if($ageProfil=="") $ageProfil=100;
@@ -82,7 +80,12 @@ class Client_DAO extends Personne {
                 $data = $reponse->fetch();
 
                 $_SESSION['email']=$data['adresseMail'];
-                $_SESSION['abonnement']=$data['abonnement'];
+
+                if($data['idAbonnement']==1)$data['idAbonnement']="gratuit";
+                if($data['idAbonnement']==2)$data['idAbonnement']="payant";
+                if($data['idAbonnement']==3)$data['idAbonnement']="premium";
+                
+                $_SESSION['abonnement']=$data['idAbonnement'];
                 $module="profil";
             }
 
