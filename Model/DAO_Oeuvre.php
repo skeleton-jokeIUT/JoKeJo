@@ -76,4 +76,20 @@ class DAOOeuvre{
 			echo $data['cheminAcces'];
 		}
 	}
+
+	public function rechercher($titre){
+
+		$titre = '%'.$titre.'%';
+
+		$sql ='SELECT * from oeuvre where titre like ?';
+		$req = $this->bdd->prepare($sql);
+		$req->execute([$titre]);
+
+		while($data=$req->fetch()){
+		
+			echo '<p><a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'">'.$data['titre'].'</a>   '.$data['type'].'  '.$data['duree'].'</p>';
+
+		}
+
+	}
 }

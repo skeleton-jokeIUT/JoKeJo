@@ -122,6 +122,7 @@ if (isset($_GET['creation'])) {
 
 }
 
+//Gestion du catalogue à afficher : soit le général soit par type oeuvre
 if(isset($_GET['catalogue'])){
 
 	if($_GET['catalogue']=='Image'){
@@ -153,6 +154,7 @@ if(isset($_GET['catalogue'])){
 	else $module="catalogue";
 }
 
+//Permet de définir quel type de page de visionnage sera affiché : vidéo / musique / livre et/ou image
 if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 
 	if($_GET['visionnage'] !="Vidéo" && $_GET['visionnage']!="Musique"){
@@ -166,6 +168,20 @@ if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 	else if ($_GET['visionnage']=="Musique"){
 		$module="visioMusique";
 	}
+}
+
+//Gestion de la recherche
+if(isset($_GET['btnRecherche'])){
+
+	if(isset($_GET['recherche']) && $_GET['recherche']!=""){
+		$module="recherche";
+		$message="coucou";
+	}
+	else{
+		$module="recherche";
+		$message="Vous n'avez saisie aucun paramètre de recherche";
+	}
+
 }
 
 
@@ -255,6 +271,15 @@ if ($module=="visioVideo"){
 	include('../Vue/visionnage/visionnageVideo.php');
 	include '../Vue/footerNonCo.php';
 }
+
+//Affiochage des résultats de recherche
+if($module=="recherche"){
+	include '../Vue/headerNonCo.php';
+	include '../Vue/recherche.php';
+	include('../Vue/resultatRecherche.php');
+	include '../Vue/footerNonCo.php';
+}
+
 
 if ($module=="accueil"){
 	include '../Vue/headerNonCo.php';
