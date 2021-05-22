@@ -210,10 +210,6 @@ if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 
 	}
 
-	$User=$client->getByEmail($_SESSION["email"]);
-	$idClient=$User->__get('id');
-	$favori->listeFavori($idClient);
-
 }
 
 
@@ -317,6 +313,9 @@ if($module=="recherche"){
 
 if($module=="favori"){
 	include '../Vue/headerCo.php';
+	$User=$client->getByEmail($_SESSION["email"]);
+	$idClient=$User->__get('id');
+	$favori->listeFavori($idClient);
 	include('../Vue/listeFavori.php');
 	include '../Vue/footerNonCo.php';
 }
@@ -325,6 +324,7 @@ if($module=="favori"){
 if ($module=="accueil"){
 	include '../Vue/headerNonCo.php';
 	include('../Vue/home.php');
+	
 	include '../Vue/footerNonCo.php';
 
 }

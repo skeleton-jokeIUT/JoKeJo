@@ -48,16 +48,28 @@ class DAOFavori {
 	public function listeFavori($idClient){
 
 		
-		$sql='SELECT * from favori where id=?';
+		$sql='SELECT * from favori where idClient=?';
 		$req=$this->bdd->prepare($sql);
 		$req->execute([$idClient]);
 
-		while($data=$req->fetch()){
-			echo "coucou";
-			echo '<p><a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'">'.$data['titre'].'</a>   '.$data['type'].'  '.$data['duree'].'</p>';
+		$listeOeuvre=array();
 
+		while($data=$req->fetch()){
+
+			$listeOeuvre[]=$data['idOeuvre'];
 		}
 
+		foreach ($listeOeuvre as $value) {
+
+			$sql='SELECT * from oeuvre where idOeuvre=?';
+			$req=$this->bdd->prepare($sql);
+			$req->execute([$value]);
+
+			$data2=$req->fetch();
+
+			echo '<p><a href="index.php?visionnage='.$data2['type'].'&titre='.$data2['titre'].'">'.$data2['titre'].'</a>   '.$data2['type'].'  '.$data2['duree'].'</p>';
+
+		}
 
 	}
 
