@@ -38,7 +38,7 @@ if(isset($_GET['deco'])){
 
 
 //Verification de la connexion
-if(isset($_SESSION['email'])){
+if(isset($_SESSION['email'])||$_GET['profil']){
 	$module="profil";
 }
 
@@ -51,6 +51,7 @@ if(isset($_GET['connexion'])){
 		if (isset($_POST['login']) && $_POST['login'] !="" &&($_POST['mdp']) && $_POST['mdp']!="")
     	{
        		$client->connection($_POST['login'],$_POST['mdp'],$message,$module);
+       		$module="profil";
     	}
     	else 
     	{
@@ -200,49 +201,49 @@ if($module=="connexion"){
 }
 
 if($module=="profil"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include('../Vue/choixProfils.php');
 	include '../Vue/footerNonCo.php';
 }
 
 //affichage du catalogue vedette
 if ($module=="catalogue"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogue.php');
 	include '../Vue/footerNonCo.php';
 }
 //Affichage des catalogues par type d'oeuvre
 else if($module=="catalogueIMG"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueIMG.php');
 	include '../Vue/footerNonCo.php';
 
 }
 else if($module=="catalogueEcrit"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueEcrit.php');
 	include '../Vue/footerNonCo.php';
 	
 }
 else if($module=="catalogueJeux"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueJeux.php');
 	include '../Vue/footerNonCo.php';
 	
 }
 else if($module=="catalogueVOD"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueVideo.php');
 	include '../Vue/footerNonCo.php';
 	
 }
 else if($module=="catalogueMus"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/catalogue/catalogueMusique.php');
 	include '../Vue/footerNonCo.php';
@@ -252,21 +253,21 @@ else if($module=="catalogueMus"){
 //Affichage des différents modules de visionnage en fonction de l'oeuvre
 
 if ($module=="visioAutre"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageAutre.php');
 	include '../Vue/footerNonCo.php';
 }
 
 if ($module=="visioMusique"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageMusique.php');
 	include '../Vue/footerNonCo.php';
 }
 
 if ($module=="visioVideo"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
 	include '../Vue/footerNonCo.php';
@@ -274,7 +275,7 @@ if ($module=="visioVideo"){
 
 //Affiochage des résultats de recherche
 if($module=="recherche"){
-	include '../Vue/headerNonCo.php';
+	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/resultatRecherche.php');
 	include '../Vue/footerNonCo.php';

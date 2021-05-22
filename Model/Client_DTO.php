@@ -20,9 +20,17 @@ class Client_DTO extends Personne_DTO {
     }
 
     //getters
-    public function getIdC()
+    public function __get($attr)
     {
-        return $this->idClients;
+        switch ($attr) {
+            case 'id':
+                return $this->idClients;
+                break;
+            
+            default:
+                return "problème";
+                break;
+        }
     }
     public function getEmail()
     {

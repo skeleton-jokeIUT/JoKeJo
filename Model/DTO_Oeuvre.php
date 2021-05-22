@@ -31,5 +31,17 @@ class DTOOeuvre{
 
 	}
 
+	public function __get($attr){
+		switch ($attr) {
+			case 'id':
+				return $this->idOeuvre;
+				break;
+			
+			default:
+				return "problème";
+				break;
+		}
+	}
+
 
 }
