@@ -27,7 +27,7 @@ class DAOOeuvre{
 
 		$data=$req->fetch();
 
-	$oeuvre = new DTOOeuvre($data['idOeuvre'],$data['titre'],$data['dateDeSortie'],$data['type'],$data['catPrincipale'],$data['catSecondaire'],$data['ageMini'],$data['prixAchat'],$data['prixLocation'],$data['cheminAccès'],$data['miniature'])		
+	$oeuvre = new DTOOeuvre($data['idOeuvre'],$data['titre'],$data['dateDeSortie'],$data['type'],$data['catPrincipale'],$data['catSecondaire'],$data['ageMini'],$data['prixAchat'],$data['prixLocation'],$data['cheminAccès'],$data['miniature']);		
 		
 	return $oeuvre;
 	}

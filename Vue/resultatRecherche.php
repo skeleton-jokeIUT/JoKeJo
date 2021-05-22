@@ -1,4 +1,4 @@
-<div id="resultatRecherche">
+<div class="resultatRecherche">
 <?php 
 	
 	if($_GET['recherche']!="") $oeuvre->rechercher($_GET['recherche']);

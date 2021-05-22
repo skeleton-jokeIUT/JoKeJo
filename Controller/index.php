@@ -12,6 +12,7 @@ include_once('../Model/DAO_Image.php');
 require_once('../Model/Client_DAO.php');
 require_once('../Model/Profil_DAO.php');
 require_once('../Model/Personne_DAO.php');
+require_once('../Model/DAO_Favori.php');
 
 
 $image= new DAOImage();
@@ -20,9 +21,7 @@ $catalogue = new DAOCatalogue();
 $personne = new Personne();
 $client = new Client_DAO();
 $profil = new Profil();
-
-
-
+$favori = new DAO_Favori();
 
 $module="accueil";
 $message="";
@@ -185,6 +184,16 @@ if(isset($_GET['btnRecherche'])){
 
 }
 
+//gestion des favori
+if(isset($_GET['favori'])){
+	$module="favori";
+	if(isset($_GET['btnFavori'])){
+
+		$favori->ajoutFavori($_SESSION['email'],);
+
+	}
+}
+
 
 
 //Affichage des différentes parties des pages
@@ -256,6 +265,7 @@ if ($module=="visioAutre"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageAutre.php');
+	include '../Vue/ajoutFavori.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -263,6 +273,7 @@ if ($module=="visioMusique"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageMusique.php');
+	include '../Vue/ajoutFavori.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -270,6 +281,7 @@ if ($module=="visioVideo"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
+	include '../Vue/ajoutFavori.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -286,6 +298,7 @@ if ($module=="accueil"){
 	include '../Vue/headerNonCo.php';
 	include('../Vue/home.php');
 	include '../Vue/footerNonCo.php';
+
 }
 
 
