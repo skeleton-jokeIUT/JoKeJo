@@ -7,8 +7,7 @@ include_once('../Model/Client_DAO.php');
 class DAOFavori {
 
 	private $bdd;
-	private $oeuvre= new DAOOeuvre();
-	private $client = new Client_DAO(); 
+
 
 	public function __construct(){
 		try{
@@ -17,10 +16,11 @@ class DAOFavori {
    				'Johan',
    				'1234');
 		}
-
 		catch (Exception $e) {
      		die('Erreur'.$e->getMessage());
 		}
+
+		
 	}
 
 	public function getByID($idOeuvre, $idClient){
@@ -37,13 +37,7 @@ class DAOFavori {
 
 	}
 
-	public function ajoutFavori($email, $titre){
-
-		$oeuvreAjoutee=$this->oeuvre->getByTitre($titre);
-		$clientALier=$this->client->getByEmail($email);
-
-		$idOeuvre=$oeuvreAjoutee->__get('id');
-		$idClient=$clientALier->__get('id');
+	public function ajoutFavori($idOeuvre, $idClient){
 
 		$sql='INSERT INTO favori values(?,?)';
 		$req= $this->bdd->prepare($sql);
@@ -51,18 +45,15 @@ class DAOFavori {
 
 	}
 
-	public function listeFavori($email){
+	public function listeFavori($idClient){
 
-		$User=$this->client->getByEmail($email);
-
-		$idClient=$User_>__get('id');
-
+		
 		$sql='SELECT * from favori where id=?';
 		$req=$this->bdd->prepare($sql);
 		$req->execute([$idClient]);
 
 		while($data=$req->fetch()){
-
+			echo "coucou";
 			echo '<p><a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'">'.$data['titre'].'</a>   '.$data['type'].'  '.$data['duree'].'</p>';
 
 		}
@@ -71,6 +62,9 @@ class DAOFavori {
 	}
 
 	public function suppressionFavori($email, $titre){
+
+		$oeuvre = new DAOOeuvre();
+		$client = new Client_DAO();
 
 		$oeuvreAjoutee=$this->oeuvre->getByTitre($titre);
 		$clientALier=$this->client->getByEmail($email);

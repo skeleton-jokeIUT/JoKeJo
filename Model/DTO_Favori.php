@@ -15,7 +15,7 @@ class DTOFavori{
 	public function __get($attribut){
 		switch ($attribut) {
 			case 'idClient':
-				return $this->idClient
+				return $this->idClient;
 				break;
 
 			case 'idOeuvre':

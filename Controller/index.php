@@ -21,7 +21,7 @@ $catalogue = new DAOCatalogue();
 $personne = new Personne();
 $client = new Client_DAO();
 $profil = new Profil();
-$favori = new DAO_Favori();
+$favori = new DAOFavori();
 
 $module="accueil";
 $message="";
@@ -37,7 +37,7 @@ if(isset($_GET['deco'])){
 
 
 //Verification de la connexion
-if(isset($_SESSION['email'])||$_GET['profil']){
+if(isset($_SESSION['email'])){
 	$module="profil";
 }
 
@@ -157,9 +157,12 @@ if(isset($_GET['catalogue'])){
 //Permet de définir quel type de page de visionnage sera affiché : vidéo / musique / livre et/ou image
 if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 
+	$_SESSION['titre']=$_GET['titre'];
+	
+
 	if($_GET['visionnage'] !="Vidéo" && $_GET['visionnage']!="Musique"){
 
-		$module="visioAutre";	
+		$module="visioAutre";
 
 	}
 	else if ($_GET['visionnage']=="Vidéo"){
@@ -185,13 +188,32 @@ if(isset($_GET['btnRecherche'])){
 }
 
 //gestion des favori
-if(isset($_GET['favori'])){
+if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 	$module="favori";
-	if(isset($_GET['btnFavori'])){
 
-		$favori->ajoutFavori($_SESSION['email'],);
+	if(isset($_GET['btnAjoutFavori'])){
+		
+		$oeuvreAjoutee=$oeuvre->getByTitre($_SESSION['titre']);
+		$clientALier=$client->getByEmail($_SESSION['email']);
+
+		$idOeuvre=$oeuvreAjoutee->__get('id');
+		$idClient=$clientALier->__get('id');
+
+		echo $idOeuvre;
+		echo $idClient;
+
+		$favori->ajoutFavori($idOeuvre,$idClient);
+		unset($_SESSION['titre']);
 
 	}
+	else if(isset($_GET['btnSupprFav'])){
+
+	}
+
+	$User=$client->getByEmail($_SESSION["email"]);
+	$idClient=$User->__get('id');
+	$favori->listeFavori($idClient);
+
 }
 
 
@@ -290,6 +312,12 @@ if($module=="recherche"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/resultatRecherche.php');
+	include '../Vue/footerNonCo.php';
+}
+
+if($module=="favori"){
+	include '../Vue/headerCo.php';
+	include('../Vue/listeFavori.php');
 	include '../Vue/footerNonCo.php';
 }
 

@@ -11,11 +11,11 @@ class DTOOeuvre{
 	private $ageMini;
  	private $prixAchat;
 	private $prixLocation;
-	private $cheminAccès;
+	private $cheminAcces;
 	private $miniature;
 
 
-	public function __construct($idOeuvre,$titre,$dateDeSortie,$type,$catPrincipale,$catSecondaire,$ageMini,$prixAchat,$prixLocation,$cheminAccès,$miniature){
+	public function __construct($idOeuvre,$titre,$dateDeSortie,$type,$catPrincipale,$catSecondaire,$ageMini,$prixAchat,$prixLocation,$cheminAcces,$miniature){
 
 		$this->idOeuvre=$idOeuvre;
 		$this->titre=$titre;
@@ -26,7 +26,7 @@ class DTOOeuvre{
 		$this->ageMini=$ageMini;
 		$this->prixAchat=$prixAchat;
 		$this->prixLocation=$prixLocation;
-		$this->cheminAccès=$cheminAccès;
+		$this->cheminAccès=$cheminAcces;
 		$this->miniature=$miniature;
 
 	}
