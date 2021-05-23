@@ -230,7 +230,7 @@ if(isset($_GET['note']) && $_GET['note']!=""){
 
 		$message=$note->ajoutNote($idOeuvre,$idClient,$_GET['note']);
 
-		
+		unset($_SESSION['titre']);
 
 
 	}
@@ -348,17 +348,15 @@ if($module=="favori"){
 	include '../Vue/footerNonCo.php';
 }
 
-if($module="note"){
+if($module=="note"){
 	include '../Vue/headerCo.php';
 	echo '<p>'.$message.'</p>';
-	include('../Vue/note.php');
 	include '../Vue/footerNonCo.php';
 }
 
 if ($module=="accueil"){
 	include '../Vue/headerNonCo.php';
 	include('../Vue/home.php');
-	
 	include '../Vue/footerNonCo.php';
 
 }
