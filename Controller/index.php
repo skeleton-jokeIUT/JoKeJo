@@ -158,7 +158,6 @@ if(isset($_GET['catalogue'])){
 if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 
 	$_SESSION['titre']=$_GET['titre'];
-	
 
 	if($_GET['visionnage'] !="Vidéo" && $_GET['visionnage']!="Musique"){
 
@@ -172,6 +171,7 @@ if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 		$module="visioMusique";
 	}
 }
+
 
 //Gestion de la recherche
 if(isset($_GET['btnRecherche'])){
@@ -209,6 +209,13 @@ if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 	else if(isset($_GET['btnSupprFav'])){
 
 	}
+
+}
+
+if(isset($_GET['note']) && $_GET['note']!=""){
+
+	$module="note";
+	
 
 }
 
@@ -284,6 +291,7 @@ if ($module=="visioAutre"){
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageAutre.php');
 	include '../Vue/ajoutFavori.php';
+	include '../Vue/ModuleNote.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -292,6 +300,7 @@ if ($module=="visioMusique"){
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageMusique.php');
 	include '../Vue/ajoutFavori.php';
+	include '../Vue/ModuleNote.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -300,6 +309,7 @@ if ($module=="visioVideo"){
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
 	include '../Vue/ajoutFavori.php';
+	include '../Vue/ModuleNote.php';
 	include '../Vue/footerNonCo.php';
 }
 

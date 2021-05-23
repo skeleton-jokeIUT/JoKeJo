@@ -63,6 +63,8 @@ class DAOOeuvre{
 
 	public function recupCheminAcces($titre){
 
+
+
 		$sql ='SELECT  cheminAcces from oeuvre where titre=?';
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$titre]);
@@ -70,7 +72,8 @@ class DAOOeuvre{
 		$data=$req->fetch();
 		
 		if($data['cheminAcces']==null){
-			header('Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+			echo $titre;
+			//header('Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 		}
 		else{
 			echo $data['cheminAcces'];
