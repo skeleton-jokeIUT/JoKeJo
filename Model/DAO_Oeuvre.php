@@ -34,7 +34,7 @@ class DAOOeuvre{
 
 	public function afficherMiniatureReduit($type){
 
-		$sql ='SELECT titre,miniature,type from oeuvre where type=?';
+		$sql ='SELECT titre, miniature, type, acces from oeuvre where type=?';
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$type]);
 
@@ -42,7 +42,7 @@ class DAOOeuvre{
 		for($i=0;$i<3;$i++){
 
 			$data=$req->fetch();
-			echo '<a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'"><img src="'.$data['miniature'].'.jpg"></a>';
+			echo '<a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'.jpg"></a>';
 		}
 		
 	}
@@ -50,13 +50,13 @@ class DAOOeuvre{
 
 	public function afficherMiniatureComplet($type){
 
-		$sql ='SELECT  miniature, titre, type from oeuvre where type=?';
+		$sql ='SELECT  miniature, titre, type, acces from oeuvre where type=?';
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$type]);
 
 		while($data=$req->fetch()){
 
-			echo '<a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'"><img src="'.$data['miniature'].'.jpg"></a>';
+			echo '<a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'.jpg"></a>';
 		}
 
 	}

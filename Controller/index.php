@@ -305,7 +305,7 @@ if ($module=="visioAutre"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageAutre.php');
-	include '..Vue.visionnage/footerVisionnage';
+	include '../Vue/visionnage/footerVisionnage.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -313,7 +313,7 @@ if ($module=="visioMusique"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageMusique.php');
-	include '..Vue.visionnage/footerVisionnage';
+	include '../Vue/visionnage/footerVisionnage.php';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -321,7 +321,7 @@ if ($module=="visioVideo"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
-	include '..Vue.visionnage/footerVisionnage';
+	include '../Vue/visionnage/footerVisionnage.php';
 	include '../Vue/footerNonCo.php';
 }
 

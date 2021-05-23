@@ -24,5 +24,34 @@
 <script type="text/javascript">
 
 	var abonnement="<?php echo $_SESSION['abonnement'] ?>";
+	var acces="<?php echo $_GET['acces'] ?>";
+
+	switch(abonnement){
+		case 'gratuit':
+			abonnement=1;
+			break;
+		case 'payant':
+			abonnement=2;
+			break;
+		case 'premium':
+			abonnement=3;
+			break;
+		default:
+			alert("pas cool");
+	}
+
+	switch(acces){
+		case 'gratuit':
+			acces=1;
+			break;
+		case 'payant':
+			acces=2;
+			break;
+		case 'premium':
+			acces=3;
+			break;
+		default:
+			alert("pas cool");
+	}
 
 </script>
