@@ -24,7 +24,8 @@
 </div>
 
 <script type="text/javascript">
-	
+
+	var oeuvre= document.getElementsByClassName("oeuvre");
 	var btnAchat =document.getElementById("btnAchat");
 	var btnLocation = document.getElementById("btnLocation");
 
@@ -33,10 +34,26 @@
 		alert(acces);
 
 		if(abonnement>=acces){
-			alert("Votre abonnement vous donne déjà accès à cette oeuvre !")
+			alert("Votre abonnement vous donne déjà accès à cette oeuvre !");
 		}
 		else alert("Vous pouvez acheter/Louer");
 	}
+	
+	accesOeuvre = function (oeuvre){
+
+		if(abonnement>=acces){
+			alert("Vous avez accès à l'oeuvre ! Bon visionnage");
+		}
+		else{
+			alert("Malheureusement votre abonnement ne vous donne pas accès à cet oeuvre. Toutefois vous pouvez l'acheter ou la louer. Ou y accéder via des séances publics et/ou privée");
+			console.log(oeuvre);
+			oeuvre.style.display="none";
+		}
+
+	}
+
+	this.accesOeuvre(oeuvre[0]);
+	
 
 	btnLocation.addEventListener('click',niveau);
 	btnAchat.addEventListener('click',niveau);

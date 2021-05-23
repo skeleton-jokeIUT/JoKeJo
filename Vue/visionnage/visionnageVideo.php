@@ -1,1 +1,1 @@
-<video controls src=<?php $oeuvre->recupCheminAcces($_GET['titre']) ?>>Problème veuillez rechercher la page ou reessayer ultérieurement</video>
+<video class="oeuvre" controls src=<?php $oeuvre->recupCheminAcces($_GET['titre']) ?>>Problème veuillez rechercher la page ou reessayer ultérieurement</video>
