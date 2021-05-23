@@ -13,6 +13,7 @@ require_once('../Model/Client_DAO.php');
 require_once('../Model/Profil_DAO.php');
 require_once('../Model/Personne_DAO.php');
 require_once('../Model/DAO_Favori.php');
+require_once('../Model/DAO_Note.php');
 
 
 $image= new DAOImage();
@@ -22,6 +23,7 @@ $personne = new Personne();
 $client = new Client_DAO();
 $profil = new Profil();
 $favori = new DAOFavori();
+$note = new DAONote;
 
 $module="accueil";
 $message="";
@@ -215,7 +217,23 @@ if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 if(isset($_GET['note']) && $_GET['note']!=""){
 
 	$module="note";
-	
+
+	if($_GET['note']<1 || $_GET['note']>5){
+		$message="Votre note n'est pas compris entre 1 et 5";
+	}
+	else{
+		$oeuvreAjoutee=$oeuvre->getByTitre($_SESSION['titre']);
+		$clientALier=$client->getByEmail($_SESSION['email']);
+
+		$idOeuvre=$oeuvreAjoutee->__get('id');
+		$idClient=$clientALier->__get('id');
+
+		$message=$note->ajoutNote($idOeuvre,$idClient,$_GET['note']);
+
+		
+
+
+	}
 
 }
 
@@ -330,6 +348,12 @@ if($module=="favori"){
 	include '../Vue/footerNonCo.php';
 }
 
+if($module="note"){
+	include '../Vue/headerCo.php';
+	echo '<p>'.$message.'</p>';
+	include('../Vue/note.php');
+	include '../Vue/footerNonCo.php';
+}
 
 if ($module=="accueil"){
 	include '../Vue/headerNonCo.php';

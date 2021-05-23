@@ -8,7 +8,7 @@ class DTONote
 	
 	private $idOeuvre;
 	private $idClient;
-	private $note
+	private $note;
 
 	public function __construct($idOeuvre, $idClient, $note)
 	{
@@ -32,7 +32,7 @@ class DTONote
 			
 			
 			default:
-				return "problème"
+				return "problème";
 				break;
 		}
 	}

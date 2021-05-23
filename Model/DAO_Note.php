@@ -1,11 +1,10 @@
 <?php
 
-include_once('DTO_Note.php');
+require_once('../Model/DTO_Note.php');
 
 class DAONote{
 
 	private $bdd;
-
 
 	public function __construct(){
 		try{
@@ -27,18 +26,25 @@ class DAONote{
 
 	}
 
-	public function ajoutNote($idClient, $idOeuvre,$note){
+	public function ajoutNote($idOeuvre, $idClient,$note){
 
-		if(verifNoteExiste($idClient,$idOeuvre)==true){
-			
+		echo $idClient;
+		echo $idOeuvre;
+		echo $note;
+
+		if($this->verifNoteExiste($idClient,$idOeuvre)==true){
+			//update mais pour l'instant rien
+			return $message="Vous avez déjà noté cette oeuvre";
 		}
 		else{
 
 			$sql='INSERT INTO note values(:t_idOeuvre,:t_idClient,:t_note)';
-			$req=$this->bdd->preparer($sql);
+			$req=$this->bdd->prepare($sql);
 			$req->execute(array('t_idOeuvre' =>$idOeuvre ,
 				 				't_idClient'=>$idClient,
-				 				't_note'=>$note););
+				 				't_note'=>$note));
+
+			return $message="Votre note a bien été prise en compte";
 		}
 
 	}
@@ -46,9 +52,9 @@ class DAONote{
 	public function verifNoteExiste($idClient, $idOeuvre){
 
 		$sql='SELECT * from note where idOeuvre=:t_idOeuvre and idClient=:t_idClient';
-		$req=$this->bdd->preparer($sql);
+		$req=$this->bdd->prepare($sql);
 		$req->execute(array('t_idOeuvre' =>$idOeuvre ,
-			 				't_idClient'=>$idClient););
+			 				't_idClient'=>$idClient));
 
 		if($req->fetch()) return true;
 		else return false;
