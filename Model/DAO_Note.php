@@ -28,10 +28,6 @@ class DAONote{
 
 	public function ajoutNote($idOeuvre, $idClient,$note){
 
-		echo $idClient;
-		echo $idOeuvre;
-		echo $note;
-
 		if($this->verifNoteExiste($idClient,$idOeuvre)==true){
 			//update mais pour l'instant rien
 			return $message="Vous avez déjà noté cette oeuvre";

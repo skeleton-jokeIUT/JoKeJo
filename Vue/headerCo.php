@@ -20,3 +20,9 @@
 			<a href="index.php?catalogue">Catalogue</a>
 		</div>
 </header>
+
+<script type="text/javascript">
+
+	var abonnement="<?php echo $_SESSION['abonnement'] ?>";
+
+</script>

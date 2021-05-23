@@ -201,9 +201,6 @@ if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 		$idOeuvre=$oeuvreAjoutee->__get('id');
 		$idClient=$clientALier->__get('id');
 
-		echo $idOeuvre;
-		echo $idClient;
-
 		$favori->ajoutFavori($idOeuvre,$idClient);
 		unset($_SESSION['titre']);
 
@@ -308,8 +305,7 @@ if ($module=="visioAutre"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageAutre.php');
-	include '../Vue/ajoutFavori.php';
-	include '../Vue/ModuleNote.php';
+	include '..Vue.visionnage/footerVisionnage';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -317,8 +313,7 @@ if ($module=="visioMusique"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageMusique.php');
-	include '../Vue/ajoutFavori.php';
-	include '../Vue/ModuleNote.php';
+	include '..Vue.visionnage/footerVisionnage';
 	include '../Vue/footerNonCo.php';
 }
 
@@ -326,8 +321,7 @@ if ($module=="visioVideo"){
 	include '../Vue/headerCo.php';
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
-	include '../Vue/ajoutFavori.php';
-	include '../Vue/ModuleNote.php';
+	include '..Vue.visionnage/footerVisionnage';
 	include '../Vue/footerNonCo.php';
 }
 

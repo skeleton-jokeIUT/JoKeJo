@@ -72,8 +72,7 @@ class DAOOeuvre{
 		$data=$req->fetch();
 		
 		if($data['cheminAcces']==null){
-			echo $titre;
-			//header('Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+			header('Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 		}
 		else{
 			echo $data['cheminAcces'];
