@@ -182,7 +182,6 @@ if(isset($_GET['btnRecherche'])){
 
 	if(isset($_GET['recherche']) && $_GET['recherche']!=""){
 		$module="recherche";
-		$message="coucou";
 	}
 	else{
 		$module="recherche";
@@ -193,7 +192,29 @@ if(isset($_GET['btnRecherche'])){
 
 //Redirection vers la page de création de séance
 if(isset($_GET['seance'])){
-	$module="seance";
+
+
+
+		$module="seance";
+
+		//gestion de la création de séance privée par les compte premium
+		if(isset($_POST['btnCreerSeance'])){
+
+			var_dump($_POST);
+
+			if($_POST['nomSeance']!="" && $_POST['listeFilm']!="--votre choix--" && $_POST['horaire']!=""){
+				
+				$id=$oeuvre->getByTitre($_POST['listeFilm']);
+				$id=$id->__get('id');
+				$seance->creerSeancePrivee($_POST['nomSeance'],$_POST['horaire'],$id);
+				header('location: index.php');
+		
+			}
+			else {
+				$message="Certains champs obligatoire n'ont pas été saisie";		
+			}
+		}
+	
 } 
 
 if(isset($_GET['planning'])){

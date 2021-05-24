@@ -19,13 +19,30 @@ class DAOSeance{
 		}
 	}
 
+	public function creerSeancePrivee($nom,$horaire,$oeuvre){
+
+		$sql='INSERT INTO seance (nom,type,idOeuvre,horaire) values (:t_nom, :t_type, :t_oeuvre, :t_horaire)';
+		$req=$this->bdd->prepare($sql);
+		$req->execute(array('t_nom' =>$nom,
+							't_type'=>"PRIVEE",
+							't_horaire'=>$horaire,
+							't_oeuvre'=>$oeuvre));
+	}
+
 	public function listeSeance($type){
 		$sql='SELECT * from seance where type=?';
 		$req=$this->bdd->prepare($sql);
 		$req->execute([$type]);
 
 		while($data=$req->fetch()){
-			echo 'Nom : '.$data['nom'].' Oeuvre : '.$data['idOeuvre'].' Horaire : '.$data['horaire'].'<br>';
+
+			$sql2='SELECT * from oeuvre where idOeuvre=?';
+			$req2=$this->bdd->prepare($sql2);
+			$req2->execute([$data['idOeuvre']]);
+
+			$data2=$req2->fetch();
+
+			echo 'Nom : '.$data['nom'].' Oeuvre : '.$data2['titre'].' Horaire : '.$data['horaire'].'<br>';
 		}
 	}
 }
