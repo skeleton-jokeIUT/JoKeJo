@@ -43,18 +43,6 @@
 			alert("pas cool");
 	}
 
-	switch(acces){
-		case 'gratuit':
-			acces=1;
-			break;
-		case 'payant':
-			acces=2;
-			break;
-		case 'premium':
-			acces=3;
-			break;
-		default:
-			alert("pas cool");
-	}
+	
 
 </script>

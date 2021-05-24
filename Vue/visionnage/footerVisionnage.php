@@ -26,6 +26,21 @@
 <script type="text/javascript">
 
 	var acces="<?php echo $_GET['acces'] ?>";
+
+	switch(acces){
+		case 'gratuit':
+			acces=1;
+			break;
+		case 'payant':
+			acces=2;
+			break;
+		case 'premium':
+			acces=3;
+			break;
+		default:
+			alert("pas cool");
+	}
+
 	var oeuvre= document.getElementsByClassName("oeuvre");
 	var btnAchat =document.getElementById("btnAchat");
 	var btnLocation = document.getElementById("btnLocation");
