@@ -14,6 +14,7 @@ require_once('../Model/Profil_DAO.php');
 require_once('../Model/Personne_DAO.php');
 require_once('../Model/DAO_Favori.php');
 require_once('../Model/DAO_Note.php');
+require_once('../Model/DAO_Seance.php');
 
 
 $image= new DAOImage();
@@ -24,6 +25,7 @@ $client = new Client_DAO();
 $profil = new Profil();
 $favori = new DAOFavori();
 $note = new DAONote;
+$seance = new DAOSeance();
 
 $module="accueil";
 $message="";
@@ -189,6 +191,16 @@ if(isset($_GET['btnRecherche'])){
 
 }
 
+//Redirection vers la page de création de séance
+if(isset($_GET['seance'])){
+	$module="seance";
+} 
+
+if(isset($_GET['planning'])){
+	$module="planning";
+}
+
+
 //gestion des favori
 if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 	$module="favori";
@@ -252,6 +264,20 @@ if($module=="connexion"){
 if($module=="profil"){
 	include '../Vue/headerCo.php';
 	include('../Vue/choixProfils.php');
+	include '../Vue/footerNonCo.php';
+}
+
+if($module=="seance"){
+	include '../Vue/headerCo.php';
+	include '../Vue/recherche.php';
+	include('../Vue/creerSeance.php');
+	include '../Vue/footerNonCo.php';
+}
+
+if($module=="planning"){
+	include '../Vue/headerCo.php';
+	include '../Vue/recherche.php';
+	include('../Vue/planningSeance.php');
 	include '../Vue/footerNonCo.php';
 }
 

@@ -19,12 +19,15 @@
 		<div class ="lien_compte">
 			<a href="index.php?catalogue">Catalogue</a>
 		</div>
+		<div class ="lien_compte">
+			<a href="index.php?planning">Consulter planning séance</a>
+		</div>
 </header>
 
 <script type="text/javascript">
 
 	var abonnement="<?php echo $_SESSION['abonnement'] ?>";
-	var acces="<?php echo $_GET['acces'] ?>";
+	
 
 	switch(abonnement){
 		case 'gratuit':

@@ -94,4 +94,18 @@ class DAOOeuvre{
 		}
 
 	}
+
+	public function afficherListeTitre(){
+
+		$sql='SELECT * from oeuvre';
+		$req=$this->bdd->prepare($sql);
+		$req->execute();
+
+		while($data=$req->fetch()){
+
+			echo '<option value="'.$data['titre'].'">'.$data['titre'].'</option>';
+
+		}
+
+	}
 }
