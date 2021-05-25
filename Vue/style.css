@@ -117,23 +117,25 @@ button{
 .profils
 {
 	background-color:red;
-	padding:15em;
-	display:flex;
-	flex-direction:row;
-	justify-content:center;
 }
 
-
-.avatar_img
-{
-	display:block;
-	width:10em;
-	height:10em;
+#optionsProfil{
+	padding-top: 2em;
+	display: inline-block;
+	justify-content: center;
+	display: flex;
 }
 
-.plus_img
+#autresOptions{
+	display: flex;
+	margin-top: 2em;
+	padding-bottom: 2em;
+	justify-content: center;
+
+}
+
+.img
 {
-	display:block;
 	width:10em;
 	height:10em;
 }

@@ -193,7 +193,7 @@ if(isset($_GET['btnRecherche'])){
 //Redirection vers la page de création de séance
 if(isset($_GET['seance'])){
 
-
+	if(isset($_SESSION['abonnement']) && $_SESSION['abonnement']=="premium"){
 
 		$module="seance";
 
@@ -207,13 +207,14 @@ if(isset($_GET['seance'])){
 				$id=$oeuvre->getByTitre($_POST['listeFilm']);
 				$id=$id->__get('id');
 				$seance->creerSeancePrivee($_POST['nomSeance'],$_POST['horaire'],$id);
-				header('location: index.php');
+				$message="votre séance a bien été créée ! ";
 		
 			}
 			else {
 				$message="Certains champs obligatoire n'ont pas été saisie";		
 			}
 		}
+	}
 	
 } 
 

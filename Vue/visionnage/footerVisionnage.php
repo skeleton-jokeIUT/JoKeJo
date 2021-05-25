@@ -74,7 +74,7 @@
 
 		}
 		else{
-
+			
 			achatLocation[0].style.display="none";
 			achatLocation[1].style.display="none";
 
