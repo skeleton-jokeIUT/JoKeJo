@@ -222,6 +222,10 @@ if(isset($_GET['planning'])){
 	$module="planning";
 }
 
+if(isset($_GET['visioSeance'])){
+	$module="visioSeance";
+}
+
 
 //gestion des favori
 if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
@@ -370,6 +374,12 @@ if ($module=="visioVideo"){
 	include '../Vue/recherche.php';
 	include('../Vue/visionnage/visionnageVideo.php');
 	include '../Vue/visionnage/footerVisionnage.php';
+	include '../Vue/footerNonCo.php';
+}
+
+if($module=="visioSeance"){
+	include '../Vue/headerCo.php';
+	include('../Vue/visionnage/visionnageSeance.php');
 	include '../Vue/footerNonCo.php';
 }
 

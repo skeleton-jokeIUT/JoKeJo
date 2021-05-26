@@ -19,7 +19,7 @@ class DAOSeance{
 		}
 	}
 
-	public function creerSeancePrivee($nom,$horaire,$oeuvre){
+	public function creerSeancePrivee($nom,$horaire,$oeuvre,$mail){
 
 		$sql='INSERT INTO seance (nom,type,idOeuvre,horaire) values (:t_nom, :t_type, :t_oeuvre, :t_horaire)';
 		$req=$this->bdd->prepare($sql);
@@ -27,22 +27,28 @@ class DAOSeance{
 							't_type'=>"PRIVEE",
 							't_horaire'=>$horaire,
 							't_oeuvre'=>$oeuvre));
+
 	}
 
-	public function listeSeance($type){
+	public function listeSeance($typeSeance){
 		$sql='SELECT * from seance where type=?';
 		$req=$this->bdd->prepare($sql);
-		$req->execute([$type]);
+		$req->execute([$typeSeance]);
+
+		
 
 		while($data=$req->fetch()){
 
 			$sql2='SELECT * from oeuvre where idOeuvre=?';
 			$req2=$this->bdd->prepare($sql2);
-			$req2->execute([$data['idOeuvre']]);
+			$req2->execute([$data['idOeuvre'],]);
 
 			$data2=$req2->fetch();
 
-			echo 'Nom : '.$data['nom'].' Oeuvre : '.$data2['titre'].' Horaire : '.$data['horaire'].'<br>';
+			if($data2['type']=="Vidéo"){
+
+				echo 'Nom Séance : '.$data['nom'].' Oeuvre : '.$data2['titre'].' Horaire : '.$data['horaire'].'<a href="index.php?visioSeance">    <t>Rejoindre</a><br>';
+			}
 		}
 	}
 }

@@ -89,7 +89,8 @@ class DAOOeuvre{
 
 		while($data=$req->fetch()){
 		
-			echo '<p><a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'">'.$data['titre'].'</a>   '.$data['type'].'  '.$data['duree'].'</p>';
+			echo '<a class="img" href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'"><img src="'.$data['miniature'].'"</a>';
+			echo '<p class="bulle">Titre : '.$data['titre'].'<br>Type : '.$data['type'].'</p>';
 
 		}
 
@@ -97,7 +98,7 @@ class DAOOeuvre{
 
 	public function afficherListeTitre(){
 
-		$sql='SELECT * from oeuvre';
+		$sql='SELECT * from oeuvre where type ="Vidéo"';
 		$req=$this->bdd->prepare($sql);
 		$req->execute();
 

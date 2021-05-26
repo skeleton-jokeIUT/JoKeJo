@@ -1,9 +1,10 @@
+
 <form id="formCreerSeance" method="POST" action="index.php?seance">
 	<legend>Créer séance privée</legend>
 
 		<?php echo $message ?>
 		<div>
-			<label>Nom Séance* : <input type="text" name="nomSeance"></label>
+			<label for="nomSeance">Nom Séance* : <input type="text" id="nomSeance"></label>
 		</div>
 
 		<div>
@@ -15,12 +16,15 @@
 		</div>
 
 		<div>
-			<label>Horaire* : <input type="datetime-local" name="horaire"></label>
+			<label for="hroaire">Horaire* : <input type="datetime-local" id="horaire"></label>
 		</div>
 
 		<div>
-			<label>Participant* : <input type="email" name="email"></label>
+			<label for="email">Participant* : <input type="email" id="email"></label>
+			<!-- <img src="../Vue/image/plusPetit.png" alt="ajoutezParticipant" id="imgSeance"> -->
 		</div>
-
-		<button name="btnCreerSeance">CREER !</button>
+		<div>
+			<button name="btnCreerSeance">CREER !</button>
+		</div>
 </form>
+

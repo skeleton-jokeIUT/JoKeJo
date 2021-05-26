@@ -121,8 +121,7 @@ button{
 
 #optionsProfil{
 	padding-top: 2em;
-	display: inline-block;
-	justify-content: center;
+		justify-content: center;
 	display: flex;
 }
 
@@ -138,6 +137,19 @@ button{
 {
 	width:10em;
 	height:10em;
+}
+
+video{
+	margin-left :15%;
+	width: 70%;
+	height : 95%;
+	justify-content: center;
+}
+
+audio{
+	margin-top: 2%;
+	margin-left: 40%;
+	margin-bottom: 2%;
 }
 
 .miniature {
@@ -173,8 +185,9 @@ h2 {
 	margin-top: 2em;
 }
 
-.resultatRecherche{
-	margin-top: 10%;
+.resultatRecherche a{
+	
+	padding:3%;
 }
 
 #achatLocation{
@@ -189,18 +202,54 @@ h2 {
 }
 
 #formCreerSeance{
-	color : red;
+	color: black;
+	background-color: red;
 	text-align: center;
-	border-style: solid;
 }
 
 #formCreerSeance select {
 	color : red;
+
+}
+
+#formCreerSeance div {
+	color : red;
+	margin-top: 1em;
+}
+
+#formCreerSeance label{
+	width: 150px;
+
 }
 
 #formCreerSeance option{
 	color : black;
 }
+
+#formAcces{
+	border-style: solid;
+	border-color: red;
+
+}
+
+
+.visionnage{
+	border-style: solid;
+	border-color: red;
+	width: 60%;
+	height : 60%;
+}
+
+.chat{
+	height: 45%;
+	width: 20%;
+	position: absolute;
+	margin-top: -25%;
+	margin-left: 70%;
+	border-style: solid;
+	
+}
+
 
 
 
