@@ -15,13 +15,40 @@ import java.util.List;
  * @author jo
  */
 public abstract class Oeuvre {
-    public Oeuvre(TypeOeuvre t, String n, String s)
+    public Oeuvre(TypeOeuvre t, Artiste art, String nat, String nom, String statut, int a, int ageMini)
     {
         cpt++;
         ID = cpt;
-        nom = n;
+        artiste = art;
+        nationalite = nat;
+        this.nom = nom;
         type = t;
-        statut = s;                                         //false => oeuvre payante, true => oeuvre gratuite
+        this.statut = statut;
+        annee = a;
+        age = ageMini;
+        
+        switch(type){                                          //metier de l'artiste initialiser en fonction du type d'eouvre
+            case IMG:
+                metier = MetierArtiste.DSR;
+                break;
+            case ECR:
+                metier = MetierArtiste.ECN;
+                break;
+            case MSQ:
+                metier = MetierArtiste.IPT;
+                break;
+            case CVO:
+                metier = MetierArtiste.IPT;
+                break;
+            case FLM:
+                metier = MetierArtiste.RSR;
+                break;
+            case JEU:
+                metier = MetierArtiste.EDT;
+                break;
+            default:
+                metier = MetierArtiste.ATE;
+        }
         
         listeOeuvresGerees.add(this);                       //ajoute l'Oeuvre instanciée à la liste statique
     }
@@ -31,15 +58,18 @@ public abstract class Oeuvre {
     {
         return ID;
     }
+    public Artiste getArtisteOeuvre()
+    {
+        return artiste;
+    }
+    public String getNationaliteOeuvre()
+    {
+        return nationalite;
+    }
 
     public String getNomOeuvre()
     {
         return nom;
-    }
-    
-    public List<Oeuvre> getToutesLesOeuvres()
-    {
-        return listeOeuvresGerees;
     }
     
     public TypeOeuvre getTypeOeuvre()
@@ -47,32 +77,31 @@ public abstract class Oeuvre {
         return type;
     }
     
-    public String getNomTypeOeuvre()
-    {
-        return type.getNomTypeOeuvre();     //??
-    }
     
     public String getStatutOeuvre()
     {
         return this.statut;
     }
-    
-    //setters
-    public void setType(TypeOeuvre type)
+    public int getAnneeOeuvre()
     {
-        this.type = type;
+        return this.annee;
     }
     
-    public void setNom(String nom)
+    public MetierArtiste getMetierArtisteOeuvre()
     {
-        this.nom = nom;
+        return this.metier;
+    }
+    public int getAgeMiniOeuvre()
+    {
+        return this.age;
     }
     
-    public void setStatut(String statut)
+    public List<Oeuvre> getToutesLesOeuvres()
     {
-        this.statut = statut;
+        return listeOeuvresGerees;
     }
-
+    
+    
     public static List<String> getNomsListeOeuvres(List<Oeuvre> listeOeuvre)
     {
         List<String> liste = new ArrayList();
@@ -83,6 +112,40 @@ public abstract class Oeuvre {
         return liste;
     }
     
+
+    
+    //setters
+    public void setTypeOeuvre(TypeOeuvre type)
+    {
+        this.type = type;
+    }
+    
+    public void setNomOeuvre(String nom)
+    {
+        this.nom = nom;
+    }
+    public void setArtisteOeuvre(Artiste art)
+    {
+        this.artiste = art;
+    }
+    public void setNationaliteOeuvre(String nat)
+    {
+        this.nationalite = nat;
+    }
+    
+    public void setStatutOeuvre(String statut)
+    {
+        this.statut = statut;
+    }
+    public void setAnneeOeuvre(int a)
+    {
+        this.annee = a;
+    }
+    public void setAgeMiniOeuvre(int a)
+    {
+        this.age = a;
+    }
+       
     
     public static void afficheToutesLesOeuvresGerees()       //parcourt et affiche la liste des films
     {
@@ -94,18 +157,28 @@ public abstract class Oeuvre {
     {
         String str;
         str = "\nId oeuvre: \t"+this.getIdOeuvre()+"\n"
-                +"Type d'oeuvre: \t"+this.getNomTypeOeuvre()+"\n"
+                +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
                 +"Nom de l'oeuvre: \t"+this.getNomOeuvre()+"\n"
-                +"Statut: \t"+this.getStatutOeuvre();
+                +"Nationalite: \t"+this.getNationaliteOeuvre()+"\n"
+                +"Artiste: \t"+this.getArtisteOeuvre().getNomArtiste()+"\n"
+                +"Type d'artiste: \t"+this.getMetierArtisteOeuvre().getNomMetierArtiste()+"\n"
+                +"Annee de sortie: \t"+this.getAnneeOeuvre()+"\n"
+                +"Statut: \t"+this.getStatutOeuvre()
+                +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n";
         return str;
     }
 
     private TypeOeuvre type;
-    private String nom;
+    private Artiste artiste;                                //auteur, interprete, ...
+    private MetierArtiste metier;                           //metier de l'auteur (dessinateur, realisateur,...)
+    private String nom;                                     //nom de l'auteur, interprete, ...
+    private String nationalite;                             //pays d'origine de l'oeuvre
     private static int cpt = 0;
-    private final int ID;
-    String statut;                                         //oeuvre payante ou gratuite
-    
+    private final int ID;                                   //id de l'oeuvre
+    String statut;                                          //oeuvre payante, premium ou gratuite
+    private int annee;                                      //annee de sortie
+    private int age;
+
     //liste statique d'oeuvre = ensembles de toutes les oeuvres (films + clips +...)
     public static List<Oeuvre> listeOeuvresGerees = new ArrayList();    
 }

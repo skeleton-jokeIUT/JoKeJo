@@ -16,43 +16,24 @@ import java.util.List;
  * @author jo
  */
 public class Film extends Oeuvre {
-    public Film (String n, Realisateur real, String nat, int a, int d, CategorieFilm catP, CategorieFilm catS, String s)
+    public Film (String n, Artiste art, String nat, int a, int d, CategorieFilm catP, CategorieFilm catS, String s, int age)
     {
-        super(TYPE_OEUVRE, n, s);               //rappel :  statut = oeuvre gratuite ou payante
+        super(TYPE_OEUVRE, art, nat, n, s, a, age);               //rappel :  statut = oeuvre gratuite ou payante
         {
             cpt++;                                      //incrémenté à chaque nouveau film créé
             ID = cpt;                                   //affecte un id au film 
-            nom = n;
-            realisateur = real;
-            nationalite = nat;
-            annee = a;
             duree = d;
             categoriePrincipale = catP;
             categorieSecondaire = catS;
 
-            //listeFilmsGeres = new ArrayList();
             listeFilmsGeres.add(this);                  //ajoute le film créé à la liste
         }   
     }
     
     //getters
-    public int getIdFilm()                      //retourne l'id du film sous forme d'entier
+    public int getIdFilm()                              //retourne l'id du film sous forme d'entier
     {
         return this.ID;
-    }
-    
-    public Realisateur getRealisateurFilm()      //retourne le nom du realisteur sous forme de chaine de caracteres
-    {
-        return this.realisateur;
-    }
-    public String getNationalite()
-    {
-        return this.nationalite;
-    }
-    
-    public int getAnneeFilm()
-    {
-        return this.annee;
     }
     
     public int getDureeFilm()                           //duree en minutes
@@ -87,23 +68,9 @@ public class Film extends Oeuvre {
     }
     
     //setters
-    public void setAnnee(int annee)
-    {
-        this.annee = annee;
-    }
-
-    public void setDuree(int duree)
+    public void setDureeFilm(int duree)
     {
         this.duree = duree;
-    }
-
-    public void setRealisateur(Realisateur realisateur)
-    {
-        this.realisateur = realisateur;
-    }
-    public void setNationalite(String nationalite)
-    {
-        this.nationalite = nationalite;
     }
 
     public void setCategoriePrincipale(CategorieFilm categoriePrincipale)
@@ -124,10 +91,13 @@ public class Film extends Oeuvre {
                 "Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"+
                 "Id film: \t\t"+this.getIdFilm()+"\n"+
                 "Nom: \t\t"+this.getNomOeuvre()+"\n"+
-                "Realisateur: \t\t"+this.getRealisateurFilm().getNomArtiste()+"\n"+
+                "Realisateur: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"+
                 "Categorie principale: \t"+this.getCategoriePrincipaleDuFilm().getNomCategorie()+"\n"+
                 "Categorie secondaire: \t"+this.getCategorieSecondaireDufilm().getNomCategorie()+"\n"+
-                "Statut: \t\t"+this.getStatutOeuvre()+"\n";
+                "Duree: \t\t"+this.getDureeFilm()+"\n"+
+                "Annee: \t\t"+this.getAnneeOeuvre()+"\n"+
+                "Statut: \t\t"+this.getStatutOeuvre()+"\n"+
+                "Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n";
         return str;
     }
     
@@ -165,10 +135,7 @@ public class Film extends Oeuvre {
 
     private static int cpt=0;                                       //incrémenté à chq nv film instancié => nb total de films
     private final int ID;                                           //id du film
-    private int annee, duree;                                       //duree en minutes => int
-    private String nom;                                             //nom du film
-    private Realisateur realisateur;                                //nom du realisateur du film
-    private String nationalite;
+    private int duree;                                              //duree en minutes => int
     private CategorieFilm categoriePrincipale;                      //categorie principale du film
     private CategorieFilm categorieSecondaire;                      //categorie secondaire du film
     

@@ -9,7 +9,6 @@ package vue;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import metier.Artiste;
 import metier.CategorieClip;
 import metier.CategorieFilm;
 import metier.ClipVideo;
@@ -17,7 +16,8 @@ import static metier.ClipVideo.listeClipsGeres;
 import metier.Film;
 import static metier.Film.listeFilmsGeres;
 import static metier.Oeuvre.listeOeuvresGerees;
-import metier.Realisateur;
+import metier.Artiste;
+import metier.MetierArtiste;
 import metier.TypeOeuvre;
 
 
@@ -80,6 +80,8 @@ public class CreerOeuvre extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -192,6 +194,10 @@ public class CreerOeuvre extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setText("Age minimum:");
+
+        jTextField6.setText("jTextField6");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -212,7 +218,8 @@ public class CreerOeuvre extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel10)))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)))
                             .addComponent(jLabel8)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
@@ -234,7 +241,8 @@ public class CreerOeuvre extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jRadioButton2)
                                     .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton3))))))
+                                    .addComponent(jRadioButton3)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -287,7 +295,11 @@ public class CreerOeuvre extends javax.swing.JFrame {
                         .addComponent(jLabel10)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton3)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton2.setText("Ajouter");
@@ -340,29 +352,33 @@ public class CreerOeuvre extends javax.swing.JFrame {
         //champs communs à tous les types
         String nomOeuvre = jTextField1.getText();
         int annee = Integer.parseInt(jTextField2.getText());
-        int duree = Integer.parseInt(jTextField4.getText());
-        String nom = jTextField3.getText();                     //nom du realisateur, artiste, ...
-        
-        int catP = jComboBox2.getSelectedIndex();
-        int catS = jComboBox3.getSelectedIndex();
-        
+        String nomArtiste = jTextField3.getText();
+        String nationalite = jTextField7.getText();
         String statut = buttonGroup1.getSelection().getActionCommand();
+        int age = Integer.parseInt(jTextField6.getText());
         
         //champs spécifiques
         if(jComboBox1.getSelectedIndex() == 4)                  //choix: films
         {
-            String nationalite = jTextField7.getText();
-
-            Realisateur realisateur = new Realisateur(nom, nationalite);
+            
+            int duree = Integer.parseInt(jTextField4.getText());
+            int catP = jComboBox2.getSelectedIndex();
+            int catS = jComboBox3.getSelectedIndex();
+            Artiste realisateur = new Artiste(nomArtiste, TypeOeuvre.FLM, MetierArtiste.RSR);
             Film film = new Film(nomOeuvre, realisateur, nationalite, annee, duree, CategorieFilm.values()[catP], 
-                    CategorieFilm.values()[catS], statut);
+                    CategorieFilm.values()[catS], statut, age);
+            
             listeFilmsGeres.add(film);                          //ajoute à la liste le film créé
         }
         if(jComboBox1.getSelectedIndex() == 3)                  //choix: clips
         {
-            Artiste artiste = new Artiste(nom);
-            ClipVideo clip = new ClipVideo(nomOeuvre, artiste, annee, duree, CategorieClip.values()[catP], 
-                    CategorieClip.values()[catS], statut);
+            int duree = Integer.parseInt(jTextField4.getText());
+            int catP = jComboBox2.getSelectedIndex();
+            int catS = jComboBox3.getSelectedIndex();
+            Artiste artiste = new Artiste(nomArtiste, TypeOeuvre.CVO, MetierArtiste.IPT);
+            ClipVideo clip = new ClipVideo(nomOeuvre, artiste, nationalite, annee, duree, CategorieClip.values()[catP], 
+                    CategorieClip.values()[catS], statut, age);
+            
             listeClipsGeres.add(clip);                          //ajoute à la liste le clip créé
         }
         
@@ -491,6 +507,7 @@ public class CreerOeuvre extends javax.swing.JFrame {
     javax.swing.JComboBox<String> jComboBox3;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
+    javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
@@ -508,6 +525,7 @@ public class CreerOeuvre extends javax.swing.JFrame {
     javax.swing.JTextField jTextField3;
     javax.swing.JTextField jTextField4;
     javax.swing.JTextField jTextField5;
+    javax.swing.JTextField jTextField6;
     javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

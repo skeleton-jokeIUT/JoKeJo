@@ -55,7 +55,7 @@ public class GestionCatalogue extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(146, 120, 74), 3, true), "Catalogue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cantarell", 0, 18), new java.awt.Color(153, 153, 153))); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/jo/Documents/DUT/Java/Netbeans/TP3-VOD1/src/main/java/gif/pele_mele.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/jo/Documents/DUT/Java/Netbeans/JoKeJo/JoKeJo/src/main/java/gif/pele_mele.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jButton1.setText("Rechercher une Oeuvre");
@@ -226,19 +226,19 @@ public class GestionCatalogue extends javax.swing.JFrame {
         });
     }
     
-    public void lireFichierCsv() throws FileNotFoundException, IOException      //retourne la liste de toutes les oeuvres du fichier csv
+    public void lireFichierCsv() throws FileNotFoundException, IOException      //incremente la liste de toutes les oeuvres du fichier csv
     {
-        int cpt = 0;                                                    //compte le nb de films lus
         String ligne;
         String typeOeuvre;
-        String titreFilm, titreClip;
-        String nomRealisateur, nomArtiste;
+        String titre;
+        String nomArtiste;
         String nationalite;
         String categorieP;
         String categorieS;
         int duree;
         int annee;
         String statut;
+        int age;
        
         try
         {
@@ -248,44 +248,44 @@ public class GestionCatalogue extends javax.swing.JFrame {
             while(ligne != null)
             {
                 typeOeuvre = ligne.split(";")[0];                       //type d'oeuvre
+                nomArtiste = ligne.split(";")[1];
+                titre = ligne.split(";")[2];                            //titre
+                nationalite = ligne.split(";")[3];                      //nationalite
                 annee = Integer.parseInt(ligne.split(";")[4]);          //année
-                duree = Integer.parseInt(ligne.split(";")[5]);          //durée
+                
                 categorieP = ligne.split(";")[6];                       //categorie principale
                 categorieS = ligne.split(";")[7];                       //categorie secondaire
                 statut = ligne.split(";")[8];                           //statut (payant simple, premium ou gratuit)
+                age = Integer.parseInt(ligne.split(";")[9]);
                     
                 if(typeOeuvre.equals("FLM"))                            //si l'eouvre est un film
                 {
-                    nomRealisateur = ligne.split(";")[1];                   //realisateur
-                    titreFilm = ligne.split(";")[2];                        //titre
-                    nationalite = ligne.split(";")[3];                      //nationalite
-
-                    Realisateur real = new Realisateur(nomRealisateur, nationalite);
-                    Film film = new Film(titreFilm, real, nationalite, annee, duree, convertToEnumCategorieFilm(categorieP), 
-                            convertToEnumCategorieFilm(categorieS), statut);
+                    duree = Integer.parseInt(ligne.split(";")[5]);          //durée
+                    Artiste real = new Artiste(nomArtiste, TypeOeuvre.FLM, MetierArtiste.RSR);
+                    Film film = new Film(titre, real, nationalite, annee, duree, convertToEnumCategorieFilm(categorieP), 
+                            convertToEnumCategorieFilm(categorieS), statut, age);
+                    
                     listeFilmsGeres.add(film);                              //ajoute le film à la liste attribut static dans Film)
                     
-                    cpt++;
                 }
                 
                 if(typeOeuvre.equals("CVO"))                            //si l'eouvre est un clip video
                 {
-                    nomArtiste = ligne.split(";")[1];
-                    titreClip = ligne.split(";")[2];
+                    duree = Integer.parseInt(ligne.split(";")[5]);          //durée
                     
-                    Artiste artiste = new Artiste(nomArtiste);
-                    ClipVideo clip = new ClipVideo(titreClip, artiste, annee, duree, convertToEnumCategorieClip(categorieP), 
-                            convertToEnumCategorieClip(categorieS), statut);
+                    Artiste interprete = new Artiste(nomArtiste, TypeOeuvre.CVO, MetierArtiste.IPT);
+                    ClipVideo clip = new ClipVideo(titre, interprete, nationalite, annee, duree, convertToEnumCategorieClip(categorieP), 
+                            convertToEnumCategorieClip(categorieS), statut, age);
+                    
                     listeClipsGeres.add(clip);
                     
-                    cpt++;
                 }
                 
                 ligne = lecteur.readLine();                                 //passage à la ligne suivante
             }
             
             System.out.println(listeOeuvresGerees.toString());         //<=> Oeuvre.afficheToutesLesOeuvresGerees() => console
-            System.out.println("Nombre d'oeuvres lues: \t"+cpt);       //affiche dans la console le nombre d'oeuvres lues
+            System.out.println("Nombre d'oeuvres lues: \t"+listeOeuvresGerees.size());       //affiche dans la console le nombre d'oeuvres lues
             
         }
         

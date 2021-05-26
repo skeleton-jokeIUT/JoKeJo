@@ -18,15 +18,12 @@ import java.util.List;
  * @author jo
  */
 public class ClipVideo extends Oeuvre {
-    public ClipVideo (String n, Artiste art, int a, int d, CategorieClip catP, CategorieClip catS, String s)
+    public ClipVideo (String n, Artiste art, String nat, int a, int d, CategorieClip catP, CategorieClip catS, String s, int age)
     {
-        super(TYPE_OEUVRE, n, s);
+        super(TYPE_OEUVRE, art, nat, n, s, a, age);
         {
             cpt++;                                      //incrémenté à chaque nouveau clip créé
             ID = cpt;                                   //affecte un id au clip 
-            nom = n;
-            artiste = art;
-            annee = a;
             duree = d;
             categoriePrincipale = catP;
             categorieSecondaire = catS;
@@ -41,19 +38,9 @@ public class ClipVideo extends Oeuvre {
         return ID;
     }
 
-    public int getAnneeClip()
-    {
-        return annee;
-    }
-
     public int getDureeClip()
     {
         return duree;
-    }
-
-    public Artiste getArtisteClip()
-    {
-        return artiste;
     }
 
     public CategorieClip getCategoriePrincipaleDuClip()
@@ -67,20 +54,9 @@ public class ClipVideo extends Oeuvre {
     }
     
     //setters
-    public void setAnnee(int annee)
-    {
-        this.annee = annee;
-    }
-
     public void setDureeClip(int duree)
     {
         this.duree = duree;
-    }
-
-
-    public void setArtisteClip(Artiste artiste)
-    {
-        this.artiste = artiste;
     }
 
     public void setCategoriePrincipale(CategorieClip categoriePrincipale)
@@ -106,10 +82,13 @@ public class ClipVideo extends Oeuvre {
                 "Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"+
                 "Id clip: \t\t"+this.getIdClip()+"\n"+
                 "Nom: \t\t"+this.getNomOeuvre()+"\n"+
-                "Artiste: \t\t"+this.getArtisteClip().getNomArtiste()+"\n"+
+                "Artiste: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"+
                 "Categorie principale: \t"+this.getCategoriePrincipaleDuClip().getNomCategorieClip()+"\n"+
                 "Categorie secondaire: \t"+this.getCategorieSecondaireDuClip().getNomCategorieClip()+"\n"+
-                "Statut: \t\t"+this.getStatutOeuvre()+"\n";
+                "Annee: \t\t"+this.getAnneeOeuvre()+"\n"+
+                "Duree: \t\t"+this.getDureeClip()+"\n"+
+                "Statut: \t\t"+this.getStatutOeuvre()+"\n"+
+                "Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n";
         return str;
     }
     
@@ -149,9 +128,7 @@ public class ClipVideo extends Oeuvre {
     
     private static int cpt = 0;                                     //incrémenté à chq nv clip instancié => nb total de clips
     private final int ID;                                           //id du clip
-    private int annee, duree;                                       //duree en minutes => int
-    private String nom;                                             //nom du clip
-    private Artiste artiste;                                        //nom de l'interprete
+    private int duree;                                       //duree en minutes => int
     private CategorieClip categoriePrincipale;                      //categorie principale du clip    private String nom;                                             //nom du clip
     private CategorieClip categorieSecondaire;                      //categorie secondaire
     

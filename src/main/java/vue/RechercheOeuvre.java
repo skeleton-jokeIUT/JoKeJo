@@ -9,20 +9,15 @@ package vue;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import metier.CategorieClip;
 import metier.CategorieFilm;
-import static metier.CategorieFilm.*;
 import metier.ClipVideo;
-import static metier.ClipVideo.listeClipsGeres;
 import metier.Film;
-import static metier.Film.listeFilmsGeres;
 import metier.Oeuvre;
 import static metier.Oeuvre.getNomsListeOeuvres;
 import static metier.Oeuvre.listeOeuvresGerees;
-import metier.Realisateur;
 import metier.TypeOeuvre;
 
 
@@ -439,14 +434,6 @@ public class RechercheOeuvre extends javax.swing.JDialog {
             }
         }
         
-
-        if(o.getTypeOeuvre()==TypeOeuvre.CVO)
-        {
-            
-            //Realisateur real = new Realisateur("Brian Singer", "USA");
-            //Film film = new Film("Usual Suspects", real, 1995, 106, convertToEnumCategorieFilm("THR"), convertToEnumCategorieFilm("DVR"), "Payant");        //pr tester
-           
-        }
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
