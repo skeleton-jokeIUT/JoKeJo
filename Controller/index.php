@@ -16,7 +16,6 @@ require_once('../Model/DAO_Favori.php');
 require_once('../Model/DAO_Note.php');
 require_once('../Model/DAO_Seance.php');
 
-
 $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
 $catalogue = new DAOCatalogue();
@@ -272,6 +271,27 @@ if(isset($_GET['note']) && $_GET['note']!=""){
 
 }
 
+if(isset($_GET['abonnement'])){
+	$module="abonnement";
+	if($_GET['abonnement']!=""){
+
+		$abo=$_GET['abonnement'];
+
+		if($abo=="gratuit") $abo=1;
+		else if($abo=="intermediaire") $abo=2;
+		else $abo=3;
+
+		$client->Abonnement($abo,$_SESSION['email']);
+
+		$clients=$client->getByEmail($_SESSION['email']);
+		if(($idAbo=$clients->__get("abonnement"))==1) $_SESSION['abonnement']="gratuit";
+		else if(($idAbo=$clients->__get("abonnement"))==2)$_SESSION['abonnement']="payant";
+		else if(($idAbo=$clients->__get("abonnement"))==3)$_SESSION['abonnement']="premium";
+
+		header("location: index.php?profil");
+	}
+}
+
 
 
 //Affichage des différentes parties des pages
@@ -295,15 +315,19 @@ if($module=="profil"){
 
 if($module=="seance"){
 	include '../Vue/headerCo.php';
-	include '../Vue/recherche.php';
 	include('../Vue/creerSeance.php');
 	include '../Vue/footerNonCo.php';
 }
 
 if($module=="planning"){
 	include '../Vue/headerCo.php';
-	include '../Vue/recherche.php';
 	include('../Vue/planningSeance.php');
+	include '../Vue/footerNonCo.php';
+}
+
+if($module=="abonnement"){
+	include '../Vue/headerCo.php';
+	include('../Vue/abonnement.php');
 	include '../Vue/footerNonCo.php';
 }
 

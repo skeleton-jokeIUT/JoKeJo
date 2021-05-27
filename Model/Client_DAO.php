@@ -103,9 +103,17 @@ class Client_DAO extends Personne {
         }
     }
 
+    public function Abonnement($niveauAbonnement,$email){
+
+        $sql ='UPDATE clients set idAbonnement=? where adresseMail=?';
+        $req = $this->bdd->prepare($sql);
+        $req->execute([$niveauAbonnement, $email]);
+
+    }
+
     public function updInscription($email, $motDePasse)
     {
-        $requete = 'update Client set motDePasse=:motDePasse where email=:email';
+        $requete = 'UPDATE Client set motDePasse=:motDePasse where email=:email';
         $req = $this -> bdd -> prepare($requete);
         $req -> execute(array('motDePasse' => $motDePasse, 'email' => $email));
         $req -> closeCursor();

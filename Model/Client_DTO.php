@@ -26,26 +26,25 @@ class Client_DTO extends Personne_DTO {
             case 'id':
                 return $this->idClients;
                 break;
-            
+
+             case 'email':
+                return $this->email;
+                break;
+
+             case 'abonnement':
+                return $this->idAbonnement;
+                break;
             default:
                 return "problème";
                 break;
         }
+
     }
-    public function getEmail()
-    {
-        return $this->adresseMail;
-    }
+    
     public function getMDP()
     {
         return $this->motDePasse;
     }
-    public function getAbonnement()
-    {
-        return $this->idAbonnement;
-    }
-    
-    //setters
 
 
 }

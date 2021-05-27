@@ -1,5 +1,7 @@
 
+
 <div class=profils>
+	<p>Bonjour <strong><?php echo htmlspecialchars($_SESSION['email']) ?></strong>, vous avez un abonnement de type <em><?php echo $_SESSION['abonnement'] ?></p>
 	<div id=optionsProfil>
 		<a href="index.php?catalogue"><img src="../Vue/image/avatar.png" alt="image de votre avatar" class="img"></a>
 		<a href="index.php" title="créer un nouveau profil"><img src="../Vue/image/plus.png" alt="cliquez-ici pour créer un nouveau profil" class="img"></a>

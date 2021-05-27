@@ -119,6 +119,11 @@ button{
 	background-color:red;
 }
 
+.profils p{
+	text-align: center;
+	font-size: 2em;
+}
+
 #optionsProfil{
 	padding-top: 2em;
 		justify-content: center;
@@ -247,10 +252,33 @@ h2 {
 	margin-top: -25%;
 	margin-left: 70%;
 	border-style: solid;
-	
 }
 
+#tableauAbonnement{
+	margin-top: 2%;
+	margin-left: 30%;
+	text-align: center;
+	background-color: red;
+}
 
+#tableauAbonnement .left{
+	text-align: left;
+}
+
+#tableauAbonnement tr td{
+	padding: 1em;
+	border-color: black;
+	border-top-style: solid;
+	border-left-style: solid; 
+}
+
+#tableauAbonnement .left{
+	text-align: left;
+}
+
+.nePasAfficher{
+	background-color: black;
+}
 
 
 

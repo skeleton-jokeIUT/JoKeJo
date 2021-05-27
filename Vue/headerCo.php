@@ -14,6 +14,9 @@
 			<a href="index.php?deco">Se déconnecter</a>
 		</div>
 		<div class="lien_co">
+			<a href="index.php?abonnement">Changer d'abonnement</a>
+		</div>
+		<div class="lien_co">
 			<a href="index.php?profil">Profil</a>
 		</div>
 		<div class ="lien_compte">
