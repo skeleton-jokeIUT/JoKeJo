@@ -168,6 +168,7 @@ button{
 {
 	width:10em;
 	height:10em;
+	border-radius: 1em;
 }
 
 video{
@@ -187,8 +188,12 @@ audio{
 	
 	display: inline;
 	width: 20em;
-	
 	border: 0.15em black groove;
+}
+
+.affichageListe{
+
+
 }
 
 .miniature a{
@@ -216,9 +221,14 @@ h2 {
 	margin-top: 2em;
 }
 
-.resultatRecherche a{
+.resultatRecherche{
 	
-	padding:3%;
+	display: inline-block;
+}
+
+#intro{
+	font-size: 1.3em;
+	text-align:center;
 }
 
 #achatLocation{
@@ -233,7 +243,9 @@ h2 {
 }
 
 #formCreerSeance{
-	color: black;oç
+	color: black;
+}
+
 #formCreerSeance label{
 	width: 150px;
 
@@ -293,7 +305,25 @@ h2 {
 	background-color: black;
 }
 
+.test{
+	margin: 1em;
+	display: inline-block;
+	border-style: solid;
+	border-color: white;
+	border-radius: 1em;
+	font-size: 1.2em;
 
+}
+
+.test a{
+	text-decoration: none;
+}
+
+.test img{
+	border-radius: 1em;
+	width: 320px;
+	height: 180px;
+}
 
 
 

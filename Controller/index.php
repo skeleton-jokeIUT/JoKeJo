@@ -2,9 +2,9 @@
 
 session_start();
 
-//var_dump($_POST);
-//var_dump($_GET);
-//var_dump($_SESSION);
+var_dump($_POST);
+var_dump($_GET);
+var_dump($_SESSION);
 
 include_once('../Model/DAO_Oeuvre.php');
 include_once('../Model/DAO_Catalogue.php');
@@ -81,9 +81,8 @@ if (isset($_GET['creation'])) {
         {
             if (isset($_POST['mdp']) && $_POST['mdp'] != '')
             {
-            	if(isset($_POST['abo']))
-            	{
-            		$email=$reponse->getEmail();
+            
+            		$email=$reponse->__get("email");
             		var_dump($email);
                 	if ($email!=null)
 	                {
@@ -92,20 +91,13 @@ if (isset($_GET['creation'])) {
 	                } 
 	                else 
 	                {
-	                    $client->inscription($_POST['email'], $_POST['mdp'],$_POST['abo'],$_POST['nom_prof'],$_POST['age_prof']);
+	                    $client->inscription($_POST['email'], $_POST['mdp'],$_POST['nom_prof'],$_POST['age_prof']);
 
 	                    $module="profil";//changer la vue 
 	                    $message = 'Compte enregistré';
 	 
 	                }
-	                
-	    		}     
-	    		else 
-	    		{
-	    			$message="Merci de choisir un type de compte";    
-	    			$module="creation"; 
-	    			
-	    		}               
+	                             
             } 
             else 
             {
@@ -419,7 +411,6 @@ if($module=="favori"){
 	include '../Vue/headerCo.php';
 	$User=$client->getByEmail($_SESSION["email"]);
 	$idClient=$User->__get('id');
-	$favori->listeFavori($idClient);
 	include('../Vue/listeFavori.php');
 	include '../Vue/footerNonCo.php';
 }

@@ -67,8 +67,15 @@ class DAOFavori {
 
 			$data2=$req->fetch();
 
-			echo '<p><a href="index.php?visionnage='.$data2['type'].'&titre='.$data2['titre'].'">'.$data2['titre'].'</a>   '.$data2['type'].'  '.$data2['duree'].'</p>';
-
+			if($data2['duree']==0){
+				$data2['duree']="Indéfini";
+			}
+			else $data2['duree']=$data2['duree']."min";
+		
+			echo '<div class="test">
+						<a href="index.php?visionnage='.$data2['type'].'&titre='.$data2['titre'].'"><img src="'.$data2['miniature'].'"</a>
+						<p>Titre : '.$data2['titre'].'<br><br>Type : '.$data2['type'].'<br><br>Duree : '.$data2['duree'].'<br><br>Accès : '.$data2['acces'].'</p>
+				</div>';
 		}
 
 	}

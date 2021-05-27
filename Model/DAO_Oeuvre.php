@@ -42,7 +42,7 @@ class DAOOeuvre{
 		for($i=0;$i<3;$i++){
 
 			$data=$req->fetch();
-			echo '<a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'.jpg"></a>';
+			echo '<a title="'.$data['titre'].'"href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'.jpg"></a>';
 		}
 		
 	}
@@ -50,13 +50,22 @@ class DAOOeuvre{
 
 	public function afficherMiniatureComplet($type){
 
-		$sql ='SELECT  miniature, titre, type, acces from oeuvre where type=?';
+		$sql ='SELECT  miniature, titre, type, acces, duree from oeuvre where type=?';
 		$req = $this->bdd->prepare($sql);
 		$req->execute([$type]);
 
 		while($data=$req->fetch()){
 
-			echo '<a href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'.jpg"></a>';
+			if($data['duree']==0){
+				$data['duree']="Indéfini";
+			}
+			else $data['duree']=$data['duree']."min";
+		
+			echo '<div class="test">
+						<a  href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'"><img src="'.$data['miniature'].'"</a>
+						<p>Titre : '.$data['titre'].'<br><br>Type : '.$data['type'].'<br><br>Duree : '.$data['duree'].'<br><br>Accès : '.$data['acces'].'</p>
+
+				</div>';
 		}
 
 	}
@@ -88,9 +97,17 @@ class DAOOeuvre{
 		$req->execute([$titre]);
 
 		while($data=$req->fetch()){
+
+			if($data['duree']==0){
+				$data['duree']="Indéfini";
+			}
+			else $data['duree']=$data['duree']."min";
 		
-			echo '<a class="img" href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'"><img src="'.$data['miniature'].'"</a>';
-			echo '<p class="bulle">Titre : '.$data['titre'].'<br>Type : '.$data['type'].'</p>';
+			echo '<div class="test">
+						<a  href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'"><img src="'.$data['miniature'].'"</a>
+						<p>Titre : '.$data['titre'].'<br><br>Type : '.$data['type'].'<br><br>Duree : '.$data['duree'].'<br><br>Accès : '.$data['acces'].'</p>
+
+				</div>';
 
 		}
 

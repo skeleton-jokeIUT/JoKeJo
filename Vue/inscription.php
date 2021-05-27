@@ -1,7 +1,7 @@
 
 <div class="form_inscrip">
 
-    <p id="accroche">Film, Jeux-Vidéo, et plus encore en illimité et sans engagement !<br> Venez profitez de l'expérience la plus complète du marché sur<br><strong>NetPrimePlus</strong></p>
+    <p id="accroche">Film, Jeux-Vidéo, et plus encore en illimité et sans engagement !<br> Venez profiter de l'expérience la plus complète du marché sur<br><strong>NetPrimePlus</strong></p>
 <form class= "inscription" action="index.php?creation" method="POST">
             
       <?php echo $message ?>

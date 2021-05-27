@@ -28,7 +28,7 @@ class Client_DTO extends Personne_DTO {
                 break;
 
              case 'email':
-                return $this->email;
+                return $this->adresseMail;
                 break;
 
              case 'abonnement':
@@ -40,7 +40,7 @@ class Client_DTO extends Personne_DTO {
         }
 
     }
-    
+
     public function getMDP()
     {
         return $this->motDePasse;
