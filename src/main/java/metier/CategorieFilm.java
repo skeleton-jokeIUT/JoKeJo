@@ -34,12 +34,12 @@ public enum CategorieFilm {
         
         for(CategorieFilm cat: CategorieFilm.values())
         {
-            liste.add(cat.getNomCategorie());
+            liste.add(cat.getNomCategorieFilm());
         }
         return liste;
     }
     
-    public String getNomCategorie()
+    public String getNomCategorieFilm()
     {
         return nom;
     }

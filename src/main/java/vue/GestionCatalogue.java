@@ -10,8 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import metier.*;
-import static metier.CategorieClip.convertToEnumCategorieClip;
 import static metier.CategorieFilm.convertToEnumCategorieFilm;
+import static metier.CategorieMusiqueClip.convertToEnumCategorieClipMusique;
 import static metier.ClipVideo.listeClipsGeres;
 import static metier.Film.listeFilmsGeres;
 import static metier.Oeuvre.listeOeuvresGerees;
@@ -261,8 +261,8 @@ public class GestionCatalogue extends javax.swing.JFrame {
                 if(typeOeuvre.equals("FLM"))                            //si l'eouvre est un film
                 {
                     duree = Integer.parseInt(ligne.split(";")[5]);          //durée
-                    Artiste real = new Artiste(nomArtiste, TypeOeuvre.FLM, MetierArtiste.RSR);
-                    Film film = new Film(titre, real, nationalite, annee, duree, convertToEnumCategorieFilm(categorieP), 
+                    Artiste real = new Artiste(nomArtiste, nationalite, TypeOeuvre.FLM, MetierArtiste.RSR);
+                    Film film = new Film(titre, real, annee, duree, convertToEnumCategorieFilm(categorieP), 
                             convertToEnumCategorieFilm(categorieS), statut, age);
                     
                     listeFilmsGeres.add(film);                              //ajoute le film à la liste attribut static dans Film)
@@ -273,9 +273,9 @@ public class GestionCatalogue extends javax.swing.JFrame {
                 {
                     duree = Integer.parseInt(ligne.split(";")[5]);          //durée
                     
-                    Artiste interprete = new Artiste(nomArtiste, TypeOeuvre.CVO, MetierArtiste.IPT);
-                    ClipVideo clip = new ClipVideo(titre, interprete, nationalite, annee, duree, convertToEnumCategorieClip(categorieP), 
-                            convertToEnumCategorieClip(categorieS), statut, age);
+                    Artiste interprete = new Artiste(nomArtiste, nationalite, TypeOeuvre.CVO, MetierArtiste.IPT);
+                    ClipVideo clip = new ClipVideo(titre, interprete, annee, duree, convertToEnumCategorieClipMusique(categorieP), 
+                            convertToEnumCategorieClipMusique(categorieS), statut, age);
                     
                     listeClipsGeres.add(clip);
                     

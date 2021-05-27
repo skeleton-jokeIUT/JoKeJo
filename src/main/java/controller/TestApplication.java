@@ -14,7 +14,7 @@ import vue.*;
  *
  * @author jo
  */
-public class TestGestionCatalogue {
+public class TestApplication {
     public static void main(String args[])
     {
         /* Set the Nimbus look and feel */
@@ -51,22 +51,9 @@ public class TestGestionCatalogue {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run()
             {
-                try
-                {
-                    GestionCatalogue catalogue = new GestionCatalogue();
-                    catalogue.setVisible(true);
-                    catalogue.pack();
-                    catalogue.lireFichierCsv();
-                }
-                
-                catch(FileNotFoundException e)
-                {
-                    System.out.println("Erreur fichier csv non trouvé");
-                }
-                catch(IOException e)
-                {
-                    System.out.println("Erreur lecture fichier csv");
-                }             
+                PageAccueil appli = new PageAccueil();
+                appli.setVisible(true);
+                appli.pack();
             }
         });
     }

@@ -9,7 +9,7 @@ package vue;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import metier.CategorieClip;
+import metier.CategorieMusiqueClip;
 import metier.CategorieFilm;
 import metier.ClipVideo;
 import static metier.ClipVideo.listeClipsGeres;
@@ -34,7 +34,7 @@ public class CreerOeuvre extends javax.swing.JFrame {
     {
         
         tabNoms2 = CategorieFilm.getLesCategoriesPrincipalesDeFilms().toArray();
-        tabNoms3 = CategorieClip.getLesCategoriesPrincipalesDeClips().toArray();
+        tabNoms3 = CategorieMusiqueClip.getLesCategoriesPrincipalesDeClips().toArray();
 
         
         jComboBox1 = new JComboBox(TypeOeuvre.getTousLesTypes().toArray());
@@ -364,8 +364,8 @@ public class CreerOeuvre extends javax.swing.JFrame {
             int duree = Integer.parseInt(jTextField4.getText());
             int catP = jComboBox2.getSelectedIndex();
             int catS = jComboBox3.getSelectedIndex();
-            Artiste realisateur = new Artiste(nomArtiste, TypeOeuvre.FLM, MetierArtiste.RSR);
-            Film film = new Film(nomOeuvre, realisateur, nationalite, annee, duree, CategorieFilm.values()[catP], 
+            Artiste realisateur = new Artiste(nomArtiste, nationalite, TypeOeuvre.FLM, MetierArtiste.RSR);
+            Film film = new Film(nomOeuvre, realisateur, annee, duree, CategorieFilm.values()[catP], 
                     CategorieFilm.values()[catS], statut, age);
             
             listeFilmsGeres.add(film);                          //ajoute à la liste le film créé
@@ -375,9 +375,9 @@ public class CreerOeuvre extends javax.swing.JFrame {
             int duree = Integer.parseInt(jTextField4.getText());
             int catP = jComboBox2.getSelectedIndex();
             int catS = jComboBox3.getSelectedIndex();
-            Artiste artiste = new Artiste(nomArtiste, TypeOeuvre.CVO, MetierArtiste.IPT);
-            ClipVideo clip = new ClipVideo(nomOeuvre, artiste, nationalite, annee, duree, CategorieClip.values()[catP], 
-                    CategorieClip.values()[catS], statut, age);
+            Artiste artiste = new Artiste(nomArtiste, nationalite, TypeOeuvre.CVO, MetierArtiste.IPT);
+            ClipVideo clip = new ClipVideo(nomOeuvre, artiste, annee, duree, CategorieMusiqueClip.values()[catP], 
+                    CategorieMusiqueClip.values()[catS], statut, age);
             
             listeClipsGeres.add(clip);                          //ajoute à la liste le clip créé
         }

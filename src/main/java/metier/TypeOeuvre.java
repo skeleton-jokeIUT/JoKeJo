@@ -18,7 +18,7 @@ public enum TypeOeuvre {
     MSQ("Musique"),        //2
     CVO("Clip Video"),     //3
     FLM("Film"),           //4
-    JEU("Jeu"),            //5
+    JEU("Jeu Video"),      //5
     ACN("Aucun");          //6
     
     TypeOeuvre(String nom)

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author jo
  */
-public enum CategorieClip {
+public enum CategorieMusiqueClip {
     POP("Pop"),
     MTL("Metal"), 
     HIP("Hip Hop"), 
@@ -24,7 +24,7 @@ public enum CategorieClip {
     CTY("Country"),
     DVR("Divers");
     
-    CategorieClip(String nom)
+    CategorieMusiqueClip(String nom)
     {
         this.nom = nom;
     }
@@ -33,19 +33,19 @@ public enum CategorieClip {
     {
         List<String> liste = new ArrayList<>();
         
-        for(CategorieClip cat: CategorieClip.values())
+        for(CategorieMusiqueClip cat: CategorieMusiqueClip.values())
         {
-            liste.add(cat.getNomCategorieClip());
+            liste.add(cat.getNomCategorieClipMusique());
         }
         return liste;
     }
     
-    public String getNomCategorieClip()
+    public String getNomCategorieClipMusique()
     {
         return nom;
     }
     
-    public static String convertToStringCategorieClip(int i)            //conversion d'un int en String    
+    public static String convertToStringCategorieClipMusique(int i)            //conversion d'un int en String    
     {
         String s = "";
         switch(i) {
@@ -84,39 +84,39 @@ public enum CategorieClip {
         return s;
     }
     
-    public static CategorieClip convertToEnumCategorieClip(String s)    //conversion d'une chaine String en CategorieClip (enum)
+    public static CategorieMusiqueClip convertToEnumCategorieClipMusique(String s)    //conversion d'une chaine String en CategorieMusiqueClip (enum)
     {
-        CategorieClip cat = null;
+        CategorieMusiqueClip cat = null;
         switch(s) {
             case "POP":
-                cat = CategorieClip.valueOf("POP");
+                cat = CategorieMusiqueClip.valueOf("POP");
                 break;
             case "MTL":
-                cat = CategorieClip.valueOf("MTL");
+                cat = CategorieMusiqueClip.valueOf("MTL");
                 break;
             case "HIP":
-                cat = CategorieClip.valueOf("HIP");
+                cat = CategorieMusiqueClip.valueOf("HIP");
                 break;
             case "RCK":
-                cat = CategorieClip.valueOf("RCK");
+                cat = CategorieMusiqueClip.valueOf("RCK");
                 break;
             case "SOL":
-                cat = CategorieClip.valueOf("SOL");
+                cat = CategorieMusiqueClip.valueOf("SOL");
                 break;
             case "JAZ":
-                cat = CategorieClip.valueOf("JAZ");
+                cat = CategorieMusiqueClip.valueOf("JAZ");
                 break;
             case "ELO":
-                cat = CategorieClip.valueOf("ELO");
+                cat = CategorieMusiqueClip.valueOf("ELO");
                 break;
             case "BLS":
-                cat = CategorieClip.valueOf("BLS");
+                cat = CategorieMusiqueClip.valueOf("BLS");
                 break;
             case "CTY":
-                cat = CategorieClip.valueOf("CTY");
+                cat = CategorieMusiqueClip.valueOf("CTY");
                 break;
             case "DVR":
-                cat = CategorieClip.valueOf("DVR");
+                cat = CategorieMusiqueClip.valueOf("DVR");
                 break;              
             default:
                 System.out.println("Categorie inconnue");

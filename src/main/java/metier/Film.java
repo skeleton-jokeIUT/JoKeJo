@@ -16,9 +16,9 @@ import java.util.List;
  * @author jo
  */
 public class Film extends Oeuvre {
-    public Film (String n, Artiste art, String nat, int a, int d, CategorieFilm catP, CategorieFilm catS, String s, int age)
+    public Film (String n, Artiste art, int a, int d, CategorieFilm catP, CategorieFilm catS, String s, int age)
     {
-        super(TYPE_OEUVRE, art, nat, n, s, a, age);               //rappel :  statut = oeuvre gratuite ou payante
+        super(TypeOeuvre.FLM, art, n, s, a, age);               //rappel :  statut = oeuvre gratuite ou payante
         {
             cpt++;                                      //incrémenté à chaque nouveau film créé
             ID = cpt;                                   //affecte un id au film 
@@ -87,17 +87,19 @@ public class Film extends Oeuvre {
     public String toString()                    //affiche le film et ses caracteristiques
     {
         String str;
-        str = "\nId de l'oeuvre: \t"+this.getIdOeuvre()+"\n"+
-                "Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"+
-                "Id film: \t\t"+this.getIdFilm()+"\n"+
-                "Nom: \t\t"+this.getNomOeuvre()+"\n"+
-                "Realisateur: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"+
-                "Categorie principale: \t"+this.getCategoriePrincipaleDuFilm().getNomCategorie()+"\n"+
-                "Categorie secondaire: \t"+this.getCategorieSecondaireDufilm().getNomCategorie()+"\n"+
-                "Duree: \t\t"+this.getDureeFilm()+"\n"+
-                "Annee: \t\t"+this.getAnneeOeuvre()+"\n"+
-                "Statut: \t\t"+this.getStatutOeuvre()+"\n"+
-                "Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n";
+        str = "\nId de l'oeuvre: \t"+this.getIdOeuvre()+"\n"
+                +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
+                +"Id film: \t\t"+this.getIdFilm()+"\n"
+                +"Titre: \t\t"+this.getNomOeuvre()+"\n"
+                +"Realisateur: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"
+                +"Nationalité: \t"+this.getArtisteOeuvre().getNationaliteArtiste()+"\n"
+                +"Categorie principale: \t"+this.getCategoriePrincipaleDuFilm().getNomCategorieFilm()+"\n"
+                +"Categorie secondaire: \t"+this.getCategorieSecondaireDufilm().getNomCategorieFilm()+"\n"
+                +"Duree: \t\t"+this.getDureeFilm()+"\n"
+                +"Annee: \t\t"+this.getAnneeOeuvre()+"\n"
+                +"Statut: \t\t"+this.getStatutOeuvre()+"\n"
+                +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
+                +"Note moyenne: \t"+this.getNoteOeuvre();
         return str;
     }
     
@@ -139,7 +141,5 @@ public class Film extends Oeuvre {
     private CategorieFilm categoriePrincipale;                      //categorie principale du film
     private CategorieFilm categorieSecondaire;                      //categorie secondaire du film
     
-    //champs statiques
-    private static final TypeOeuvre TYPE_OEUVRE = TypeOeuvre.FLM;   //TypeOeuvre.valueOf(TypeOeuvre.class, "FLM");
     public static List<Film> listeFilmsGeres = new ArrayList();;    //liste statique accessbile partout + indpdte de tout objet 
 }

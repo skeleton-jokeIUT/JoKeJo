@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import metier.CategorieClip;
+import metier.CategorieMusiqueClip;
 import metier.CategorieFilm;
 import metier.ClipVideo;
 import metier.Film;
@@ -40,7 +40,7 @@ public class RechercheOeuvre extends javax.swing.JDialog {
 
         tabNoms = TypeOeuvre.getTousLesTypes().toArray();
         tabNoms1 = CategorieFilm.getLesCategoriesPrincipalesDeFilms().toArray();
-        tabNoms2 = CategorieClip.getLesCategoriesPrincipalesDeClips().toArray();
+        tabNoms2 = CategorieMusiqueClip.getLesCategoriesPrincipalesDeClips().toArray();
         
         cBoxTypeOeuvreModele = new DefaultComboBoxModel(tabNoms);               //types d'oeuvres
         cBoxTypeOeuvreModele.setSelectedItem("Aucun");                          //selection par defaut du premier comboBox
@@ -373,8 +373,8 @@ public class RechercheOeuvre extends javax.swing.JDialog {
             
             if(jComboBox1.getSelectedIndex() == 3)                      //si type clip video selectionné
             {
-                String catC = CategorieClip.convertToStringCategorieClip(jComboBox2.getSelectedIndex());
-                lesClipsTrouves = ClipVideo.getClipsParCategoriePrincipale(CategorieClip.convertToEnumCategorieClip(catC));
+                String catC = CategorieMusiqueClip.convertToStringCategorieClip(jComboBox2.getSelectedIndex());
+                lesClipsTrouves = ClipVideo.getClipsParCategoriePrincipale(CategorieMusiqueClip.convertToEnumCategorieClip(catC));
                 jTextArea1.setText(lesClipsTrouves.toString());
             }
         }*/

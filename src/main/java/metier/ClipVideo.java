@@ -18,9 +18,9 @@ import java.util.List;
  * @author jo
  */
 public class ClipVideo extends Oeuvre {
-    public ClipVideo (String n, Artiste art, String nat, int a, int d, CategorieClip catP, CategorieClip catS, String s, int age)
+    public ClipVideo (String n, Artiste art, int a, int d, CategorieMusiqueClip catP, CategorieMusiqueClip catS, String s, int age)
     {
-        super(TYPE_OEUVRE, art, nat, n, s, a, age);
+        super(TypeOeuvre.CVO, art, n, s, a, age);
         {
             cpt++;                                      //incrémenté à chaque nouveau clip créé
             ID = cpt;                                   //affecte un id au clip 
@@ -43,12 +43,12 @@ public class ClipVideo extends Oeuvre {
         return duree;
     }
 
-    public CategorieClip getCategoriePrincipaleDuClip()
+    public CategorieMusiqueClip getCategoriePrincipaleDuClip()
     {
         return categoriePrincipale;
     }
 
-    public CategorieClip getCategorieSecondaireDuClip()
+    public CategorieMusiqueClip getCategorieSecondaireDuClip()
     {
         return categorieSecondaire;
     }
@@ -59,12 +59,12 @@ public class ClipVideo extends Oeuvre {
         this.duree = duree;
     }
 
-    public void setCategoriePrincipale(CategorieClip categoriePrincipale)
+    public void setCategoriePrincipale(CategorieMusiqueClip categoriePrincipale)
     {
         this.categoriePrincipale = categoriePrincipale;
     }
 
-    public void setCategorieSecondaire(CategorieClip categorieSecondaire)
+    public void setCategorieSecondaire(CategorieMusiqueClip categorieSecondaire)
     {
         this.categorieSecondaire = categorieSecondaire;
     }
@@ -78,17 +78,19 @@ public class ClipVideo extends Oeuvre {
     public String toString()
     {
         String str;
-        str = "\nId de l'oeuvre: \t"+this.getIdOeuvre()+"\n"+
-                "Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"+
-                "Id clip: \t\t"+this.getIdClip()+"\n"+
-                "Nom: \t\t"+this.getNomOeuvre()+"\n"+
-                "Artiste: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"+
-                "Categorie principale: \t"+this.getCategoriePrincipaleDuClip().getNomCategorieClip()+"\n"+
-                "Categorie secondaire: \t"+this.getCategorieSecondaireDuClip().getNomCategorieClip()+"\n"+
-                "Annee: \t\t"+this.getAnneeOeuvre()+"\n"+
-                "Duree: \t\t"+this.getDureeClip()+"\n"+
-                "Statut: \t\t"+this.getStatutOeuvre()+"\n"+
-                "Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n";
+        str = "\nId de l'oeuvre: \t"+this.getIdOeuvre()+"\n"
+                +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
+                +"Id clip: \t\t"+this.getIdClip()+"\n"
+                +"Titre: \t\t"+this.getNomOeuvre()+"\n"
+                +"Artiste: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"
+                +"Nationalité: \t"+this.getArtisteOeuvre().getNationaliteArtiste()+"\n"
+                +"Categorie principale: \t"+this.getCategoriePrincipaleDuClip().getNomCategorieClipMusique()+"\n"
+                +"Categorie secondaire: \t"+this.getCategorieSecondaireDuClip().getNomCategorieClipMusique()+"\n"
+                +"Duree: \t\t"+this.getDureeClip()+"\n"
+                +"Annee: \t\t"+this.getAnneeOeuvre()+"\n"
+                +"Statut: \t\t"+this.getStatutOeuvre()+"\n"
+                +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
+                +"Note moyenne: \t"+this.getNoteOeuvre();
         return str;
     }
     
@@ -108,7 +110,7 @@ public class ClipVideo extends Oeuvre {
         }
     };
     
-    public static List<ClipVideo> getClipsParCategoriePrincipale(CategorieClip cat)
+    public static List<ClipVideo> getClipsParCategoriePrincipale(CategorieMusiqueClip cat)
     {
         List<ClipVideo> liste = new ArrayList();                         //contiendra tous les clips de la catégorie passée en paramètre
         ClipVideo c;
@@ -128,11 +130,9 @@ public class ClipVideo extends Oeuvre {
     
     private static int cpt = 0;                                     //incrémenté à chq nv clip instancié => nb total de clips
     private final int ID;                                           //id du clip
-    private int duree;                                       //duree en minutes => int
-    private CategorieClip categoriePrincipale;                      //categorie principale du clip    private String nom;                                             //nom du clip
-    private CategorieClip categorieSecondaire;                      //categorie secondaire
+    private int duree;                                              //duree en minutes => int
+    private CategorieMusiqueClip categoriePrincipale;                      //categorie principale du clip    private String nom;                                             //nom du clip
+    private CategorieMusiqueClip categorieSecondaire;                      //categorie secondaire
     
-    //champs statiques
-    private static final TypeOeuvre TYPE_OEUVRE = TypeOeuvre.CVO;
     public static List<ClipVideo> listeClipsGeres = new ArrayList();; 
 }
