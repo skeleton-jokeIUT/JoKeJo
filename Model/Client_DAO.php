@@ -31,12 +31,12 @@ class Client_DAO extends Personne {
         return $client;
     }
 
-    public function inscription($email, $motDePasse, $abonnement, $nomprofil, $ageProfil)
+    public function inscription($email, $motDePasse, $nomprofil, $ageProfil)
     {
         echo $email.$motDePasse.$abonnement.$nomprofil.$ageProfil;
         $requete = 'INSERT INTO clients (adresseMail, motDePasse, idAbonnement) values (:t_email, :t_motDePasse, :t_abonnement)';
         $req= $this->bdd->prepare($requete);
-        $req->execute(array('t_email'=>$email, 't_motDePasse'=>$motDePasse, 't_abonnement'=>$abonnement));
+        $req->execute(array('t_email'=>$email, 't_motDePasse'=>$motDePasse, 't_abonnement'=>1));
 
         $client = $this->getByEmail($email);
         $id=$client->getIdC();

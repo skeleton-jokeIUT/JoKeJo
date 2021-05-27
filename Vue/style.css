@@ -65,7 +65,7 @@ button{
 
 .ins_avatar
 {
-	display:block;
+	margin-top: 1em;
 	margin-bottom:1em;
 }
 
@@ -73,13 +73,39 @@ button{
 .contenu
 {
 	background-color: red;
-	padding:20em;
+	padding:5em;
+}
+
+.contenu input{
+	margin-bottom: 2em;
 }
 
 .form_inscrip
 {
 	background-color: red;
-	padding:20em;
+	padding:5em;
+}
+
+#accroche{
+	font-size: 3em;
+	color: black;
+	text-align: center;
+}
+
+#accroche strong{
+	text-align: center;
+	font-size: 3em;
+}
+
+#accrocheAccueil{
+	font-size: 3em;
+	color: white;
+	text-align: center;
+}
+
+#accrocheAccueil a{
+	color: red;
+	text-align: center;
 }
 
 .reset
@@ -126,7 +152,7 @@ button{
 
 #optionsProfil{
 	padding-top: 2em;
-		justify-content: center;
+	justify-content: center;
 	display: flex;
 }
 
@@ -171,7 +197,7 @@ audio{
 	
 	width: 320px;
 	height: 180px;
-	margin-left: 5%
+	margin-left: 5%;
 }
 
 
@@ -207,21 +233,7 @@ h2 {
 }
 
 #formCreerSeance{
-	color: black;
-	background-color: red;
-	text-align: center;
-}
-
-#formCreerSeance select {
-	color : red;
-
-}
-
-#formCreerSeance div {
-	color : red;
-	margin-top: 1em;
-}
-
+	color: black;oç
 #formCreerSeance label{
 	width: 150px;
 
@@ -234,23 +246,24 @@ h2 {
 #formAcces{
 	border-style: solid;
 	border-color: red;
-
 }
 
 
 .visionnage{
+	margin-top: 5%;
+	margin-bottom: 5%;
 	border-style: solid;
 	border-color: red;
-	width: 60%;
-	height : 60%;
+	width: 70%;
+	height: 27em;
 }
 
 .chat{
 	height: 45%;
 	width: 20%;
 	position: absolute;
-	margin-top: -25%;
-	margin-left: 70%;
+	margin-top: -30%;
+	margin-left: 75%;
 	border-style: solid;
 }
 

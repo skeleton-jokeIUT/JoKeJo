@@ -2,9 +2,9 @@
 
 session_start();
 
-var_dump($_POST);
-var_dump($_GET);
-var_dump($_SESSION);
+//var_dump($_POST);
+//var_dump($_GET);
+//var_dump($_SESSION);
 
 include_once('../Model/DAO_Oeuvre.php');
 include_once('../Model/DAO_Catalogue.php');

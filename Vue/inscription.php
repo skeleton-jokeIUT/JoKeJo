@@ -1,23 +1,22 @@
 
 <div class="form_inscrip">
+
+    <p id="accroche">Film, Jeux-Vidéo, et plus encore en illimité et sans engagement !<br> Venez profitez de l'expérience la plus complète du marché sur<br><strong>NetPrimePlus</strong></p>
 <form class= "inscription" action="index.php?creation" method="POST">
-     
+            
       <?php echo $message ?>
 
                 <fieldset>
                     <legend>Créer un compte</legend>
                     <div class="ins_contenu"> 
-                    <label>Email* :</label><input type="email" name="email">
-                    <label>Mot de passe* :</label><input type="password" name="mdp">
-                    <div class="abon">
-                    <p>Choisissez un abonnement* (sans engagement)</p>
-                    <label>Compte gratuit<input type="radio" name="abo" value=1></label>
-                    <label>Compte standard (10€/mois)<input type="radio" name="abo" value=2></label>
-                    <label>Compte premium (20€/mois)<input type="radio" name="abo" value=3></label>
-                    </div>
+                    <label>Email* : <input type="email" name="email"></label>
+                    <label>Mot de passe* : <input type="password" name="mdp"></label>
                     <div class="ins_avatar">
-                    <label>Nom de votre profil* : </label><input type="text" name="nom_prof">
-                    <label>Age maximum* :</label><input type="text" name="age_prof" class="age_prof">
+                    <label>Nom de votre profil* : <input type="text" name="nom_prof"></label>
+                    <label>Age maximum* : <input type="text" name="age_prof" class="age_prof"></label>
+                    </div>
+                    <div class="abon">
+                    <p><strong>Lors de votre inscription nous vous attribuons un compte gratuit. Vous pouvez changer cela à tout moment depuis la page de sélection de profil !</p>
                     </div>
                     <button type="reset" name="btnReset_inscr" class="reset">Effacer</button>
                     <button name="btnValider" class="valider">Valider</button>

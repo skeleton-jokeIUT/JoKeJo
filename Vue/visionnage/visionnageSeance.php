@@ -25,7 +25,7 @@
 	btn.addEventListener('click',affiche);
 
 	none.style.display="none";
-
+	
 	function affiche(){
 		none.style.display="block";
 		formAcces.style.display="none";
