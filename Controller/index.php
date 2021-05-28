@@ -120,50 +120,56 @@ if (isset($_GET['creation'])) {
 //Gestion du catalogue à afficher : soit le général soit par type oeuvre
 if(isset($_GET['catalogue'])){
 
-	if($_GET['catalogue']=='Image'){
+	if(isset($_SESSION['email'])){
 
-		$module="catalogueIMG";
-		
+		if($_GET['catalogue']=='Image'){
+
+			$module="catalogueIMG";
+			
+		}
+		else if($_GET['catalogue']=='Musique'){
+
+			$module="catalogueMus";
+			
+		}
+		else if($_GET['catalogue']=='Jeux'){
+
+			$module="catalogueJeux";
+			
+		}
+		else if($_GET['catalogue']=='Video'){
+
+			$module="catalogueVOD";
+			
+
+		}
+		else if($_GET['catalogue']=='Ecrit'){
+
+			$module="catalogueEcrit";
+			
+		}
+		else $module="catalogue";
 	}
-	else if($_GET['catalogue']=='Musique'){
-
-		$module="catalogueMus";
-		
-	}
-	else if($_GET['catalogue']=='Jeux'){
-
-		$module="catalogueJeux";
-		
-	}
-	else if($_GET['catalogue']=='Video'){
-
-		$module="catalogueVOD";
-		
-
-	}
-	else if($_GET['catalogue']=='Ecrit'){
-
-		$module="catalogueEcrit";
-		
-	}
-	else $module="catalogue";
 }
 
 //Permet de définir quel type de page de visionnage sera affiché : vidéo / musique / livre et/ou image
 if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 
-	$_SESSION['titre']=$_GET['titre'];
+	if(isset($_SESSION['email'])){
 
-	if($_GET['visionnage'] !="Vidéo" && $_GET['visionnage']!="Musique"){
+		$_SESSION['titre']=$_GET['titre'];
 
-		$module="visioAutre";
+		if($_GET['visionnage'] !="Vidéo" && $_GET['visionnage']!="Musique"){
 
-	}
-	else if ($_GET['visionnage']=="Vidéo"){
-		$module="visioVideo";
-	}
-	else if ($_GET['visionnage']=="Musique"){
-		$module="visioMusique";
+			$module="visioAutre";
+
+		}
+		else if ($_GET['visionnage']=="Vidéo"){
+			$module="visioVideo";
+		}
+		else if ($_GET['visionnage']=="Musique"){
+			$module="visioMusique";
+		}
 	}
 }
 
@@ -171,12 +177,14 @@ if(isset($_GET['visionnage']) && isset($_GET['titre'])){
 //Gestion de la recherche
 if(isset($_GET['btnRecherche'])){
 
-	if(isset($_GET['recherche']) && $_GET['recherche']!=""){
-		$module="recherche";
-	}
-	else{
-		$module="recherche";
-		$message="Vous n'avez saisie aucun paramètre de recherche";
+	if(isset($_SESSION['email'])){
+		if(isset($_GET['recherche']) && $_GET['recherche']!=""){
+			$module="recherche";
+		}
+		else{
+			$module="recherche";
+			$message="Vous n'avez saisie aucun paramètre de recherche";
+		}
 	}
 
 }
@@ -220,74 +228,87 @@ if(isset($_GET['visioSeance'])){
 
 //gestion des favori
 if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori']) || isset($_GET['supprFav'])){
-	$module="favori";
 
-	if(isset($_GET['btnAjoutFavori'])){
-		
-		$oeuvreAjoutee=$oeuvre->getByTitre($_SESSION['titre']);
-		$clientALier=$client->getByEmail($_SESSION['email']);
+	if(isset($_SESSION['email'])){
 
-		$idOeuvre=$oeuvreAjoutee->__get('id');
-		$idClient=$clientALier->__get('id');
+		$module="favori";
 
-		$favori->ajoutFavori($idOeuvre,$idClient);
-		unset($_SESSION['titre']);
+		if(isset($_GET['btnAjoutFavori'])){
+			
+			$oeuvreAjoutee=$oeuvre->getByTitre($_SESSION['titre']);
+			$clientALier=$client->getByEmail($_SESSION['email']);
 
-	}
-	else if(isset($_GET['supprFav'])){
-		$oeuvreAjoutee=$oeuvre->getByTitre($_GET['supprFav']);
-		$clientALier=$client->getByEmail($_SESSION['email']);
+			$idOeuvre=$oeuvreAjoutee->__get('id');
+			$idClient=$clientALier->__get('id');
 
-		$idOeuvre=$oeuvreAjoutee->__get('id');
-		$idClient=$clientALier->__get('id');
+			$favori->ajoutFavori($idOeuvre,$idClient);
+			unset($_SESSION['titre']);
 
-		$favori->suppressionFavori($idOeuvre,$idClient);
+		}
+		else if(isset($_GET['supprFav'])){
+			$oeuvreAjoutee=$oeuvre->getByTitre($_GET['supprFav']);
+			$clientALier=$client->getByEmail($_SESSION['email']);
+
+			$idOeuvre=$oeuvreAjoutee->__get('id');
+			$idClient=$clientALier->__get('id');
+
+			$favori->suppressionFavori($idOeuvre,$idClient);
+		}
+
 	}
 
 }
 
 if(isset($_GET['note']) && $_GET['note']!=""){
 
-	$module="note";
+	if(isset($_SESSION['email'])){
 
-	if($_GET['note']<1 || $_GET['note']>5){
-		$message="Votre note n'est pas compris entre 1 et 5";
+		$module="note";
+
+		if($_GET['note']<1 || $_GET['note']>5){
+			$message="Votre note n'est pas compris entre 1 et 5";
+		}
+		else{
+			$oeuvreAjoutee=$oeuvre->getByTitre($_SESSION['titre']);
+			$clientALier=$client->getByEmail($_SESSION['email']);
+
+			$idOeuvre=$oeuvreAjoutee->__get('id');
+			$idClient=$clientALier->__get('id');
+
+			$message=$note->ajoutNote($idOeuvre,$idClient,$_GET['note']);
+
+			unset($_SESSION['titre']);
+
+		}
+
 	}
-	else{
-		$oeuvreAjoutee=$oeuvre->getByTitre($_SESSION['titre']);
-		$clientALier=$client->getByEmail($_SESSION['email']);
-
-		$idOeuvre=$oeuvreAjoutee->__get('id');
-		$idClient=$clientALier->__get('id');
-
-		$message=$note->ajoutNote($idOeuvre,$idClient,$_GET['note']);
-
-		unset($_SESSION['titre']);
-
-
-	}
-
 }
 
 if(isset($_GET['abonnement'])){
-	$module="abonnement";
-	if($_GET['abonnement']!=""){
 
-		$abo=$_GET['abonnement'];
+	if(isset($_SESSION['email'])){
 
-		if($abo=="gratuit") $abo=1;
-		else if($abo=="intermediaire") $abo=2;
-		else $abo=3;
+		$module="abonnement";
+		if($_GET['abonnement']!=""){
 
-		$client->Abonnement($abo,$_SESSION['email']);
+			$abo=$_GET['abonnement'];
 
-		$clients=$client->getByEmail($_SESSION['email']);
-		if(($idAbo=$clients->__get("abonnement"))==1) $_SESSION['abonnement']="gratuit";
-		else if(($idAbo=$clients->__get("abonnement"))==2)$_SESSION['abonnement']="payant";
-		else if(($idAbo=$clients->__get("abonnement"))==3)$_SESSION['abonnement']="premium";
+			if($abo=="gratuit") $abo=1;
+			else if($abo=="intermediaire") $abo=2;
+			else $abo=3;
 
-		header("location: index.php?profil");
+			$client->Abonnement($abo,$_SESSION['email']);
+
+			$clients=$client->getByEmail($_SESSION['email']);
+			if(($idAbo=$clients->__get("abonnement"))==1) $_SESSION['abonnement']="gratuit";
+			else if(($idAbo=$clients->__get("abonnement"))==2)$_SESSION['abonnement']="payant";
+			else if(($idAbo=$clients->__get("abonnement"))==3)$_SESSION['abonnement']="premium";
+
+			header("location: index.php?profil");
+		}
+
 	}
+	
 }
 
 
