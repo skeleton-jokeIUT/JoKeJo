@@ -2,9 +2,9 @@
 
 session_start();
 
-var_dump($_POST);
-var_dump($_GET);
-var_dump($_SESSION);
+//var_dump($_POST);
+//var_dump($_GET);
+//var_dump($_SESSION);
 
 include_once('../Model/DAO_Oeuvre.php');
 include_once('../Model/DAO_Catalogue.php');
@@ -219,7 +219,7 @@ if(isset($_GET['visioSeance'])){
 
 
 //gestion des favori
-if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
+if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori']) || isset($_GET['supprFav'])){
 	$module="favori";
 
 	if(isset($_GET['btnAjoutFavori'])){
@@ -234,8 +234,14 @@ if(isset($_GET['favori']) || isset($_GET['btnAjoutFavori'])){
 		unset($_SESSION['titre']);
 
 	}
-	else if(isset($_GET['btnSupprFav'])){
+	else if(isset($_GET['supprFav'])){
+		$oeuvreAjoutee=$oeuvre->getByTitre($_GET['supprFav']);
+		$clientALier=$client->getByEmail($_SESSION['email']);
 
+		$idOeuvre=$oeuvreAjoutee->__get('id');
+		$idClient=$clientALier->__get('id');
+
+		$favori->suppressionFavori($idOeuvre,$idClient);
 	}
 
 }
@@ -417,7 +423,7 @@ if($module=="favori"){
 
 if($module=="note"){
 	include '../Vue/headerCo.php';
-	echo '<p>'.$message.'</p>';
+	echo '<p id="texteNote">'.$message.'</p>';
 	include '../Vue/footerNonCo.php';
 }
 

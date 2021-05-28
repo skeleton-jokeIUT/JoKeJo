@@ -73,23 +73,16 @@ class DAOFavori {
 			else $data2['duree']=$data2['duree']."min";
 		
 			echo '<div class="test">
-						<a href="index.php?visionnage='.$data2['type'].'&titre='.$data2['titre'].'"><img src="'.$data2['miniature'].'"</a>
+						<a href="index.php?visionnage='.$data2['type'].'&titre='.$data2['titre'].'"><img src="'.$data2['miniature'].'"></a>
 						<p>Titre : '.$data2['titre'].'<br><br>Type : '.$data2['type'].'<br><br>Duree : '.$data2['duree'].'<br><br>Accès : '.$data2['acces'].'</p>
+						<a href="index.php?supprFav='.$data2['titre'].'"><button>Supprimer</button></a>
 				</div>';
+
 		}
 
 	}
 
-	public function suppressionFavori($email, $titre){
-
-		$oeuvre = new DAOOeuvre();
-		$client = new Client_DAO();
-
-		$oeuvreAjoutee=$this->oeuvre->getByTitre($titre);
-		$clientALier=$this->client->getByEmail($email);
-
-		$idOeuvre=$oeuvreAjoutee->__get('id');
-		$idClient=$clientALier->__get('id');
+	public function suppressionFavori($idOeuvre, $idClient){
 
 		$sql='DELETE FROM favori where idOeuvre=? and idClient=?';
 		$req= $this->bdd->prepare($sql);

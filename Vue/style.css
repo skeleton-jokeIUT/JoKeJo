@@ -231,6 +231,12 @@ h2 {
 	text-align:center;
 }
 
+#texteNote{
+	font-size: 1.3em;
+	text-align:center;
+	margin : 5%;
+}
+
 #achatLocation{
 	text-align: center;	
 }
@@ -323,6 +329,11 @@ h2 {
 	border-radius: 1em;
 	width: 320px;
 	height: 180px;
+}
+
+.test button{
+	margin-bottom: 1%;
+	margin-left: 38%;
 }
 
 
