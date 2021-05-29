@@ -146,7 +146,12 @@ public abstract class Oeuvre {
     {
         this.note = n;
     }
-       
+    
+    public static void supprimerOeuvre(Oeuvre o)
+    {
+        listeOeuvresGerees.remove(o);
+    }
+    
     
     public static void afficheToutesLesOeuvresGerees()       //parcourt et affiche la liste des films
     {

@@ -143,7 +143,7 @@ public class Film extends Oeuvre {
     }
     
 
-    private static int cpt=0;                                       //incrémenté à chq nv film instancié => nb total de films
+    private static int cpt = 0;                                       //incrémenté à chq nv film instancié => nb total de films
     private final int ID;                                           //id du film
     private int duree;                                              //duree en minutes => int
     private CategorieFilm categoriePrincipale;                      //categorie principale du film

@@ -22,7 +22,7 @@ public class PageAccueil extends javax.swing.JFrame {
         initComponents();
         
         jButton2.setEnabled(false);         //boutons grisés tant que la connection n'est pas ok
-        jButton3.setEnabled(false); 
+        //jButton3.setEnabled(false); 
         jButton4.setEnabled(false);
         jButton5.setEnabled(false); 
         jButton6.setEnabled(false); 

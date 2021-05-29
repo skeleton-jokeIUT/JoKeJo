@@ -39,7 +39,7 @@ public class CreerOeuvre extends javax.swing.JFrame {
         
         jComboBox1 = new JComboBox(TypeOeuvre.getTousLesTypes().toArray());
         jComboBox2 = new JComboBox (cBoxModeleVide);                //categorie principale, vide pour l'instant
-        jComboBox3 = new JComboBox (cBoxModeleVide);                //categorie principale, vide pour l'instant
+        jComboBox3 = new JComboBox (cBoxModeleVide);                //categorie secondaire, vide pour l'instant
         
         
         initComponents();
@@ -102,7 +102,7 @@ public class CreerOeuvre extends javax.swing.JFrame {
 
         jLabel2.setText("Nationalité*:");
 
-        jLabel1.setText("Realisateur*:");
+        jLabel1.setText("Artiste*:");
 
         jLabel3.setText("Année*:");
 
@@ -194,7 +194,7 @@ public class CreerOeuvre extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("Age minimum:");
+        jLabel11.setText("Age minimum (en années)*: ");
 
         jTextField6.setText("jTextField6");
 
@@ -316,15 +316,16 @@ public class CreerOeuvre extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,28 +351,29 @@ public class CreerOeuvre extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_jButton2ActionPerformed
 
         //champs communs à tous les types
+        String nomArtiste = jTextField3.getText();
         String nomOeuvre = jTextField1.getText();
         int annee = Integer.parseInt(jTextField2.getText());
-        String nomArtiste = jTextField3.getText();
-        String nationalite = jTextField7.getText();
         String statut = buttonGroup1.getSelection().getActionCommand();
         int age = Integer.parseInt(jTextField6.getText());
         
+        
         //champs spécifiques
-        if(jComboBox1.getSelectedIndex() == 4)                  //choix: films
+        if(jComboBox1.getSelectedIndex() == 0)                  //choix: Images
         {
-            
-            int duree = Integer.parseInt(jTextField4.getText());
-            int catP = jComboBox2.getSelectedIndex();
-            int catS = jComboBox3.getSelectedIndex();
-            Artiste realisateur = new Artiste(nomArtiste, nationalite, TypeOeuvre.FLM, MetierArtiste.RSR);
-            Film film = new Film(nomOeuvre, realisateur, annee, duree, CategorieFilm.values()[catP], 
-                    CategorieFilm.values()[catS], statut, age);
-            
-            listeFilmsGeres.add(film);                          //ajoute à la liste le film créé
+            //non traite
+        }
+        if(jComboBox1.getSelectedIndex() == 1)                  //choix: Ecrits
+        {
+            //non traite
+        }
+        if(jComboBox1.getSelectedIndex() == 2)                  //choix: Musique
+        {
+            //non traite
         }
         if(jComboBox1.getSelectedIndex() == 3)                  //choix: clips
         {
+            String nationalite = jTextField7.getText();
             int duree = Integer.parseInt(jTextField4.getText());
             int catP = jComboBox2.getSelectedIndex();
             int catS = jComboBox3.getSelectedIndex();
@@ -382,18 +384,45 @@ public class CreerOeuvre extends javax.swing.JFrame {
             listeClipsGeres.add(clip);                          //ajoute à la liste le clip créé
         }
         
+        if(jComboBox1.getSelectedIndex() == 4)                  //choix: films
+        {
+            String nationalite = jTextField7.getText();
+            int duree = Integer.parseInt(jTextField4.getText());
+            int catP = jComboBox2.getSelectedIndex();
+            int catS = jComboBox3.getSelectedIndex();
+            Artiste realisateur = new Artiste(nomArtiste, nationalite, TypeOeuvre.FLM, MetierArtiste.RSR);
+            Film film = new Film(nomOeuvre, realisateur, annee, duree, CategorieFilm.values()[catP], 
+                    CategorieFilm.values()[catS], statut, age);
+            
+            listeFilmsGeres.add(film);                          //ajoute à la liste le film créé
+        }
+        
+        if(jComboBox1.getSelectedIndex() == 5)                  //choix: Jeux Videos
+        {
+            //non traite
+        }
+
+        
         System.out.println(listeOeuvresGerees.toString());      //pr verifier l'ajout
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jComboBox1ActionPerformed
     {//GEN-HEADEREND:event_jComboBox1ActionPerformed
         int choix = jComboBox1.getSelectedIndex();
-        
-        if(choix == 3)                              //si clips videos selectionné
+        jTextField4.setEnabled(true);                                   //champ duree/nb pages activé
+
+        if(choix == 1)                                                 //ecrits selectionnés
         {
-            jLabel1.setText("Artiste*:");                                   // => label realisateur remplacé par artiste
-            jTextField7.setEnabled(false);                                  // => champ nationalité desactivé
-            jLabel2.setText("Nationalité:");                                //"*" retiré du label
+            jLabel1.setText("Ecrivain*:");
+            jLabel5.setText("Nombre de pages*:");
+            
+            jComboBox2.setModel(cBoxModeleVide);
+            jComboBox3.setModel(cBoxModeleVide);
+        }
+        
+        else if(choix == 2 || choix == 3)                             //si clips videos ou musique selectionné
+        {
+            jLabel1.setText("Interprete*:");                                // => label realisateur remplacé par artiste
             
             cBoxCategorieModele1 = new DefaultComboBoxModel(tabNoms3);      //car sinon comboxbox dependantes l'une de l'autre
             cBoxCategorieModele2 = new DefaultComboBoxModel(tabNoms3);      //
@@ -401,17 +430,26 @@ public class CreerOeuvre extends javax.swing.JFrame {
             jComboBox2.setModel(cBoxCategorieModele1);
             jComboBox3.setModel(cBoxCategorieModele2); 
         }
-        else if(choix == 4)                         //si films selectionné
+        else if(choix == 4)                                           //si films selectionné
         {
             jLabel1.setText("Realisateur*:");                               // => label realisateur
-            jTextField7.setEnabled(true);                                   // => champ nationalité activé
             
             cBoxCategorieModele1 = new DefaultComboBoxModel(tabNoms2);      //car sinon comboxbox dependantes l'une de l'autre
             cBoxCategorieModele2 = new DefaultComboBoxModel(tabNoms2);      //
             
             jComboBox2.setModel(cBoxCategorieModele1);
             jComboBox3.setModel(cBoxCategorieModele2);
+        } 
+        else
+        {
+            if(choix == 0)
+                jTextField4.setEnabled(false);                        //champ duree/nb pages désactivé
+            
+            jLabel1.setText("Artiste*:");
+            jComboBox2.setModel(cBoxModeleVide);
+            jComboBox3.setModel(cBoxModeleVide);            
         }
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author jo
  */
-public abstract class Musique extends Oeuvre {
+public class Musique extends Oeuvre {
     public Musique(TypeOeuvre t, Artiste art, String nom, String statut, int a, int ageMini, 
             CategorieMusiqueClip catP, CategorieMusiqueClip catS, int d)
     {
