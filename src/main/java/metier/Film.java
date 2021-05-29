@@ -6,8 +6,6 @@
 package metier;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,6 +65,16 @@ public class Film extends Oeuvre {
         return cpt;
     }
     
+    public static List<String> getNomsListeFilms (List<Film> listeFilm)
+    {
+        List<String> liste = new ArrayList();
+        for(Film f: listeFilm)
+        {
+            liste.add(f.getNomOeuvre());
+        }
+        return liste;
+    }
+    
     //setters
     public void setDureeFilm(int duree)
     {
@@ -86,20 +94,22 @@ public class Film extends Oeuvre {
     @Override
     public String toString()                    //affiche le film et ses caracteristiques
     {
+        double note2 = this.getNoteOeuvre();
+        
         String str;
         str = "\nId de l'oeuvre: \t"+this.getIdOeuvre()+"\n"
                 +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
                 +"Id film: \t\t"+this.getIdFilm()+"\n"
                 +"Titre: \t\t"+this.getNomOeuvre()+"\n"
                 +"Realisateur: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"
-                +"Nationalité: \t"+this.getArtisteOeuvre().getNationaliteArtiste()+"\n"
+                +"Nationalité: \t\t"+this.getArtisteOeuvre().getNationaliteArtiste()+"\n"
                 +"Categorie principale: \t"+this.getCategoriePrincipaleDuFilm().getNomCategorieFilm()+"\n"
                 +"Categorie secondaire: \t"+this.getCategorieSecondaireDufilm().getNomCategorieFilm()+"\n"
                 +"Duree: \t\t"+this.getDureeFilm()+"\n"
                 +"Annee: \t\t"+this.getAnneeOeuvre()+"\n"
                 +"Statut: \t\t"+this.getStatutOeuvre()+"\n"
                 +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
-                +"Note moyenne: \t"+this.getNoteOeuvre();
+                +"Note moyenne: \t"+String.format(java.util.Locale.US,"%.1f", note2)+"\n";
         return str;
     }
     
@@ -109,24 +119,22 @@ public class Film extends Oeuvre {
         return 0;
     }*/
     
-    public static final Comparator<Film> CATEGORIE_COMPARATOR = new Comparator<Film>() {
-        @Override
-        public int compare(Film p, Film q)      //compare les categories de 2 films passsés en paramètres
-        {
-            return p.getCategoriePrincipaleDuFilm().compareTo(q.getCategoriePrincipaleDuFilm());
-        }
-    };
+//    public static final Comparator<Film> CATEGORIE_COMPARATOR = new Comparator<Film>() {
+//        @Override
+//        public int compare(Film p, Film q)      //compare les categories de 2 films passsés en paramètres
+//        {
+//            return p.getCategoriePrincipaleDuFilm().compareTo(q.getCategoriePrincipaleDuFilm());
+//        }
+//    };
     
     public static List<Film> getFilmsParCategoriePrincipale(CategorieFilm cat)
     {
         List<Film> liste = new ArrayList();                         //contiendra tous les films de la catégorie passée en paramètre
-        Film f;
-        Collections.sort(listeFilmsGeres, Film.CATEGORIE_COMPARATOR);       //trie les films par categorie
         Iterator<Film> iter = listeFilmsGeres.iterator();           //declaration d'itérateur pr parcourir la liste de films
         while(iter.hasNext())                                       //tant que la position courante dispose d'une position suivante
         {
-            f = iter.next();
-            while(f.getCategoriePrincipaleDuFilm() == cat)          //ajoute à la liste les films de la categorie passée en paramètre 
+            Film f = iter.next();
+            if(f.getCategoriePrincipaleDuFilm() == cat)          //ajoute à la liste les films de la categorie passée en paramètre 
             {
                 liste.add(f);
             } 
@@ -141,5 +149,5 @@ public class Film extends Oeuvre {
     private CategorieFilm categoriePrincipale;                      //categorie principale du film
     private CategorieFilm categorieSecondaire;                      //categorie secondaire du film
     
-    public static List<Film> listeFilmsGeres = new ArrayList();;    //liste statique accessbile partout + indpdte de tout objet 
+    public static List<Film> listeFilmsGeres = new ArrayList();    //liste statique accessbile partout + indpdte de tout objet 
 }

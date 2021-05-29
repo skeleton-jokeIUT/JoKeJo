@@ -5,7 +5,6 @@
  */
 package vue;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,13 +13,27 @@ import javax.swing.DefaultComboBoxModel;
 import metier.CategorieMusiqueClip;
 import metier.CategorieFilm;
 import metier.ClipVideo;
+import static metier.ClipVideo.getNomsListeClips;
+import static metier.ClipVideo.listeClipsGeres;
+import metier.Ecrit;
+import static metier.Ecrit.getNomsListeEcrits;
+import static metier.Ecrit.listeEcritsGeres;
 import metier.Film;
+import static metier.Film.getNomsListeFilms;
+import static metier.Film.listeFilmsGeres;
+import metier.Image;
+import static metier.Image.getNomsListeImages;
+import static metier.Image.listeImagesGerees;
+import metier.JeuVideo;
+import static metier.JeuVideo.getNomsListeJeuxVideos;
+import static metier.JeuVideo.listeJeuxVideosGeres;
+import metier.Musique;
+import static metier.Musique.getNomsListeMusiques;
+import static metier.Musique.listeMusiquesGerees;
 import metier.Oeuvre;
 import static metier.Oeuvre.getNomsListeOeuvres;
 import static metier.Oeuvre.listeOeuvresGerees;
 import metier.TypeOeuvre;
-
-
 
 /**
  *
@@ -33,15 +46,10 @@ public class RechercheOeuvre extends javax.swing.JDialog {
      */
     public RechercheOeuvre()
     {
-        lesOeuvresTrouvees = new ArrayList();
-        //lesOeuvresTrouvees = listeOeuvresGerees;
-        //lesFilmsTrouves = new ArrayList();
-        //lesClipsTrouves = new ArrayList();
-
         tabNoms = TypeOeuvre.getTousLesTypes().toArray();
         tabNoms1 = CategorieFilm.getLesCategoriesPrincipalesDeFilms().toArray();
         tabNoms2 = CategorieMusiqueClip.getLesCategoriesPrincipalesDeClips().toArray();
-        
+
         cBoxTypeOeuvreModele = new DefaultComboBoxModel(tabNoms);               //types d'oeuvres
         cBoxTypeOeuvreModele.setSelectedItem("Aucun");                          //selection par defaut du premier comboBox
 
@@ -326,85 +334,147 @@ public class RechercheOeuvre extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         //bouton recherche
-        int i = 0;
-        
-        //List<Oeuvre> lesOeuvresTrouvees = new ArrayList();            //plusieurs resultats pour une même recherche => liste
-        //List<Film> lesFilmsTrouves = new ArrayList();
-        //List<ClipVideo> lesClipsTrouves = new ArrayList();
-        
-        Iterator<Oeuvre> iter1 = listeOeuvresGerees.iterator();
-        //Iterator<Film> iter2 = listeFilmsGeres.iterator();
-        //Iterator<ClipVideo> iter3 = listeClipsGeres.iterator();
-        
-        jTextArea1.setText("");                                  //textArea vidée à chaque recherche
-        
-        if(jComboBox1.getSelectedIndex() == 6)                   //"Aucun" selectionné => uniquement titre saisi => recherche parmi toutes les oeuvres
+        int i = 0;                                              //nombre de résultats
+
+        lesOeuvresTrouvees = new ArrayList();
+        lesImagesTrouvees = new ArrayList();
+        lesEcritsTrouves = new ArrayList();
+        lesMusiquesTrouvees = new ArrayList();
+        lesClipsTrouves = new ArrayList();
+        lesFilmsTrouves = new ArrayList();
+        lesJeuxVideosTrouves = new ArrayList();
+
+        Iterator<Oeuvre> iter = listeOeuvresGerees.iterator();
+
+        jTextArea1.setText("");                                 //textArea vidée à chaque recherche
+
+        if (jComboBox1.getSelectedIndex() == 6)                  //"Aucun" selectionné => uniquement titre saisi => recherche parmi toutes les oeuvres
         {
-            if(jTextField1.getText().equals(""))                 //si aucun titre n'est saisi, on retourne toute la liste
+            Oeuvre o;
+            
+            if (jTextField1.getText().equals(""))                //si aucun titre n'est saisi, on retourne toute la liste
             {
                 lesOeuvresTrouvees = listeOeuvresGerees;
-            }
+            } 
             else                                                 //sinon, parcour de la liste d'oeuvres
             {
-                while(iter1.hasNext())
+                while (iter.hasNext())
                 {
-                    if( (o = iter1.next()).getNomOeuvre().contains(jTextField1.getText().toUpperCase()))
+                    if ((o = iter.next()).getNomOeuvre().contains(jTextField1.getText().toUpperCase()))
                     {
-                        
                         lesOeuvresTrouvees.add(o);
                     }
                 }
             }
-            i = lesOeuvresTrouvees.size();                      //nombre d'oeuvres trouvées
+            i = lesOeuvresTrouvees.size();                       //nombre d'oeuvres trouvées
+
             cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeOeuvres(lesOeuvresTrouvees).toArray());
-            jComboBox3.setModel(cBoxOeuvresTrouvees);
-            jTextField2.setText(String.valueOf(i));                     //affiche le nombres d'oeuvres trouvées
-            
-        }
-        
-        /*else                                                    //si comboBox  selectionnés (ne fonctionne pas)
+
+        } 
+        else                                                    //si comboBox  selectionnés (ne fonctionne, mais doublons)
         {
-            if(jComboBox1.getSelectedIndex() == 4)                      //si type film selectionné
+            if (jComboBox1.getSelectedIndex() == 0)                      //si type Image selectionné
             {
-                String catF = CategorieFilm.convertToStringCategorieFilm(jComboBox2.getSelectedIndex());
-                lesFilmsTrouves = Film.getFilmsParCategoriePrincipale(CategorieFilm.convertToEnumCategorieFilm(catF));
-                jTextArea1.setText(lesFilmsTrouves.toString());
+                lesImagesTrouvees = listeImagesGerees;
+                cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeImages(lesImagesTrouvees).toArray());
+                i = lesImagesTrouvees.size();
             }
-            
-            if(jComboBox1.getSelectedIndex() == 3)                      //si type clip video selectionné
+
+            if (jComboBox1.getSelectedIndex() == 1)                      //si type Ecrit selectionné
             {
-                String catC = CategorieMusiqueClip.convertToStringCategorieClip(jComboBox2.getSelectedIndex());
-                lesClipsTrouves = ClipVideo.getClipsParCategoriePrincipale(CategorieMusiqueClip.convertToEnumCategorieClip(catC));
+                lesEcritsTrouves = listeEcritsGeres;
+                cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeEcrits(lesEcritsTrouves).toArray());
+                i = lesEcritsTrouves.size();
+            }
+
+            if (jComboBox1.getSelectedIndex() == 2)                      //si type Musique selectionné
+            {
+                lesMusiquesTrouvees = listeMusiquesGerees;
+                cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeMusiques(lesMusiquesTrouvees).toArray());
+                i = lesMusiquesTrouvees.size();
+            }
+
+            if (jComboBox1.getSelectedIndex() == 3)                      //si type Clip Video selectionné
+            {
+                for(ClipVideo c: listeClipsGeres)
+                {
+                    String catClipSelectionne = (String) jComboBox2.getSelectedItem();
+                    String catClipTrouve = c.getCategoriePrincipaleMusique().getNomCategorieClipMusique();
+                    
+                    if (catClipSelectionne.equals(catClipTrouve))
+                        lesClipsTrouves.add(c);
+                }
+                
                 jTextArea1.setText(lesClipsTrouves.toString());
+                cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeClips(lesClipsTrouves).toArray());
+                i = lesClipsTrouves.size();
             }
-        }*/
-        
-        
+
+            if (jComboBox1.getSelectedIndex() == 4)                      //si type Film selectionné
+            {
+                for(Film f: listeFilmsGeres)
+                {
+                    String catFilmSelectionne = (String) jComboBox2.getSelectedItem();
+                    String catFilmTrouve = f.getCategoriePrincipaleDuFilm().getNomCategorieFilm();
+
+                    if (catFilmSelectionne.equals(catFilmTrouve) == true)
+                        lesFilmsTrouves.add(f);
+                }
+                jTextArea1.setText(lesFilmsTrouves.toString());
+                cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeFilms(lesFilmsTrouves).toArray());
+                i = lesFilmsTrouves.size();
+            }
+
+            if (jComboBox1.getSelectedIndex() == 5)                      //si type Jeu Video selectionné
+            {
+                lesJeuxVideosTrouves = listeJeuxVideosGeres;
+                cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeJeuxVideos(lesJeuxVideosTrouves).toArray());
+                i = lesJeuxVideosTrouves.size();
+            }
+
+            jTextField2.setText(String.valueOf(i));
+
+            if (i == 0)
+            {
+                jTextArea1.setText("Aucune oeuvre trouvée");
+                jComboBox3.setModel(cBoxModeleVide);
+            }
+        }
+
+        if (i == 0)
+        {
+            jTextArea1.setText("Aucune oeuvre trouvée");
+        }
+
+        jComboBox3.setModel(cBoxOeuvresTrouvees);
+        jTextField2.setText(String.valueOf(i));
+
+        if (i != 0)
+            jComboBox3.setSelectedIndex(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jComboBox1ActionPerformed
     {//GEN-HEADEREND:event_jComboBox1ActionPerformed
-        //Affiche le bon comboBox en fontion de la categorie d'oeuvre selectionnée
-        if(jComboBox1.getSelectedIndex() == 4)                  //si "film" selectionné
+        //Affiche le bon "comboBox" en fontion de la categorie d'oeuvre selectionnée
+        if (jComboBox1.getSelectedIndex() == 4)                  //si "film" selectionné
         {
             cBoxCategorieModele = new DefaultComboBoxModel(tabNoms1);
             jComboBox2.setModel(cBoxCategorieModele);
             jComboBox2.setVisible(true);
-        }
-        else if(jComboBox1.getSelectedIndex() == 3)             //si clip video selectionné
+        } 
+        else if (jComboBox1.getSelectedIndex() == 3)             //si clip video selectionné
         {
             cBoxCategorieModele = new DefaultComboBoxModel(tabNoms2);
             jComboBox2.setModel(cBoxCategorieModele);
             jComboBox2.setVisible(true);
         }
-             
-        if(!(jComboBox1.getSelectedIndex() == 6))               //si un type d'oeuvre est selectionné, => desactive le textfield + vide textfield
+
+        if (!(jComboBox1.getSelectedIndex() == 6))               //si un type d'oeuvre est selectionné, => desactive le textfield + vide textfield
         {
             jTextField1.setText("");                                //vide le champ
             jTextField1.setEditable(false);                         //desactive le textfield
             jComboBox2.setEnabled(true);
-        }
-        else
+        } else
         {
             jTextField1.setEditable(true);
             jComboBox2.setModel(cBoxModeleVide);
@@ -413,29 +483,16 @@ public class RechercheOeuvre extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-        for(Oeuvre o : listeOeuvresGerees)
+       
+        for (Oeuvre o : listeOeuvresGerees)
         {
-            if(o.getNomOeuvre().equals(jComboBox3.getSelectedItem()))
+            if (o.getNomOeuvre().equals((String)jComboBox3.getSelectedItem()))
             {
-                if(o.getTypeOeuvre() == TypeOeuvre.FLM)
-                {
-                    AffichageOeuvre affichageF = new AffichageOeuvre((Film)o);
-                    affichageF.pack();
-                    affichageF.setVisible(true); 
-                    break;
-                }
-                if(o.getTypeOeuvre() == TypeOeuvre.CVO)
-                {
-                    AffichageOeuvre affichageC = new AffichageOeuvre((ClipVideo)o);
-                    affichageC.pack();
-                    affichageC.setVisible(true); 
-                    break;
-                }
+                AffichageOeuvre affichage = new AffichageOeuvre(o);
+                affichage.pack();
+                affichage.setVisible(true);
             }
         }
-        
-
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
@@ -450,17 +507,16 @@ public class RechercheOeuvre extends javax.swing.JDialog {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed
     {//GEN-HEADEREND:event_jTextField1ActionPerformed
-        if(jTextField1.getText().length()!= 0)           //si un caractere a été tapé dans le champ titre, on bloque les combobox
+        if (jTextField1.getText().length() != 0)           //si un caractere a été tapé dans le champ titre, on bloque les combobox
         {
             jComboBox1.setEnabled(false);
             jComboBox2.setEnabled(false);
-        }
-        else
+        } else
         {
             jComboBox1.setEnabled(true);
             jComboBox2.setEnabled(true);
-        }    
-            
+        }
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
@@ -480,9 +536,9 @@ public class RechercheOeuvre extends javax.swing.JDialog {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jComboBox3ActionPerformed
     {//GEN-HEADEREND:event_jComboBox3ActionPerformed
-        for(Oeuvre o : listeOeuvresGerees)
+        for (Oeuvre o : listeOeuvresGerees)
         {
-            if(o.getNomOeuvre().equals(jComboBox3.getSelectedItem()))
+            if (o.getNomOeuvre().equals(jComboBox3.getSelectedItem()))
             {
                 jTextArea1.setText(o.toString());
                 break;
@@ -526,7 +582,7 @@ public class RechercheOeuvre extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-       /* java.awt.EventQueue.invokeLater(new Runnable() {
+ /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run()
             {
                 RechercheOeuvre dialog = new RechercheOeuvre(new javax.swing.JFrame(), true);
@@ -541,21 +597,19 @@ public class RechercheOeuvre extends javax.swing.JDialog {
             }
         });*/
     }
-    
-    
-    
-
-    Oeuvre o;
 
     private List<Oeuvre> lesOeuvresTrouvees;
-    private List<String> nomsDesOeuvresTrouvees;
-    //private List<Film> lesFilmsTrouves;
-    //private List<ClipVideo> lesClipsTrouves;
+    private List<Image> lesImagesTrouvees;
+    private List<Ecrit> lesEcritsTrouves;
+    private List<Musique> lesMusiquesTrouvees;
+    private List<ClipVideo> lesClipsTrouves;
+    private List<Film> lesFilmsTrouves;
+    private List<JeuVideo> lesJeuxVideosTrouves;
 
     private Object[] tabNoms;
     private Object[] tabNoms1;
     private Object[] tabNoms2;
-    
+
     private ComboBoxModel<String> cBoxTypeOeuvreModele;             //les types d'oeuvre
     private ComboBoxModel<String> cBoxCategorieModele;              //les catégories
     private ComboBoxModel<String> cBoxOeuvresTrouvees;

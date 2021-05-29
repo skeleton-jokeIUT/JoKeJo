@@ -71,8 +71,8 @@ public class Artiste {                      //utilisé pour le type clip video
         String str;
         str = "\nId artiste: \t"+this.getIdArtiste()+"\n"
                 +"Nom: \t\t"+this.getNomArtiste()+"\n"
-                +"Nationalité: \t"+this.getNationaliteArtiste()+"\n"
-                +"Metier: "+this.getMetierArtiste().getNomMetierArtiste()
+                +"Nationalité: \t\t"+this.getNationaliteArtiste()+"\n"
+                +"Metier: \t\t"+this.getMetierArtiste().getNomMetierArtiste()
                 +"Type d'oeuvre: \t"+this.getTypeOeuvreArtiste().getNomTypeOeuvre()+"\n";
         return str;
     }

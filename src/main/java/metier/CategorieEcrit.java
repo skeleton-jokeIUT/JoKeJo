@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author jo
  */
-public enum TypeEcrit {
+public enum CategorieEcrit {
     LVR("Livre"),
     BDS("Bande dessinée"), 
     MGA("Manga"), 
     DVR("Divers");
     
-    TypeEcrit(String nom)
+    CategorieEcrit(String nom)
     {
         this.nom = nom;
     }
@@ -27,7 +27,7 @@ public enum TypeEcrit {
     {
         List<String> liste = new ArrayList<>();
         
-        for(TypeEcrit cat: TypeEcrit.values())
+        for(CategorieEcrit cat: CategorieEcrit.values())
         {
             liste.add(cat.getNomCategorieEcrit());
         }
@@ -38,21 +38,21 @@ public enum TypeEcrit {
     {
         return nom;
     }
-     public static TypeEcrit convertToEnumCategorieEcrit(String s)    //conversion d'une chaine String en CategorieFilm (enum)
+     public static CategorieEcrit convertToEnumCategorieEcrit(String s)    //conversion d'une chaine String en CategorieFilm (enum)
     {
-        TypeEcrit cat = null;
+        CategorieEcrit cat = null;
         switch(s) {
             case "LVR":
-                cat = TypeEcrit.valueOf("LVR");
+                cat = CategorieEcrit.valueOf("LVR");
                 break;
             case "BDS":
-                cat = TypeEcrit.valueOf("BDS");
+                cat = CategorieEcrit.valueOf("BDS");
                 break;
             case "MGA":
-                cat = TypeEcrit.valueOf("MGA");
+                cat = CategorieEcrit.valueOf("MGA");
                 break;
             case "DVR":
-                cat = TypeEcrit.valueOf("DVR");
+                cat = CategorieEcrit.valueOf("DVR");
                 break;
             default:
                 System.out.println("Categorie inconnue");

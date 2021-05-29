@@ -5,16 +5,21 @@
  */
 package metier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author jo
  */
 public class Ecrit extends Oeuvre {
-    public Ecrit(TypeOeuvre t, Artiste art, String nat, String nom, String statut, int annee, int ageMini, int nombreP, TypeEcrit cat)
+    public Ecrit(TypeOeuvre t, Artiste art, String nat, String nom, String statut, int annee, int ageMini, int nombreP, CategorieEcrit cat)
     {
         super(TypeOeuvre.ECR, art, nom, statut, annee, ageMini);
         nombrePages = nombreP;
         categorie = cat;
+        
+        listeEcritsGeres.add(this);
     }
     
     public int getNombrePagesEcrit()
@@ -22,9 +27,19 @@ public class Ecrit extends Oeuvre {
         return this.nombrePages;
     }
     
-    public TypeEcrit getCategorieEcrit()
+    public CategorieEcrit getCategorieEcrit()
     {
         return this.categorie;
+    }
+    
+    public static List<String> getNomsListeEcrits (List<Ecrit> listeEcrit)
+    {
+        List<String> liste = new ArrayList();
+        for(Ecrit e: listeEcrit)
+        {
+            liste.add(e.getNomOeuvre());
+        }
+        return liste;
     }
     
     public void setNombrePagesEcrit(int n)
@@ -32,7 +47,7 @@ public class Ecrit extends Oeuvre {
         this.nombrePages = n;
     }
     
-    public void setCategorieEcrit(TypeEcrit c )
+    public void setCategorieEcrit(CategorieEcrit c )
     {
         this.categorie = c;
     }
@@ -40,6 +55,8 @@ public class Ecrit extends Oeuvre {
     @Override
     public String toString()
     {
+        double note2 = this.getNoteOeuvre();
+        
         String str;
         str = "\nId oeuvre: \t"+this.getIdOeuvre()+"\n"
                 +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
@@ -51,12 +68,14 @@ public class Ecrit extends Oeuvre {
                 +"Nombre de pages: \t"+this.getNombrePagesEcrit()+"\n"
                 +"Statut: \t"+this.getStatutOeuvre()
                 +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
-                +"Note moyenne: \t"+this.getNoteOeuvre()+"\n";
+                +"Note moyenne: \t"+String.format(java.util.Locale.US,"%.1f", note2)+"\n";
         return str;
     }
             
      
     private int nombrePages;
-    private TypeEcrit categorie;
+    private CategorieEcrit categorie;
+    
+    public static List<Ecrit> listeEcritsGeres = new ArrayList();
     
 }

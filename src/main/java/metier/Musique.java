@@ -5,11 +5,14 @@
  */
 package metier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author jo
  */
-public class Musique extends Oeuvre {
+public abstract class Musique extends Oeuvre {
     public Musique(TypeOeuvre t, Artiste art, String nom, String statut, int a, int ageMini, 
             CategorieMusiqueClip catP, CategorieMusiqueClip catS, int d)
     {
@@ -20,6 +23,7 @@ public class Musique extends Oeuvre {
         categoriePrincipale = catP;
         categorieSecondaire = catS;
         
+        listeMusiquesGerees.add(this);    
     }
     
     //getters
@@ -38,7 +42,17 @@ public class Musique extends Oeuvre {
     public CategorieMusiqueClip getCategorieSecondaireMusique()
     {
         return this.categorieSecondaire;
-    } 
+    }
+    
+    public static List<String> getNomsListeMusiques (List<Musique> listeMusique)
+    {
+        List<String> liste = new ArrayList();
+        for(Musique m: listeMusique)
+        {
+            liste.add(m.getNomOeuvre());
+        }
+        return liste;
+    }
     
     //setters
     public void setDureeMusique(int d)
@@ -57,6 +71,8 @@ public class Musique extends Oeuvre {
     @Override
     public String toString()
     {
+        double note2 = this.getNoteOeuvre();
+        
         String str;
         str = "\nId oeuvre: \t"+this.getIdOeuvre()+"\n"
                 +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
@@ -70,7 +86,7 @@ public class Musique extends Oeuvre {
                 +"Annee: \t"+this.getAnneeOeuvre()+"\n"
                 +"Statut: \t"+this.getStatutOeuvre()
                 +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
-                +"Note moyenne: \t"+this.getNoteOeuvre()+"\n";
+                +"Note moyenne: \t"+String.format(java.util.Locale.US,"%.1f", note2)+"\n";
         return str;
     }
     private int duree;
@@ -78,4 +94,6 @@ public class Musique extends Oeuvre {
     private final int ID;
     private CategorieMusiqueClip categoriePrincipale;
     private CategorieMusiqueClip categorieSecondaire;
+    
+    public static List<Musique> listeMusiquesGerees = new ArrayList(); 
 }

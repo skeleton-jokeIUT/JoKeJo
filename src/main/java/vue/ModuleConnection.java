@@ -17,6 +17,7 @@ public class ModuleConnection extends javax.swing.JDialog {
     public ModuleConnection(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
+
         initComponents();
     }
 
@@ -126,7 +127,7 @@ public class ModuleConnection extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         //bouton ok 
-        //si ok ->
+        //si ok -> degrise bouton deconnection + ...?
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -6,9 +6,12 @@
 package vue;
 
 import java.awt.Color;
-import javax.swing.JFrame;
 import metier.ClipVideo;
+import metier.Ecrit;
 import metier.Film;
+import metier.Image;
+import metier.JeuVideo;
+import metier.Musique;
 import metier.Oeuvre;
 import metier.TypeOeuvre;
 
@@ -26,6 +29,10 @@ public class AffichageOeuvre extends javax.swing.JDialog {
         
         initComponents();
         
+        double note = o.getAgeMiniOeuvre();
+        
+        jLabel3.setText(o.getMetierArtisteOeuvre().getNomMetierArtiste());      //metier de l'artiste
+        
         jTextField1.setText(o.getArtisteOeuvre().getNomArtiste());
         jTextField1.setEditable(false);        
         jTextField2.setText(o.getNomOeuvre());
@@ -38,12 +45,31 @@ public class AffichageOeuvre extends javax.swing.JDialog {
         jTextField8.setEditable(false);
         jTextField9.setText(String.valueOf(o.getIdOeuvre()));
         jTextField9.setEditable(false);
-        jTextField12.setText(String.valueOf(o.getAgeMiniOeuvre()));
+        jTextField11.setText(o.getTypeOeuvre().getNomTypeOeuvre());
+        jTextField11.setEditable(false);
+        jTextField12.setText(String.format(java.util.Locale.US,"%.1f", note));      //1 chiffre après la virgule
         jTextField12.setEditable(false);
         jTextField13.setText(String.valueOf(o.getNoteOeuvre()));
         jTextField13.setEditable(false);
- 
         
+        if(o.getTypeOeuvre() == TypeOeuvre.IMG)
+        {
+            image = (Image)o;
+        }
+        
+        if(o.getTypeOeuvre() == TypeOeuvre.ECR)
+        {
+            ecrit = (Ecrit)o;
+            
+            jLabel4.setText("Nombre de pages:");                                    //label Duree remplacée par Nombres de pages
+            jTextField5.setText(String.valueOf(ecrit.getNombrePagesEcrit()));       //nb de pages
+            
+            jLabel6.setText("Categorie d'ecrit:");
+            jTextField6.setText(ecrit.getCategorieEcrit().getNomCategorieEcrit());
+            
+            jLabel7.setEnabled(false);                                              //champ categorie secondaire desactivé
+        }
+
         if(o.getTypeOeuvre() == TypeOeuvre.FLM)
         {        
             film = (Film)o;
@@ -55,24 +81,22 @@ public class AffichageOeuvre extends javax.swing.JDialog {
             jTextField6.setText(film.getCategoriePrincipaleDuFilm().getNomCategorieFilm());
             jTextField6.setEditable(false);
             jTextField10.setText(String.valueOf(film.getIdFilm()));
-            jTextField10.setEditable(false);
-            jTextField11.setText(film.getTypeOeuvre().getNomTypeOeuvre());
-            jTextField11.setEditable(false);             
+            jTextField10.setEditable(false); 
         }
+        
         if(o.getTypeOeuvre() == TypeOeuvre.CVO)
         {
             clip = (ClipVideo)o;
             
-            jTextField3.setText(clip.getCategorieSecondaireDuClip().getNomCategorieClipMusique());
+            jTextField3.setText(clip.getCategorieSecondaireMusique().getNomCategorieClipMusique());
             jTextField3.setEditable(false);
             jTextField5.setText(String.valueOf(clip.getDureeClip()));
             jTextField5.setEditable(false);
-            jTextField6.setText(clip.getCategoriePrincipaleDuClip().getNomCategorieClipMusique());
+            jTextField6.setText(clip.getCategoriePrincipaleMusique().getNomCategorieClipMusique());
             jTextField6.setEditable(false);
             jTextField10.setText(String.valueOf(clip.getIdClip()));
             jTextField10.setEditable(false); 
         }
-        
     }
 
     /**
@@ -121,7 +145,7 @@ public class AffichageOeuvre extends javax.swing.JDialog {
         jLabel3.setText("Réalisateur:");
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("jTextField2");
         jTextField2.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -133,12 +157,12 @@ public class AffichageOeuvre extends javax.swing.JDialog {
         jLabel4.setText("Durée (en min):");
 
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("jTextField1");
+        jTextField3.setText("jTextField3");
 
         jLabel5.setText("Année:");
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setText("jTextField1");
+        jTextField4.setText("jTextField4");
         jTextField4.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -162,12 +186,12 @@ public class AffichageOeuvre extends javax.swing.JDialog {
         });
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setText("jTextField1");
+        jTextField5.setText("jTextField5");
 
         jLabel1.setText("Titre:");
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setText("jTextField1");
+        jTextField6.setText("jTextField6");
 
         jButton1.setText("Modifier");
         jButton1.addActionListener(new java.awt.event.ActionListener()
@@ -193,29 +217,29 @@ public class AffichageOeuvre extends javax.swing.JDialog {
         });
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setText("jTextField1");
+        jTextField8.setText("jTextField8");
 
         jLabel8.setText("Nationalité:");
 
         jLabel10.setText("ID oeuvre:");
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setText("jTextField1");
+        jTextField9.setText("jTextField9");
 
         jLabel11.setText("Age minimum:");
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setText("jTextField7");
+        jTextField10.setText("jTextField10");
 
         jLabel12.setText("Type d'oeuvre:");
 
         jTextField11.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField11.setText("jTextField1");
+        jTextField11.setText("jTextField11");
 
         jLabel13.setText("ID type oeuvre:");
 
         jTextField12.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField12.setText("jTextField7");
+        jTextField12.setText("jTextField12");
 
         jLabel14.setText("Note moyenne:");
         jLabel14.setToolTipText("");
@@ -232,49 +256,33 @@ public class AffichageOeuvre extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addGap(99, 99, 99)
-                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(87, 87, 87)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel7)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(114, 114, 114)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel11)
-                                    .addComponent(jLabel13))
-                                .addGap(72, 72, 72))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(326, 326, 326))))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9)))
+                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addComponent(jButton1)
@@ -301,10 +309,10 @@ public class AffichageOeuvre extends javax.swing.JDialog {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,29 +320,31 @@ public class AffichageOeuvre extends javax.swing.JDialog {
                     .addComponent(jLabel6)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -361,8 +371,8 @@ public class AffichageOeuvre extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -513,4 +523,10 @@ public class AffichageOeuvre extends javax.swing.JDialog {
    
     Film film;
     ClipVideo clip;
+    Musique musique;
+    Ecrit ecrit;
+    
+    Image image;
+    JeuVideo jeuVideo;
+
 }

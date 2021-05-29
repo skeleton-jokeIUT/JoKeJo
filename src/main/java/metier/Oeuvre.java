@@ -92,7 +92,7 @@ public abstract class Oeuvre {
         return this.age;
     }
     
-    public float getNoteOeuvre()
+    public double getNoteOeuvre()
     {
         return this.note;
     }
@@ -156,17 +156,19 @@ public abstract class Oeuvre {
     @Override
     public String toString()
     {
+        double note2 = this.getNoteOeuvre();
+        
         String str;
-        str = "\nId oeuvre: \t"+this.getIdOeuvre()+"\n"
+        str = "\nId de l'oeuvre: \t"+this.getIdOeuvre()+"\n"
                 +"Type d'oeuvre: \t"+this.getTypeOeuvre().getNomTypeOeuvre()+"\n"
                 +"Nom de l'oeuvre: \t"+this.getNomOeuvre()+"\n"
-                +"Artiste: \t"+this.getArtisteOeuvre().getNomArtiste()+"\n"
+                +"Artiste: \t\t"+this.getArtisteOeuvre().getNomArtiste()+"\n"
                 +"Nationalite: \t"+this.getArtisteOeuvre().getNationaliteArtiste()+"\n"
                 +"Type d'artiste: \t"+this.getMetierArtisteOeuvre().getNomMetierArtiste()+"\n"
                 +"Annee de sortie: \t"+this.getAnneeOeuvre()+"\n"
-                +"Statut: \t"+this.getStatutOeuvre()
+                +"Statut: \t\t"+this.getStatutOeuvre()
                 +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
-                +"Note moyenne: \t"+this.getNoteOeuvre()+"\n";               ;
+                +"Note moyenne: \t"+String.format(java.util.Locale.US,"%.1f", note2)+"\n";          //=>1 chiffre après la virgule
         return str;
     }
 
@@ -179,7 +181,7 @@ public abstract class Oeuvre {
     String statut;                                          //oeuvre payante, premium ou gratuite
     private int annee;                                      //annee de sortie
     private int age;                                        //age minimum pour pouvoir acceder à l'oeuvre
-    private float note;                                     //note (<=> avis)
+    private double note;                                     //note (<=> avis)
 
     //liste statique d'oeuvre = ensembles de toutes les oeuvres (films + clips +...)
     public static List<Oeuvre> listeOeuvresGerees = new ArrayList();    

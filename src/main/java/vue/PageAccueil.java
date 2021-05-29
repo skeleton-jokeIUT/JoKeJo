@@ -21,7 +21,15 @@ public class PageAccueil extends javax.swing.JFrame {
     {
         initComponents();
         
-        //griser boutons
+        jButton2.setEnabled(false);         //boutons grisés tant que la conneciton n'est pas ok
+        //jButton3.setEnabled(false); 
+        jButton4.setEnabled(false); //les degriser + griser bouton "se connecter" une fois ok/ comment le savoir?? 
+        jButton5.setEnabled(false); 
+        jButton6.setEnabled(false); 
+        jButton7.setEnabled(false); 
+        
+        
+ 
     }
 
     /**
