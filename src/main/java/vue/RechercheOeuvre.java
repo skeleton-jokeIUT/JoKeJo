@@ -357,7 +357,7 @@ public class RechercheOeuvre extends javax.swing.JDialog {
             cBoxOeuvresTrouvees = new DefaultComboBoxModel(getNomsListeOeuvres(lesOeuvresTrouvees).toArray());
 
         } 
-        else                                                     //si comboBox  selectionnés (ne fonctionne, mais doublons)
+        else                                                     //si comboBox  selectionnés
         {
             if (jComboBox1.getSelectedIndex() == 0)                      //si type Image selectionné
             {

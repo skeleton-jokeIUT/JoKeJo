@@ -265,10 +265,7 @@ public class GestionCatalogue extends javax.swing.JFrame {
                     duree = Integer.parseInt(ligne.split(";")[5]);          //durée
                     Artiste real = new Artiste(nomArtiste, nationalite, TypeOeuvre.FLM, MetierArtiste.RSR);
                     Film film = new Film(titre, real, annee, duree, convertToEnumCategorieFilm(categorieP), 
-                            convertToEnumCategorieFilm(categorieS), statut, age);
-                    
-                    listeFilmsGeres.add(film);                              //ajoute le film à la liste attribut static dans Film)
-                    
+                            convertToEnumCategorieFilm(categorieS), statut, age);                   
                 }
                 
                 if(typeOeuvre.equals("CVO"))                            //si l'eouvre est un clip video
@@ -277,10 +274,7 @@ public class GestionCatalogue extends javax.swing.JFrame {
                     
                     Artiste interprete = new Artiste(nomArtiste, nationalite, TypeOeuvre.CVO, MetierArtiste.IPT);
                     ClipVideo clip = new ClipVideo(titre, interprete, annee, duree, convertToEnumCategorieClipMusique(categorieP), 
-                            convertToEnumCategorieClipMusique(categorieS), statut, age);
-                    
-                    listeClipsGeres.add(clip);
-                    
+                            convertToEnumCategorieClipMusique(categorieS), statut, age);                    
                 }
                 
                 ligne = lecteur.readLine();                                 //passage à la ligne suivante
