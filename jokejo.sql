@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 31 mai 2021 à 19:11
+-- Généré le : lun. 31 mai 2021 à 19:43
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -285,21 +285,21 @@ CREATE TABLE IF NOT EXISTS `oeuvre` (
 --
 
 INSERT INTO `oeuvre` (`idOeuvre`, `titre`, `dateDeSortie`, `type`, `duree`, `catPrincipale`, `catSecondaire`, `ageMini`, `acces`, `prixAchat`, `prixLocation`, `cheminAcces`, `miniature`) VALUES
-(1, 'Naruto', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'premium', 6, 3, '../../cheminAcces/fichier/Ecrit/narutoT1.jpg', '../../cheminAcces/miniature/Naruto\r\n'),
-(2, 'The Big Lebowski', NULL, 'Vidéo', 90, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/TBL'),
-(3, 'Lost Paradise', NULL, 'Musique', 5, NULL, NULL, NULL, 'premium', 2, 1, '../../cheminAcces/fichier/Musique/LostParadise.mp3', '../../cheminAcces/miniature/LostParadise'),
-(4, 'Final Fantasy VII', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/FFVII'),
-(5, 'La Joconde', NULL, 'Image', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Joconde'),
-(6, 'Le seigneur des anneaux', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/SDA1'),
-(7, 'Harry Potter', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/HarryPotter'),
-(8, 'Avengers', NULL, 'Vidéo', 120, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Avengers'),
-(9, 'What The Cut ep37', NULL, 'Vidéo', 37, NULL, NULL, NULL, 'payant', 2, 0.5, '../../cheminAcces/fichier/Video/WHATTHECUT37.mp4', '../../cheminAcces/miniature/WTC37'),
-(10, 'Le radeau de la méduse', NULL, 'Image', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/RadeauDeLaMeduse'),
-(11, 'Guernica', NULL, 'Image', 0, NULL, NULL, NULL, 'gratuit', 0, 0, '../../cheminAcces/fichier/Image/Guernica.jpg', '../../cheminAcces/miniature/Guernica'),
-(12, 'Tetris', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Tetris'),
-(13, 'Donkey-Kong', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/DKong'),
-(14, 'Highway to Hell', NULL, 'Musique', 2, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/HtH'),
-(15, 'J\'irais ou tu iras', NULL, 'Musique', 2, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Jirais');
+(1, 'Naruto', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'premium', 6, 3, '../../cheminAcces/fichier/Ecrit/narutoT1.jpg', '../../cheminAcces/miniature/naruto.jpg\r\n'),
+(2, 'The Big Lebowski', NULL, 'Vidéo', 90, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/TBL.jpg'),
+(3, 'Lost Paradise', NULL, 'Musique', 5, NULL, NULL, NULL, 'premium', 2, 1, '../../cheminAcces/fichier/Musique/LostParadise.mp3', '../../cheminAcces/miniature/LostParadise.jpg'),
+(4, 'Final Fantasy VII', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/FFVII.jpg'),
+(5, 'La Joconde', NULL, 'Image', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Joconde.jpg'),
+(6, 'Le seigneur des anneaux', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/SDA1.jpg'),
+(7, 'Harry Potter', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/HarryPotter.jpg'),
+(8, 'Avengers', NULL, 'Vidéo', 120, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Avengers.jpg'),
+(9, 'What The Cut ep37', NULL, 'Vidéo', 37, NULL, NULL, NULL, 'payant', 2, 0.5, '../../cheminAcces/fichier/Video/WHATTHECUT37.mp4', '../../cheminAcces/miniature/WTC37.jpg'),
+(10, 'Le radeau de la méduse', NULL, 'Image', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/RadeauDeLaMeduse.jpg'),
+(11, 'Guernica', NULL, 'Image', 0, NULL, NULL, NULL, 'gratuit', 0, 0, '../../cheminAcces/fichier/Image/Guernica.jpg', '../../cheminAcces/miniature/Guernica.jpg'),
+(12, 'Tetris', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Tetris.jpg'),
+(13, 'Donkey-Kong', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Dkong.jpg'),
+(14, 'Highway to Hell', NULL, 'Musique', 2, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/HtH.jpg'),
+(15, 'J\'irais ou tu iras', NULL, 'Musique', 2, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Jirais.jpg');
 
 -- --------------------------------------------------------
 

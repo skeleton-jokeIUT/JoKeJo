@@ -42,7 +42,7 @@ class DAOOeuvre{
 		for($i=0;$i<3;$i++){
 
 			$data=$req->fetch();
-			echo '<a title="'.$data['titre'].'"href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'.jpg"></a>';
+			echo '<a title="'.$data['titre'].'"href="index.php?visionnage='.$data['type'].'&titre='.$data['titre'].'&acces='.$data['acces'].'"><img src="'.$data['miniature'].'"></a>';
 		}
 		
 	}
