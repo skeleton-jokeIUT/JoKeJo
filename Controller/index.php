@@ -55,7 +55,6 @@ if(isset($_GET['connexion'])){
 		if (isset($_POST['login']) && $_POST['login'] !="" &&($_POST['mdp']) && $_POST['mdp']!="")
     	{
        		$client->connection($_POST['login'],$_POST['mdp'],$message,$module);
-       		$module="profil";
     	}
     	else 
     	{
