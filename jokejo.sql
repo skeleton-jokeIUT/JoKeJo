@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 23 mai 2021 à 15:24
+-- Généré le : lun. 31 mai 2021 à 19:11
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `idAbonnement` int(1) DEFAULT NULL,
   PRIMARY KEY (`idClients`),
   KEY `idAbonnement` (`idAbonnement`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `clients`
@@ -107,12 +107,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
 
 INSERT INTO `clients` (`idClients`, `adresseMail`, `motDePasse`, `idAbonnement`) VALUES
 (1, 'j@m.fr', '1234', 1),
-(4, 'j.m@couc.fr', '1234', 2),
-(9, 'j.m@yolo.fr', '12', 3),
-(10, 'test@test.fr', '1', 1),
-(11, 'test@tes.fr', '1', 2),
-(12, 'a.a@a.fr', '1234', 1),
-(13, 'jo@jb.fr', '1234', 1);
+(31, 'test@test.fr', '12', 3);
 
 -- --------------------------------------------------------
 
@@ -158,10 +153,7 @@ CREATE TABLE IF NOT EXISTS `favori` (
 --
 
 INSERT INTO `favori` (`idOeuvre`, `idClient`) VALUES
-(1, 1),
-(3, 1),
-(9, 1),
-(11, 1);
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -293,21 +285,34 @@ CREATE TABLE IF NOT EXISTS `oeuvre` (
 --
 
 INSERT INTO `oeuvre` (`idOeuvre`, `titre`, `dateDeSortie`, `type`, `duree`, `catPrincipale`, `catSecondaire`, `ageMini`, `acces`, `prixAchat`, `prixLocation`, `cheminAcces`, `miniature`) VALUES
-(1, 'Naruto', NULL, 'Ecrit', NULL, NULL, NULL, NULL, 'premium', 6, 3, '../../cheminAcces/fichier/Ecrit/narutoT1.jpg', '../../cheminAcces/miniature/Naruto\r\n'),
-(2, 'The Big Lebowski', NULL, 'Vidéo', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/TBL'),
-(3, 'Lost Paradise', NULL, 'Musique', NULL, NULL, NULL, NULL, 'premium', 2, 1, '../../cheminAcces/fichier/Musique/LostParadise.mp3', '../../cheminAcces/miniature/LostParadise'),
-(4, 'Final Fantasy VII', NULL, 'Jeux-Vidéo', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/FFVII'),
-(5, 'La Joconde', NULL, 'Image', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/Joconde'),
-(6, 'Le seigneur des anneaux', NULL, 'Ecrit', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/SDA1'),
-(7, 'Harry Potter', NULL, 'Ecrit', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/HarryPotter'),
-(8, 'Avengers', NULL, 'Vidéo', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/Avengers'),
-(9, 'What The Cut ep37', NULL, 'Vidéo', NULL, NULL, NULL, NULL, 'payant', 2, 0.5, '../../cheminAcces/fichier/Video/WHATTHECUT37.mp4', '../../cheminAcces/miniature/WTC37'),
-(10, 'Le radeau de la méduse', NULL, 'Image', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/RadeauDeLaMeduse'),
-(11, 'Guernica', NULL, 'Image', NULL, NULL, NULL, NULL, 'gratuit', 0, 0, '../../cheminAcces/fichier/Image/Guernica.jpg', '../../cheminAcces/miniature/Guernica'),
-(12, 'Tetris', NULL, 'Jeux-Vidéo', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/Tetris'),
-(13, 'Donkey-Kong', NULL, 'Jeux-Vidéo', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/DKong'),
-(14, 'Highway to Hell', NULL, 'Musique', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/HtH'),
-(15, 'J\'irais ou tu iras', NULL, 'Musique', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '../../cheminAcces/miniature/Jirais');
+(1, 'Naruto', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'premium', 6, 3, '../../cheminAcces/fichier/Ecrit/narutoT1.jpg', '../../cheminAcces/miniature/Naruto\r\n'),
+(2, 'The Big Lebowski', NULL, 'Vidéo', 90, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/TBL'),
+(3, 'Lost Paradise', NULL, 'Musique', 5, NULL, NULL, NULL, 'premium', 2, 1, '../../cheminAcces/fichier/Musique/LostParadise.mp3', '../../cheminAcces/miniature/LostParadise'),
+(4, 'Final Fantasy VII', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/FFVII'),
+(5, 'La Joconde', NULL, 'Image', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Joconde'),
+(6, 'Le seigneur des anneaux', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/SDA1'),
+(7, 'Harry Potter', NULL, 'Ecrit', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/HarryPotter'),
+(8, 'Avengers', NULL, 'Vidéo', 120, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Avengers'),
+(9, 'What The Cut ep37', NULL, 'Vidéo', 37, NULL, NULL, NULL, 'payant', 2, 0.5, '../../cheminAcces/fichier/Video/WHATTHECUT37.mp4', '../../cheminAcces/miniature/WTC37'),
+(10, 'Le radeau de la méduse', NULL, 'Image', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/RadeauDeLaMeduse'),
+(11, 'Guernica', NULL, 'Image', 0, NULL, NULL, NULL, 'gratuit', 0, 0, '../../cheminAcces/fichier/Image/Guernica.jpg', '../../cheminAcces/miniature/Guernica'),
+(12, 'Tetris', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Tetris'),
+(13, 'Donkey-Kong', NULL, 'Jeux-Vidéo', 0, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/DKong'),
+(14, 'Highway to Hell', NULL, 'Musique', 2, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/HtH'),
+(15, 'J\'irais ou tu iras', NULL, 'Musique', 2, NULL, NULL, NULL, 'intermediaire', NULL, NULL, NULL, '../../cheminAcces/miniature/Jirais');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participant`
+--
+
+DROP TABLE IF EXISTS `participant`;
+CREATE TABLE IF NOT EXISTS `participant` (
+  `idSeance` int(255) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(1000) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idSeance`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -342,18 +347,15 @@ CREATE TABLE IF NOT EXISTS `profil` (
   `avatar` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`idProfil`,`idClient`),
   KEY `idClient` (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `profil`
 --
 
 INSERT INTO `profil` (`idProfil`, `idClient`, `nom`, `age`, `avatar`) VALUES
-(1, 9, 'default', 100, NULL),
-(2, 10, 'default', 100, NULL),
-(3, 11, 'coucou', 18, NULL),
-(4, 12, 'TEST', 18, NULL),
-(5, 13, '1234', 19, NULL);
+(8, 1, 'Johan', 18, NULL),
+(28, 1, 'default', 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,12 +367,20 @@ DROP TABLE IF EXISTS `seance`;
 CREATE TABLE IF NOT EXISTS `seance` (
   `idSeance` int(255) NOT NULL AUTO_INCREMENT,
   `nom` varchar(200) COLLATE utf8_bin DEFAULT NULL,
-  `type` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `type` enum('PUBLIQUE','PRIVEE') COLLATE utf8_bin DEFAULT NULL,
   `idOeuvre` int(255) DEFAULT NULL,
-  `horaire` date DEFAULT NULL,
+  `horaire` datetime DEFAULT NULL,
   PRIMARY KEY (`idSeance`),
   KEY `idOeuvre` (`idOeuvre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `seance`
+--
+
+INSERT INTO `seance` (`idSeance`, `nom`, `type`, `idOeuvre`, `horaire`) VALUES
+(1, 'TEST_Prive1', 'PRIVEE', 8, '2021-05-31 14:31:34'),
+(8, 'test', 'PRIVEE', 2, '2021-06-05 21:54:00');
 
 -- --------------------------------------------------------
 
@@ -472,6 +482,12 @@ ALTER TABLE `musique`
 ALTER TABLE `note`
   ADD CONSTRAINT `note_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `clients` (`idClients`),
   ADD CONSTRAINT `note_ibfk_2` FOREIGN KEY (`idOeuvre`) REFERENCES `oeuvre` (`idOeuvre`);
+
+--
+-- Contraintes pour la table `participant`
+--
+ALTER TABLE `participant`
+  ADD CONSTRAINT `fk_idSeance_seance_participant` FOREIGN KEY (`idSeance`) REFERENCES `seance` (`idSeance`);
 
 --
 -- Contraintes pour la table `personne`
