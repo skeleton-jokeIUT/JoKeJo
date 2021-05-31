@@ -31,7 +31,7 @@ class Client_DAO extends Personne {
         return $client;
     }
 
-    public function inscription($email, $motDePasse, $nomprofil, $ageProfil)
+    public function inscription($email, $motDePasse)
     {
         
         $requete = 'INSERT INTO clients (adresseMail, motDePasse, idAbonnement) values (:t_email, :t_motDePasse, :t_abonnement)';
@@ -39,23 +39,11 @@ class Client_DAO extends Personne {
         $req->execute(array('t_email'=>$email, 't_motDePasse'=>$motDePasse, 't_abonnement'=>1));
 
         $client = $this->getByEmail($email);
-        $id=$client->__get("id");
-
-        echo $client->__get("email");
 
         $_SESSION['email']=$client->__get("email");
         if(($client->__get("abonnement"))==1)$_SESSION['abonnement']="gratuit";
         else if(($client->__get("abonnement"))==2)$_SESSION['abonnement']="payant";
         else if(($client->__get("abonnement"))==3)$_SESSION['abonnement']="premium";
-
-        if($nomprofil=="") $nomprofil="default";
-        if($ageProfil=="") $ageProfil=100;
-
-        $requete = 'INSERT INTO profil (idClient, nom, age) values(?,?,?)';
-        $req= $this->bdd->prepare($requete);
-        $req->execute([$id,$nomprofil,$ageProfil]);
-
-
     }
 
     public function connection($login,$mdp,&$message,&$module){

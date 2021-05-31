@@ -2,7 +2,7 @@
 
 session_start();
 
-//var_dump($_POST);
+var_dump($_POST);
 //var_dump($_GET);
 //var_dump($_SESSION);
 
@@ -15,6 +15,7 @@ require_once('../Model/Personne_DAO.php');
 require_once('../Model/DAO_Favori.php');
 require_once('../Model/DAO_Note.php');
 require_once('../Model/DAO_Seance.php');
+require_once('../Model/DAO_Profil.php');
 
 $image= new DAOImage();
 $oeuvre= new DAOOeuvre();
@@ -25,6 +26,7 @@ $profil = new Profil();
 $favori = new DAOFavori();
 $note = new DAONote;
 $seance = new DAOSeance();
+$profil = new DAOProfil();
 
 $module="accueil";
 $message="";
@@ -77,13 +79,14 @@ if (isset($_GET['creation'])) {
     {
     	
         $reponse = $client->getByEmail($_POST['email']);
+
         if (isset($_POST['email']) && $_POST['email'] != '')
         {
             if (isset($_POST['mdp']) && $_POST['mdp'] != '')
             {
             
             		$email=$reponse->__get("email");
-            		var_dump($email);
+   
                 	if ($email!=null)
 	                {
 	                    $message="cette adresse mail est déjà associée un à compte";
@@ -91,7 +94,12 @@ if (isset($_GET['creation'])) {
 	                } 
 	                else 
 	                {
-	                    $client->inscription($_POST['email'], $_POST['mdp'],$_POST['nom_prof'],$_POST['age_prof']);
+	                    $client->inscription($_POST['email'], $_POST['mdp']);
+
+	                    $clients = $client->getByEmail($_POST['email']);
+        				$id=$clients->__get("id");
+
+        				$profil->creerProfil($id,$_POST['nom_prof'],$_POST['age_prof']);
 
 	                    $module="profil";//changer la vue 
 	                    $message = 'Compte enregistré';
@@ -201,7 +209,7 @@ if(isset($_GET['seance'])){
 
 			var_dump($_POST);
 
-			if($_POST['nomSeance']!="" && $_POST['listeFilm']!="--votre choix--" && $_POST['horaire']!=""){
+			if(isset($_POST['nomSeance']) && $_POST['nomSeance']!="" && isset($_POST['listeFilm']) && $_POST['listeFilm']!="--votre choix--" && isset($_POST['horaire']) && $_POST['horaire']!=""){
 				
 				$id=$oeuvre->getByTitre($_POST['listeFilm']);
 				$id=$id->__get('id');
@@ -210,7 +218,7 @@ if(isset($_GET['seance'])){
 		
 			}
 			else {
-				$message="Certains champs obligatoire n'ont pas été saisie";		
+				$message="Certains champs obligatoires n'ont pas été saisie";		
 			}
 		}
 	}
@@ -308,7 +316,7 @@ if(isset($_GET['abonnement'])){
 		}
 
 	}
-	
+
 }
 
 
@@ -327,6 +335,10 @@ if($module=="connexion"){
 }
 
 if($module=="profil"){
+
+	$User=$client->getByEmail($_SESSION["email"]);
+	$idClient=$User->__get('id');
+	if(isset($_GET['ajoutProfil'])) $message=$profil->ajoutProfil($idClient,"","");
 	include '../Vue/headerCo.php';
 	include('../Vue/choixProfils.php');
 	include '../Vue/footerNonCo.php';

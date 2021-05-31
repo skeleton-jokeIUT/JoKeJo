@@ -1,7 +1,7 @@
 
 <div class="form_inscrip">
 
-    <p id="accroche">Film, Jeux-Vidéo, et plus encore en illimité et sans engagement !<br> Venez profiter de l'expérience la plus complète du marché sur<br><strong>NetPrimePlus</strong></p>
+    <p id="accroche">Film, Jeux-Vidéo, et plus encore en illimité et sans engagement !<br> Venez profiter de l'expérience la plus complète du marché sur<br><strong>PrimeFixPlus</strong></p>
 <form class= "inscription" action="index.php?creation" method="POST">
             
       <?php echo $message ?>
@@ -16,7 +16,7 @@
                     <label>Age maximum* : <input type="text" name="age_prof" class="age_prof"></label>
                     </div>
                     <div class="abon">
-                    <p><strong>Lors de votre inscription nous vous attribuons un compte gratuit. Vous pouvez changer cela à tout moment depuis la page de sélection de profil !</p>
+                    <p><strong>Lors de votre inscription nous vous attribuons un compte gratuit. Vous pouvez changer cela à tout moment depuis le lien "changer d'abonnement" !</p>
                     </div>
                     <button type="reset" name="btnReset_inscr" class="reset">Effacer</button>
                     <button name="btnValider" class="valider">Valider</button>

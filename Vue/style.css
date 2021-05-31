@@ -16,6 +16,12 @@ header
 	justify-content: space-between;
 }
 
+header a{
+
+	text-align: ;
+
+}
+
 body 
 {
 	background-color:black;
@@ -250,11 +256,35 @@ h2 {
 
 #formCreerSeance{
 	color: black;
+	margin-left: 33%;
+	padding: 1em;
+	border-color: black;
+	border-style: solid;
+	border-radius: 1em;
+	width: 30%;
+}
+
+.text{
+
+	font-size: 1.3em;
+	text-align: center;
+	padding-top: 1%;
+}
+
+#formCreerSeance div{
+	margin-bottom: 1em;
 }
 
 #formCreerSeance label{
 	width: 150px;
+}
 
+#formCreerSeance select{
+	color: red;
+}
+
+#creerSeance{
+	background-color: red;
 }
 
 #formCreerSeance option{

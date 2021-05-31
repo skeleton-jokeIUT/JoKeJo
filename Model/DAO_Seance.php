@@ -19,7 +19,7 @@ class DAOSeance{
 		}
 	}
 
-	public function creerSeancePrivee($nom,$horaire,$oeuvre,$mail){
+	public function creerSeancePrivee($nom,$horaire,$oeuvre){
 
 		$sql='INSERT INTO seance (nom,type,idOeuvre,horaire) values (:t_nom, :t_type, :t_oeuvre, :t_horaire)';
 		$req=$this->bdd->prepare($sql);
