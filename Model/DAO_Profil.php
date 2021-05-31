@@ -8,7 +8,7 @@ class DAOProfil{
 		try{
    			$this->bdd= new PDO(
    				"mysql:host=localhost;dbname=jokejo;charset=utf8",
-   				'Johan',
+   				'util',
    				'1234');
 		}
 
