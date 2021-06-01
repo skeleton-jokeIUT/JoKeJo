@@ -14,7 +14,7 @@ class DAOFavori {
    			$this->bdd= new PDO(
    				"mysql:host=localhost;dbname=jokejo;charset=utf8",
    				'util',
-   				'1234');
+   				'Util1234!');
 		}
 		catch (Exception $e) {
      		die('Erreur'.$e->getMessage());
