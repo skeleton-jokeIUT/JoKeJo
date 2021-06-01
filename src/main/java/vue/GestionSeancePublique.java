@@ -5,17 +5,15 @@
  */
 package vue;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import metier.Film;
 import static metier.Film.listeFilmsGeres;
 import metier.SeancePubliqueFilm;
 import static metier.SeancePubliqueFilm.listeSeancesPubliquesFilms;
-import metier.TypeOeuvre;
+
 
 /**
  *
@@ -28,11 +26,8 @@ public class GestionSeancePublique extends javax.swing.JFrame {
      */
     public GestionSeancePublique()
     {
-        SeancePubliqueFilm seance1 = new SeancePubliqueFilm("Seance1", "01/06/2021", listeFilmsGeres.get(0), listeFilmsGeres.get(2));
-        SeancePubliqueFilm seance2 = new SeancePubliqueFilm("Seance2", "01/07/2021", listeFilmsGeres.get(4), listeFilmsGeres.get(6));
-        
-        seance1.ajouterFilmsASeance(listeFilmsGeres.get(8));
-        seance2.ajouterFilmsASeance(listeFilmsGeres.get(10), listeFilmsGeres.get(12));
+        SeancePubliqueFilm seance1 = new SeancePubliqueFilm("Seance1", "01/06/2021", listeFilmsGeres.get(0));
+        SeancePubliqueFilm seance2 = new SeancePubliqueFilm("Seance2", "01/07/2021", listeFilmsGeres.get(4));
         
         tabSeances = SeancePubliqueFilm.getToutesLesSeancesPubliques().toArray();
         tabNomsFilms = Film.getNomsListeFilms (listeFilmsGeres).toArray();
@@ -45,8 +40,8 @@ public class GestionSeancePublique extends javax.swing.JFrame {
         
         jComboBox1.setSelectedIndex(0);                                 //selection par defaut du premier element
         jComboBox2.setEnabled(false);                                   //desactivation du comboBox liste film
-        jButton5.setEnabled(false);                                     //ainsi que des boutons ajouter et supprimer
-        jButton6.setEnabled(false);                                     //
+        jButton5.setEnabled(false);                                     //ainsi que bouton remplacer
+
 
     }
 
@@ -70,11 +65,10 @@ public class GestionSeancePublique extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jButton1.setText("Créer Séance");
+        jButton1.setText("Créer Nouvelle Séance");
         jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -117,8 +111,8 @@ public class GestionSeancePublique extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Ajouter ou supprimer  des Films");
-        jButton4.setActionCommand("Ajouter ou supprimer des Films");
+        jButton4.setText("Remplacer le film:");
+        jButton4.setActionCommand("Remplacer le film");
         jButton4.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -135,15 +129,6 @@ public class GestionSeancePublique extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Supprimer de la seance");
-        jButton6.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -167,12 +152,11 @@ public class GestionSeancePublique extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton6)
-                                            .addComponent(jButton5)))))
+                                        .addComponent(jButton5)))
+                                .addGap(36, 36, 36))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
+                        .addGap(122, 122, 122)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
@@ -190,12 +174,9 @@ public class GestionSeancePublique extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addGap(18, 18, 18)
+                    .addComponent(jButton5)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,8 +202,16 @@ public class GestionSeancePublique extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
     {//GEN-HEADEREND:event_jButton3ActionPerformed
-        SeancePubliqueFilm seance = (SeancePubliqueFilm) jComboBox1.getSelectedItem();
-        listeSeancesPubliquesFilms.remove(seance);
+        String seanceSelectionnee = (String) jComboBox1.getSelectedItem();
+        for(SeancePubliqueFilm seance : listeSeancesPubliquesFilms)
+        {
+            if(seance.getNomSeance().equals(seanceSelectionnee))
+            {
+                listeSeancesPubliquesFilms.remove(seance);
+                break;
+            }    
+        }
+        
         System.out.println(listeSeancesPubliquesFilms);                     //on verifie la suppression de la seance
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -240,30 +229,17 @@ public class GestionSeancePublique extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
     {//GEN-HEADEREND:event_jButton4ActionPerformed
-        jComboBox2.setEnabled(true);                                        //on active les boutons ajouter, supprimer et le comboxFilm
+        jComboBox2.setEnabled(true);                                        //on active le bouton remplacer et le comboxFilm
         jButton5.setEnabled(true);                                          //
-        jButton6.setEnabled(true);                                          //
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
     {//GEN-HEADEREND:event_jButton5ActionPerformed
-        SeancePubliqueFilm seance = (SeancePubliqueFilm) jComboBox1.getSelectedItem();
-        Film film = (Film) jComboBox2.getSelectedItem();
-        seance.ajouterFilmsASeance(film);
-        
-        jTextArea1.setText(seance.toString());
-        System.out.println(listeSeancesPubliquesFilms);                     //on verifie l'ajout du film à la seance
+        //bouton ajouter
+        String src = "Fonctionnalité en cours de développement";
+        JOptionPane.showMessageDialog(this,src, "ERREUR",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton6ActionPerformed
-    {//GEN-HEADEREND:event_jButton6ActionPerformed
-        SeancePubliqueFilm seance = (SeancePubliqueFilm) jComboBox1.getSelectedItem();
-        Film film = (Film) jComboBox2.getSelectedItem();
-        seance.supprimerFilmsASeance(film);
-        
-        jTextArea1.setText(seance.toString());
-        System.out.println(listeSeancesPubliquesFilms);                     //on verifie la suppression du film à la seance
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,6 +292,7 @@ public class GestionSeancePublique extends javax.swing.JFrame {
     
     private ComboBoxModel<String> cBoxSeanceModele;
     private ComboBoxModel<String> cBoxListeFilmsModele;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
@@ -323,7 +300,6 @@ public class GestionSeancePublique extends javax.swing.JFrame {
     javax.swing.JButton jButton3;
     javax.swing.JButton jButton4;
     javax.swing.JButton jButton5;
-    javax.swing.JButton jButton6;
     javax.swing.JComboBox<String> jComboBox1;
     javax.swing.JComboBox<String> jComboBox2;
     javax.swing.JLabel jLabel1;

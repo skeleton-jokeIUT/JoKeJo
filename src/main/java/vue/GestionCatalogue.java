@@ -12,8 +12,6 @@ import java.io.LineNumberReader;
 import metier.*;
 import static metier.CategorieFilm.convertToEnumCategorieFilm;
 import static metier.CategorieMusiqueClip.convertToEnumCategorieClipMusique;
-import static metier.ClipVideo.listeClipsGeres;
-import static metier.Film.listeFilmsGeres;
 import static metier.Oeuvre.listeOeuvresGerees;
 
 /**
@@ -295,9 +293,6 @@ public class GestionCatalogue extends javax.swing.JFrame {
         }
     }
     
-
-    
-
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

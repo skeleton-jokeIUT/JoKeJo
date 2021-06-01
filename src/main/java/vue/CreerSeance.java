@@ -5,6 +5,7 @@
  */
 package vue;
 
+import javax.swing.JOptionPane;
 import metier.SeancePubliqueFilm;
 
 /**
@@ -168,7 +169,8 @@ public class CreerSeance extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        SeancePubliqueFilm seance = new SeancePubliqueFilm(jTextField1.getText().toString(), "01/07/2021");
+        String src = "Fonctionnalité en cours de développement";
+        JOptionPane.showMessageDialog(this,src, "ERREUR",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed

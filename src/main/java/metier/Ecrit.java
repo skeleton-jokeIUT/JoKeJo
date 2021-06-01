@@ -13,7 +13,7 @@ import java.util.List;
  * @author jo
  */
 public class Ecrit extends Oeuvre {
-    public Ecrit(TypeOeuvre t, Artiste art, String nat, String nom, String statut, int annee, int ageMini, int nombreP, CategorieEcrit cat)
+    public Ecrit(TypeOeuvre t, Artiste art, String nom, String statut, int annee, int ageMini, int nombreP, CategorieEcrit cat)
     {
         super(TypeOeuvre.ECR, art, nom, statut, annee, ageMini);
         nombrePages = nombreP;

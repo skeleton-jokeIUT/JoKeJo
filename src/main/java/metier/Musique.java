@@ -66,7 +66,8 @@ public class Musique extends Oeuvre {
     public void setCategorieSecondaireMusique(CategorieMusiqueClip c)
     {
         this.categorieSecondaire = c;
-    } 
+    }
+    
     
     @Override
     public String toString()

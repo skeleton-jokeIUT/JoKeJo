@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import metier.CategorieMusiqueClip;
 import metier.CategorieFilm;
 import metier.ClipVideo;
@@ -469,7 +470,6 @@ public class RechercheOeuvre extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-       
         for (Oeuvre o : listeOeuvresGerees)
         {
             if (o.getNomOeuvre().equals((String)jComboBox3.getSelectedItem()))
@@ -502,12 +502,12 @@ public class RechercheOeuvre extends javax.swing.JDialog {
             jComboBox1.setEnabled(true);
             jComboBox2.setEnabled(true);
         }
-
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
     {//GEN-HEADEREND:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        String src = "Fonctionnalité en cours de développement";
+        JOptionPane.showMessageDialog(this,src, "ERREUR",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField2ActionPerformed

@@ -41,6 +41,68 @@ public enum TypeOeuvre {
     {
         return nom;
     }
+    
+    public static TypeOeuvre convertStringToTypeOuvre(String s)    //conversion d'une chaine String en CategorieFilm (enum)
+    {
+        TypeOeuvre type = null;
+        switch(s) {
+            case "IMG":
+                type = TypeOeuvre.valueOf("IMG");
+                break;
+            case "ECR":
+                type = TypeOeuvre.valueOf("ECR");
+                break;
+            case "MSQ":
+                type = TypeOeuvre.valueOf("MSQ");
+                break;
+            case "CVO":
+                type = TypeOeuvre.valueOf("CVO");
+                break;
+            case "FLM":
+                type = TypeOeuvre.valueOf("FLM");
+                break;
+            case "JEU":
+                type = TypeOeuvre.valueOf("JEU");
+                break;
+            case "ACN":
+                type = TypeOeuvre.valueOf("ACN");
+                break;
+            default:
+                System.out.println("Type oeuvre inconnu");
+        }
+        return type;
+    }
+    
+    public static String convertTypeOeuvreToString(int i)            //conversion d'un int en String
+    {
+        String s = "";
+        switch(i) {
+            case 0:
+                s = "IMG";
+                break;
+            case 1:
+                s = "ECR";
+                break;
+            case 2:
+                s = "MSQ";
+                break;
+            case 3:
+                s = "CVO";
+                break;
+            case 4:
+                s = "FLM";
+                break;
+            case 5:
+                s = "JEU";
+                break;
+            case 6:
+                s = "ACN";
+                break;
+            default:
+                System.out.println("Index TypeOeuvre inconnu");
+        }
+        return s; 
+    }
 
     private final String nom;
 }

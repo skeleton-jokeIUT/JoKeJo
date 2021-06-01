@@ -13,17 +13,12 @@ import java.util.List;
  * @author jo
  */
 public class SeancePubliqueFilm {
-    public SeancePubliqueFilm(String n, String d, Film...f) 
+    public SeancePubliqueFilm(String n, String d, Film f) 
     {
         cpt++;
         ID = cpt;
         nom = n;
-        listeFilms = new ArrayList();
-        for(Film film: f)
-        {
-            listeFilms.add(film);
-        }
-        nbFilm = listeFilms.size();
+        film = f;
         date = d;
         
         listeSeancesPubliquesFilms.add(this);                               //seance ajoutée à la liste des seance existantes
@@ -33,11 +28,6 @@ public class SeancePubliqueFilm {
     public int getIdSeance()
     {
         return this.ID;
-    }
-    
-    public int getNbFilmSeance()
-    {
-        return this.nbFilm;
     }
     
     public String getNomSeance()
@@ -50,19 +40,11 @@ public class SeancePubliqueFilm {
         return this.date;
     }
     
-    public List<Film> getListeFilmSeance()
+    public Film getFilmSeance()
     {
-        return listeFilms;
+        return film;
     }
-    
-    public List<String> getTousLesFilmsSeance()
-    {
-        List<String> liste = new ArrayList();
-        for(Film f: listeFilms)
-            liste.add(f.getNomOeuvre());
-        
-        return liste;
-    }
+
     
     public static List<String> getToutesLesSeancesPubliques()
     {
@@ -84,50 +66,21 @@ public class SeancePubliqueFilm {
         this.date = s;
     }
     
-    public void setNbFilmsSeance(int n)
+    public void setFilmSeance(Film f)
     {
-        this.nbFilm = n;
+        this.film = f;
     }
     
-    public void setListeFilmsSeance(List<Film> liste)
-    {
-        this.listeFilms = liste;
-    }
-    
-    public void ajouterFilmsASeance(Film...f)        //on peut ajouter un ou plusieurs films
-    {
-        for(Film film : f)
-        {
-            listeFilms.add(film);
-            nbFilm = nbFilm + 1;
-        }        
-    }
-    
-    public void supprimerFilmsASeance(Film...f)        //on peut ajouter un ou plusieurs films
-    {
-        for(Film film : f)
-        {
-            listeFilms.remove(film);
-            nbFilm = nbFilm - 1;
-        }        
-    }
-    
-    public void supprimerFilmASeance(SeancePubliqueFilm seance, Film...f)
-    {
-         for(Film film : f)
-            listeFilms.remove(film);       
-    }
     
     
     @Override
     public String toString()
     {
         String str;
-        str =  "ID de la séance: \t"+this.getIdSeance()+"\n"
+        str =  "\nID de la séance: \t"+this.getIdSeance()+"\n"
                 +"Nom de la seance: \t"+this.getNomSeance()+"\n"
-                +"Nombre de films: \t"+this.getNbFilmSeance()+"\n"
                 +"Date de projection: \t"+this.getDateSeance()+"\n"
-                +"Films projetés: \t"+this.getTousLesFilmsSeance()+"\n";       
+                +"Film projeté: \t\t"+this.getFilmSeance().getNomOeuvre()+"\n";       
         return str;
     }
     
@@ -136,9 +89,8 @@ public class SeancePubliqueFilm {
     private static int cpt = 0 ;
     private final int ID;
     private String nom;
-    private int nbFilm;
     private String date;
-    private List<Film> listeFilms;
+    private Film film;
     
     public static List<SeancePubliqueFilm> listeSeancesPubliquesFilms = new ArrayList();
 }

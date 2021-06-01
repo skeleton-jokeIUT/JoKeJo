@@ -24,7 +24,6 @@ public class ClipVideo extends Musique {
         {
             cpt++;                                      //incrémenté à chaque nouveau clip créé
             ID = cpt;                                   //affecte un id au clip 
-            duree = d;
             categoriePrincipale = catP;
             categorieSecondaire = catS;
             
@@ -36,11 +35,6 @@ public class ClipVideo extends Musique {
     public int getIdClip()
     {
         return ID;
-    }
-
-    public int getDureeClip()
-    {
-        return duree;
     }
 
     public static List<String> getNomsListeClips (List<ClipVideo> listeClip)
@@ -88,7 +82,7 @@ public class ClipVideo extends Musique {
                 +"Nationalité: \t\t"+this.getArtisteOeuvre().getNationaliteArtiste()+"\n"
                 +"Categorie principale: \t"+this.getCategoriePrincipaleMusique().getNomCategorieClipMusique()+"\n"
                 +"Categorie secondaire: \t"+this.getCategorieSecondaireMusique().getNomCategorieClipMusique()+"\n"
-                +"Duree: \t\t"+this.getDureeClip()+"\n"
+                +"Duree: \t\t"+this.getDureeMusique()+"\n"
                 +"Annee: \t\t"+this.getAnneeOeuvre()+"\n"
                 +"Statut: \t\t"+this.getStatutOeuvre()+"\n"
                 +"Age requis: \t\t"+this.getAgeMiniOeuvre()+"\n"
